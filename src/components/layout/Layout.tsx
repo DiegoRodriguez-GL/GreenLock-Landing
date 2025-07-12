@@ -1,4 +1,4 @@
-// src/components/layout/Layout.tsx
+// src/components/layout/Layout.tsx - CORREGIDO PARA RESPONSIVE
 import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Header from './Header.tsx';
@@ -13,9 +13,9 @@ export default function Layout() {
   }, [location]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="w-full min-h-screen">
       <Header />
-      <main className="flex-grow w-full">
+      <main className="w-full">
         <Outlet />
       </main>
       <Footer />

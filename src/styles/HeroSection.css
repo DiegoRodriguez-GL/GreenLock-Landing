@@ -1,128 +1,335 @@
-/* src/styles/colors.css - Paleta de colores actualizada */
+/* HeroSection.css - SOLUCIÓN DEFINITIVA PARA ZOOM */
 
+/* Variables CSS optimizadas para zoom */
 :root {
-  /* Paleta principal de GreenLock */
-  --greenlock-primary: #00B267;
-  --greenlock-secondary: #2F4F39;
-  --greenlock-light: #33D17A;
-  --greenlock-dark: #006B3C;
+  --hero-primary: #00B267;
+  --hero-secondary: #2F4F39;
+  --hero-light: #4ade80;
+  --hero-bg: #080f1d;
+  --hero-text: #ffffff;
+  --hero-text-secondary: #e5e7eb;
   
-  /* Variaciones de la paleta principal */
-  --greenlock-50: #f0fdf4;
-  --greenlock-100: #dcfce7;
-  --greenlock-200: #bbf7d0;
-  --greenlock-300: #86efac;
-  --greenlock-400: #4ade80;
-  --greenlock-500: #00B267;
-  --greenlock-600: #2F4F39;
-  --greenlock-700: #15803d;
-  --greenlock-800: #166534;
-  --greenlock-900: #14532d;
+  /* Variables de escala adaptativa */
+  --hero-scale: clamp(0.8, 1vw + 0.5rem, 1.2);
+  --hero-spacing: clamp(0.5rem, 2vw, 2rem);
+  --hero-font-base: clamp(0.875rem, 1.5vw, 1.125rem);
+}
+
+/* Contenedor principal - TOTALMENTE ADAPTATIVO AL ZOOM */
+.hero-section {
+  position: relative;
+  /* ALTURA FLUIDA que se adapta al zoom */
+  min-height: clamp(400px, 100vh - 4rem, 800px);
+  max-height: none; /* Removido límite máximo */
+  width: 100%;
+  background: var(--hero-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* PADDING ADAPTATIVO - clave para el zoom */
+  padding: clamp(0.5rem, 2vh, 1rem) clamp(0.5rem, 2vw, 1rem);
   
-  /* Colores de estado usando la paleta */
-  --success-color: #00B267;
-  --warning-color: #f59e0b;
-  --error-color: #ef4444;
-  --info-color: #3b82f6;
+  /* Asegurar que el contenedor respete todos los tamaños */
+  box-sizing: border-box;
+  contain: layout style;
+}
+
+/* Container interno - FLUIDO AL 100% */
+.hero-container {
+  /* ANCHO COMPLETAMENTE FLUIDO */
+  width: min(100%, 1280px);
+  max-width: none;
+  margin: 0 auto;
+  /* PADDING PROPORCIONAL AL VIEWPORT */
+  padding: 0 clamp(0.75rem, 3vw, 1.5rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* GAP QUE SE ADAPTA AL ZOOM */
+  gap: clamp(1rem, 4vw, 3rem);
+  align-items: center;
+  position: relative;
+  z-index: 2;
   
-  /* Backgrounds oscuros */
-  --dark-bg: #080f1d;
-  --dark-surface: #101b2e;
-  --dark-card: #1a2332;
+  /* Asegurar que el grid sea fluido */
+  box-sizing: border-box;
+}
+
+/* Contenido de texto - ESCALADO PROPORCIONAL */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  /* GAP ADAPTATIVO */
+  gap: clamp(0.75rem, 2.5vw, 1.5rem);
+  max-width: 100%;
+  /* Asegurar que el texto no se desborde */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Título principal - ESCALADO PERFECTO */
+.hero-title {
+  /* TAMAÑO DE FUENTE COMPLETAMENTE ADAPTATIVO */
+  font-size: clamp(1.5rem, 4vw + 0.5rem, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--hero-text);
+  margin: 0;
+  letter-spacing: -0.02em;
   
-  /* Efectos y sombras con la nueva paleta */
-  --greenlock-glow: rgba(0, 178, 103, 0.3);
-  --greenlock-shadow: rgba(0, 178, 103, 0.1);
-  --greenlock-border: rgba(0, 178, 103, 0.2);
+  /* Asegurar legibilidad en todos los zooms */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Clases de utilidad con la nueva paleta */
-.text-greenlock {
-  color: var(--greenlock-primary);
-}
-
-.text-greenlock-secondary {
-  color: var(--greenlock-secondary);
-}
-
-.bg-greenlock {
-  background-color: var(--greenlock-primary);
-}
-
-.bg-greenlock-secondary {
-  background-color: var(--greenlock-secondary);
-}
-
-.border-greenlock {
-  border-color: var(--greenlock-primary);
-}
-
-.shadow-greenlock {
-  box-shadow: 0 10px 15px -3px var(--greenlock-shadow);
-}
-
-.glow-greenlock {
-  box-shadow: 0 0 20px var(--greenlock-glow);
-}
-
-/* Gradientes con la nueva paleta */
-.gradient-greenlock {
-  background: linear-gradient(135deg, var(--greenlock-primary), var(--greenlock-secondary));
-}
-
-.gradient-greenlock-reverse {
-  background: linear-gradient(135deg, var(--greenlock-secondary), var(--greenlock-primary));
-}
-
-.text-gradient-greenlock {
-  background: linear-gradient(135deg, var(--greenlock-primary), var(--greenlock-secondary));
+/* Texto con gradiente - ADAPTATIVO */
+.hero-title .gradient-text {
+  background: linear-gradient(135deg, var(--hero-primary), var(--hero-light));
   background-clip: text;
   -webkit-background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  animation: gradient-shift 8s ease infinite;
 }
 
-/* Efectos hover */
-.hover-greenlock:hover {
-  color: var(--greenlock-primary);
-  transition: color 0.3s ease;
+/* Subtítulo - ESCALADO PROPORCIONAL */
+.hero-subtitle {
+  font-size: clamp(0.875rem, 2vw + 0.25rem, 1.125rem);
+  color: var(--hero-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 100%;
+  
+  /* Mejorar legibilidad */
+  text-rendering: optimizeLegibility;
 }
 
-.hover-bg-greenlock:hover {
-  background-color: var(--greenlock-primary);
-  transition: background-color 0.3s ease;
+/* Botones - COMPLETAMENTE RESPONSIVOS */
+.hero-buttons {
+  display: flex;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+  flex-wrap: wrap;
+  margin-top: clamp(0.75rem, 2.5vw, 1.5rem);
 }
 
-.hover-glow-greenlock:hover {
-  box-shadow: 0 0 20px var(--greenlock-glow);
-  transition: box-shadow 0.3s ease;
+.hero-btn {
+  /* PADDING ADAPTATIVO AL ZOOM */
+  padding: clamp(0.5rem, 1.5vw, 0.875rem) clamp(1rem, 3vw, 1.75rem);
+  border-radius: clamp(0.375rem, 1vw, 0.5rem);
+  font-weight: 600;
+  /* TAMAÑO DE FUENTE ADAPTATIVO */
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.25rem, 1vw, 0.5rem);
+  white-space: nowrap;
+  
+  /* Asegurar que los botones no se deformen */
+  box-sizing: border-box;
+  min-height: clamp(2.5rem, 5vw, 3rem);
 }
 
-/* Animaciones con la nueva paleta */
-@keyframes pulse-greenlock {
+.hero-btn-primary {
+  background: var(--hero-primary);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 178, 103, 0.3);
+}
+
+.hero-btn-primary:hover {
+  background: var(--hero-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 178, 103, 0.4);
+}
+
+.hero-btn-secondary {
+  background: transparent;
+  color: var(--hero-primary);
+  border: 2px solid var(--hero-primary);
+}
+
+.hero-btn-secondary:hover {
+  background: var(--hero-primary);
+  color: white;
+}
+
+/* Área visual - ADAPTATIVA AL ZOOM */
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* ALTURA ADAPTATIVA */
+  min-height: clamp(200px, 30vh, 400px);
+  
+  /* Asegurar que el contenido visual se mantenga proporcionado */
+  aspect-ratio: 1;
+  max-width: 100%;
+}
+
+/* Efectos de fondo - ESCALADOS PROPORCIONALMENTE */
+.hero-glow {
+  position: absolute;
+  /* TAMAÑOS ADAPTATIVOS AL ZOOM */
+  width: clamp(200px, 30vw, 500px);
+  height: clamp(200px, 30vh, 500px);
+  border-radius: 50%;
+  filter: blur(clamp(60px, 8vw, 100px));
+  opacity: 0.1;
+  background: radial-gradient(circle, var(--hero-primary) 0%, transparent 70%);
+  animation: pulse-glow 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Animaciones optimizadas */
+@keyframes gradient-shift {
   0%, 100% {
-    box-shadow: 0 0 0 0 var(--greenlock-glow);
+    background-position: 0% 50%;
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(0, 178, 103, 0);
+    background-position: 100% 50%;
   }
 }
 
-.animate-pulse-greenlock {
-  animation: pulse-greenlock 2s infinite;
+@keyframes pulse-glow {
+  0% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0.15;
+  }
 }
 
-/* Overrides para Tailwind con la nueva paleta */
-.greenlock-override {
-  --tw-text-opacity: 1;
-  color: rgb(0 178 103 / var(--tw-text-opacity));
+/* MEDIA QUERIES ESPECÍFICAS PARA ZOOM */
+
+/* Zoom muy alto (zoom out extremo) */
+@media screen and (max-width: 1200px) and (min-height: 600px) {
+  .hero-section {
+    min-height: clamp(350px, 80vh, 600px);
+  }
+  
+  .hero-container {
+    gap: clamp(0.75rem, 3vw, 2rem);
+  }
 }
 
-.greenlock-bg-override {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 178 103 / var(--tw-bg-opacity));
+/* Tablets y zoom intermedio */
+@media screen and (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 3vw, 2rem);
+    text-align: center;
+  }
+  
+  .hero-visual {
+    order: -1;
+    min-height: clamp(150px, 25vh, 300px);
+  }
+  
+  .hero-section {
+    min-height: clamp(300px, 90vh, 700px);
+  }
 }
 
-.greenlock-border-override {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 178 103 / var(--tw-border-opacity));
+/* Móviles */
+@media screen and (max-width: 768px) {
+  .hero-section {
+    min-height: clamp(250px, 85vh, 600px);
+    padding: clamp(0.25rem, 1vh, 0.5rem) clamp(0.25rem, 1vw, 0.5rem);
+  }
+  
+  .hero-container {
+    padding: 0 clamp(0.5rem, 2vw, 1rem);
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.5rem, 1vw, 0.75rem);
+  }
+  
+  .hero-btn {
+    width: 100%;
+    max-width: clamp(200px, 80vw, 280px);
+    justify-content: center;
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media screen and (max-width: 480px) {
+  .hero-section {
+    min-height: clamp(200px, 80vh, 500px);
+    padding: 0;
+  }
+  
+  .hero-container {
+    padding: 0 clamp(0.5rem, 1vw, 0.75rem);
+  }
+}
+
+/* ZOOM ESPECÍFICO - Niveles de zoom altos */
+@media screen and (min-width: 1440px) {
+  .hero-container {
+    width: min(90vw, 1400px);
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .hero-container {
+    width: min(85vw, 1600px);
+  }
+}
+
+/* Para zoom muy bajo (zoom in extremo) */
+@media screen and (max-width: 600px) and (max-height: 400px) {
+  .hero-section {
+    min-height: 100vh;
+  }
+  
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+}
+
+/* Optimización para diferentes ratios de aspecto */
+@media screen and (max-aspect-ratio: 1/1) {
+  .hero-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-aspect-ratio: 2/1) {
+  .hero-container {
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+}
+
+/* Mejoras de rendimiento para zoom */
+.hero-section * {
+  will-change: auto;
+}
+
+.hero-section .hero-glow {
+  will-change: transform, opacity;
+}
+
+/* Asegurar que todos los elementos respeten box-sizing */
+.hero-section *,
+.hero-section *::before,
+.hero-section *::after {
+  box-sizing: border-box;
+}
+
+/* Prevenir overflow horizontal en cualquier zoom */
+.hero-section {
+  overflow-x: hidden;
+}
+
+.hero-container {
+  overflow: visible;
 }

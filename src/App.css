@@ -1,9 +1,3 @@
-#root {
-  width: 100%;
-  min-height: 100vh;
-  /* Removido max-width y text-align center que causaban problemas */
-}
-
 /* Estilos para el logo - mantener como estaban */
 .logo {
   height: 6em;
@@ -12,7 +6,7 @@
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 2em #17993faa);
+  filter: drop-shadow(0 0 2em #00B267aa);
 }
 
 @keyframes logo-spin {
@@ -30,12 +24,35 @@
   }
 }
 
-/* Variables CSS para el tema oscuro */
+/* Variables CSS para el tema oscuro - actualizadas con los colores de GreenLock */
 :root {
+  /* Paleta principal de GreenLock */
+  --greenlock-primary: #00B267;
+  --greenlock-secondary: #2F4F39;
+  --greenlock-light: #33D17A;
+  --greenlock-dark: #006B3C;
+  
+  /* Variaciones de la paleta principal */
+  --greenlock-50: #f0fdf4;
+  --greenlock-100: #dcfce7;
+  --greenlock-200: #bbf7d0;
+  --greenlock-300: #86efac;
+  --greenlock-400: #4ade80;
+  --greenlock-500: #00B267;
+  --greenlock-600: #2F4F39;
+  --greenlock-700: #15803d;
+  --greenlock-800: #166534;
+  --greenlock-900: #14532d;
+  
+  /* Backgrounds oscuros */
   --dark-bg: #080f1d;
   --dark-surface: #101b2e;
-  --accent-green: #17993f;
-  --accent-green-light: #25cc59;
+  --dark-card: #1a2332;
+  
+  /* Efectos y sombras con la nueva paleta */
+  --greenlock-glow: rgba(0, 178, 103, 0.3);
+  --greenlock-shadow: rgba(0, 178, 103, 0.1);
+  --greenlock-border: rgba(0, 178, 103, 0.2);
 }
 
 /* Efectos de brillo para destacar elementos */
@@ -50,7 +67,7 @@
   left: -10px;
   right: -10px;
   bottom: -10px;
-  background: radial-gradient(circle at center, var(--accent-green-light) 0%, transparent 70%);
+  background: radial-gradient(circle at center, var(--greenlock-light) 0%, transparent 70%);
   opacity: 0;
   z-index: -1;
   transition: opacity 0.3s ease;
@@ -64,18 +81,18 @@
 .feature-card {
   backdrop-filter: blur(10px);
   background-color: rgba(16, 27, 46, 0.7);
-  border: 1px solid rgba(37, 204, 89, 0.1);
+  border: 1px solid rgba(0, 178, 103, 0.1);
   transition: all 0.3s ease;
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(37, 204, 89, 0.15);
-  border-color: rgba(37, 204, 89, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 178, 103, 0.15);
+  border-color: rgba(0, 178, 103, 0.3);
 }
 
 .hover-shadow-glow:hover {
-  box-shadow: 0 0 20px rgba(23, 153, 63, 0.5);
+  box-shadow: 0 0 20px rgba(0, 178, 103, 0.5);
 }
 
 .hover-shadow-glow {
@@ -84,20 +101,20 @@
 
 /* Efecto para el botón de contacto */
 .shadow-glow {
-  box-shadow: 0 0 0 rgba(23, 153, 63, 0);
+  box-shadow: 0 0 0 rgba(0, 178, 103, 0);
   transition: box-shadow 0.3s ease;
 }
 
 .shadow-glow:hover {
-  box-shadow: 0 0 15px rgba(23, 153, 63, 0.5);
+  box-shadow: 0 0 15px rgba(0, 178, 103, 0.5);
 }
 
 /* Efecto de texto de terminal */
 .terminal-text {
   font-family: 'JetBrains Mono', monospace;
-  color: #25cc59;
+  color: var(--greenlock-light);
   overflow: hidden;
-  border-right: 2px solid #25cc59;
+  border-right: 2px solid var(--greenlock-light);
   white-space: nowrap;
   margin: 0 auto;
   letter-spacing: 0.1em;
@@ -111,5 +128,81 @@
 
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: #25cc59 }
+  50% { border-color: var(--greenlock-light) }
+}
+
+/* ===== CLASES DE UTILIDAD GREENLOCK ===== */
+
+.text-greenlock {
+  color: var(--greenlock-primary);
+}
+
+.text-greenlock-secondary {
+  color: var(--greenlock-secondary);
+}
+
+.bg-greenlock {
+  background-color: var(--greenlock-primary);
+}
+
+.bg-greenlock-secondary {
+  background-color: var(--greenlock-secondary);
+}
+
+.border-greenlock {
+  border-color: var(--greenlock-primary);
+}
+
+.shadow-greenlock {
+  box-shadow: 0 10px 15px -3px var(--greenlock-shadow);
+}
+
+.glow-greenlock {
+  box-shadow: 0 0 20px var(--greenlock-glow);
+}
+
+/* Gradientes con la nueva paleta */
+.gradient-greenlock {
+  background: linear-gradient(135deg, var(--greenlock-primary), var(--greenlock-secondary));
+}
+
+.gradient-greenlock-reverse {
+  background: linear-gradient(135deg, var(--greenlock-secondary), var(--greenlock-primary));
+}
+
+.text-gradient-greenlock {
+  background: linear-gradient(135deg, var(--greenlock-primary), var(--greenlock-secondary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Efectos hover */
+.hover-greenlock:hover {
+  color: var(--greenlock-primary);
+  transition: color 0.3s ease;
+}
+
+.hover-bg-greenlock:hover {
+  background-color: var(--greenlock-primary);
+  transition: background-color 0.3s ease;
+}
+
+.hover-glow-greenlock:hover {
+  box-shadow: 0 0 20px var(--greenlock-glow);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Animaciones con la nueva paleta */
+@keyframes pulse-greenlock {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--greenlock-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 178, 103, 0);
+  }
+}
+
+.animate-pulse-greenlock {
+  animation: pulse-greenlock 2s infinite;
 }

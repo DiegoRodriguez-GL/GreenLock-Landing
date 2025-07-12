@@ -1,0 +1,346 @@
+/* Header.css - Estilos específicos del Header - BOTÓN MÓVIL PROFESIONAL */
+
+/* Variables CSS para el Header */
+:root {
+  --header-fade-primary: #00B267;
+  --header-fade-secondary: #2F4F39;
+  --header-fade-light: #4ade80;
+  --header-bg: rgba(8, 15, 29, 0.95);
+  --header-border: rgba(0, 178, 103, 0.1);
+}
+
+/* Contenedor principal del Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--header-bg);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  background: rgba(8, 15, 29, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 178, 103, 0.05);
+}
+
+/* Contenedor interno del Header */
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+/* Logo personalizado - SIN EFECTOS DE HOVER */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+}
+
+/* Imagen del logo - SIN EFECTOS */
+.header-logo-image {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+}
+
+/* Texto GreenLock con degradado MÁS CLARO en "Lock" */
+.header-logo-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* Degradado MÁS CLARO y suave para la parte "Lock" */
+.header-logo-text .lock-part {
+  background: linear-gradient(135deg, #4ade80, #00B267, #33D17A);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.9;
+}
+
+/* Navegación principal con iconos - SOLO 4 SECCIONES */
+.header-nav {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .header-nav {
+    display: flex;
+  }
+}
+
+.header-nav-link {
+  position: relative;
+  color: #e5e7eb;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 4rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-nav-link:hover {
+  color: var(--header-fade-primary);
+}
+
+.header-nav-link.active {
+  color: var(--header-fade-primary);
+}
+
+/* Iconos de navegación */
+.header-nav-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Efecto de subrayado - POSICIONADO EN LA PARTE INFERIOR */
+.header-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--header-fade-primary);
+  transition: width 0.3s ease;
+  z-index: 1;
+}
+
+.header-nav-link:hover::after,
+.header-nav-link.active::after {
+  width: 100%;
+}
+
+/* Botón único - OCULTO EN MÓVIL */
+.header-buttons {
+  display: none;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .header-buttons {
+    display: flex;
+  }
+}
+
+.header-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-btn-primary {
+  background: var(--header-fade-primary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 178, 103, 0.2);
+}
+
+.header-btn-primary:hover {
+  background: var(--header-fade-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 178, 103, 0.25);
+}
+
+.header-btn-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Botón de menú móvil */
+.header-mobile-menu-btn {
+  display: block;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .header-mobile-menu-btn {
+    display: none;
+  }
+}
+
+.header-mobile-menu-btn:hover {
+  color: var(--header-fade-primary);
+  transform: scale(1.05);
+}
+
+.header-mobile-menu-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Menú móvil */
+.header-mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(8, 15, 29, 0.98);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.header-mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.header-mobile-menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.header-mobile-menu-link {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-mobile-menu-link:hover,
+.header-mobile-menu-link.active {
+  color: var(--header-fade-primary);
+  padding-left: 1rem;
+}
+
+/* Botón móvil - DISEÑO PROFESIONAL Y ELEGANTE */
+.header-mobile-menu-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Botón móvil con diseño PROFESIONAL - FADE MÁS CLARO */
+.header-mobile-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  /* DEGRADADO MÁS CLARO Y PROFESIONAL */
+  background: linear-gradient(135deg, #4ade80, #00B267, #33D17A);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  /* SOMBRA MÁS SUTIL Y PROFESIONAL */
+  box-shadow: 0 2px 8px rgba(74, 222, 128, 0.15);
+  position: relative;
+  overflow: hidden;
+  /* OPACIDAD LIGERAMENTE REDUCIDA PARA MAYOR ELEGANCIA */
+  opacity: 0.95;
+}
+
+/* Efecto de hover SUAVIZADO para el botón móvil */
+.header-mobile-btn:hover {
+  transform: translateY(-1px); /* MOVIMIENTO MÁS SUTIL */
+  /* SOMBRA HOVER MÁS PROFESIONAL */
+  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+  opacity: 1;
+}
+
+/* Efecto de ripple MÁS SUTIL para el botón móvil */
+.header-mobile-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  /* EFECTO DE BRILLO MÁS SUTIL */
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease; /* TRANSICIÓN MÁS LENTA Y ELEGANTE */
+}
+
+.header-mobile-btn:hover::before {
+  left: 100%;
+}
+
+/* Icono del botón móvil con efecto más sutil */
+.header-mobile-btn-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  /* SOMBRA MÁS SUTIL EN EL ICONO */
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .header-container {
+    padding: 0 0.75rem;
+    height: 3.5rem;
+  }
+  
+  .header-logo-text {
+    font-size: 0.875rem;
+  }
+  
+  .header-logo-image {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  
+  .header-nav-link {
+    font-size: 0.875rem;
+    height: 3.5rem;
+  }
+  
+  /* Ajustes específicos para el botón móvil en pantallas muy pequeñas */
+  .header-mobile-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+    /* SOMBRA AJUSTADA PARA PANTALLAS PEQUEÑAS */
+    box-shadow: 0 2px 6px rgba(74, 222, 128, 0.12);
+  }
+  
+  .header-mobile-btn:hover {
+    box-shadow: 0 3px 10px rgba(74, 222, 128, 0.18);
+  }
+}

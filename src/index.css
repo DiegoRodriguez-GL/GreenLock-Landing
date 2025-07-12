@@ -5,6 +5,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    width: 100%;
+    height: 100%;
   }
   
   body {
@@ -12,7 +14,16 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden; /* Prevenir scroll horizontal */
+    height: 100%;
+    /* Removido overflow-x: hidden que causaba problemas */
+    box-sizing: border-box;
+  }
+
+  #root {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    /* Removido display flex que causaba problemas de layout */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -20,42 +31,43 @@
   }
   
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
   }
   
   h2 {
-    @apply text-3xl md:text-4xl;
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
   }
   
   h3 {
-    @apply text-2xl md:text-3xl;
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
   }
 
-  /* Asegurar que todos los contenedores padre permitan width completo */
-  * {
+  /* Asegurar que todos los contenedores respeten el box-sizing */
+  *, *::before, *::after {
     box-sizing: border-box;
   }
 }
 
 @layer components {
   .container {
-    @apply px-4 mx-auto max-w-7xl sm:px-6 lg:px-8;
+    @apply px-4 mx-auto w-full;
+    max-width: min(1280px, 100vw - 2rem);
   }
   
   .section {
-    @apply py-12 md:py-24;
+    @apply py-8 sm:py-12 md:py-16 lg:py-24;
   }
   
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#080f1d];
+    @apply inline-flex items-center justify-center px-4 sm:px-6 py-3 font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#080f1d];
   }
   
   .btn-primary {
-    @apply bg-greenlock-500 text-white hover:bg-greenlock-400 focus:ring-greenlock-500 shadow-md shadow-greenlock-500/20;
+    @apply bg-green-500 text-white hover:bg-green-400 focus:ring-green-500 shadow-md shadow-green-500/20;
   }
   
   .btn-secondary {
-    @apply bg-gray-800 text-greenlock-400 border border-greenlock-500 hover:bg-gray-700 focus:ring-greenlock-500;
+    @apply bg-gray-800 text-green-400 border border-green-500 hover:bg-gray-700 focus:ring-green-500;
   }
   
   .code-effect {
@@ -67,11 +79,11 @@
   }
   
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-greenlock-400 to-greenlock-600 animate-text-gradient;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600 animate-text-gradient;
   }
 
   .card {
-    @apply bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-xl shadow-black/20 p-6 hover:shadow-greenlock-900/10 hover:border-gray-600 transition-all;
+    @apply bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-xl shadow-black/20 p-4 sm:p-6 hover:shadow-green-900/10 hover:border-gray-600 transition-all;
   }
 }
 
@@ -106,7 +118,7 @@
   display: inline-block;
   width: 2px;
   height: 1em;
-  background-color: #17993f;
+  background-color: #00B267;
   margin-left: 2px;
   animation: blink 1s step-end infinite;
   vertical-align: text-bottom;
@@ -157,7 +169,7 @@
   border-radius: 50%;
   filter: blur(100px);
   opacity: 0.07;
-  background: radial-gradient(circle, rgba(23, 153, 63, 1) 0%, rgba(23, 153, 63, 0) 70%);
+  background: radial-gradient(circle, rgba(0, 178, 103, 1) 0%, rgba(0, 178, 103, 0) 70%);
   animation: pulse-glow 8s ease-in-out infinite alternate;
 }
 
@@ -174,7 +186,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #17993f, #25cc59, #17993f);
+  background: linear-gradient(45deg, #00B267, #33D17A, #00B267);
   background-size: 200% 200%;
   z-index: -1;
   animation: glowing 10s ease-in-out infinite;
@@ -201,7 +213,7 @@
 
 /* Gradientes mejorados para textos */
 .text-gradient {
-  background: linear-gradient(90deg, #17993f, #25cc59);
+  background: linear-gradient(90deg, #00B267, #33D17A);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -218,50 +230,29 @@
   }
 }
 
-/* ===== PARTÍCULAS Y EFECTOS FLOTANTES ===== */
+/* ===== RESPONSIVO MEJORADO ===== */
 
-.floating-particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background-color: rgba(23, 153, 63, 0.15);
-  border-radius: 50%;
-  pointer-events: none;
+/* Asegurar que el viewport funcione correctamente */
+@media screen and (max-width: 768px) {
+  .container {
+    @apply px-3;
+  }
+  
+  .section {
+    @apply py-6 sm:py-8;
+  }
 }
 
-.particles-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background-color: rgba(37, 204, 89, 0.2);
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-  animation: float-up 8s linear infinite;
-}
-
-@keyframes float-up {
-  0% {
-    transform: translateY(100%) rotate(0deg);
-    opacity: 0;
+/* Prevenir zoom horizontal en móviles */
+@media screen and (max-width: 480px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
   }
-  10% {
-    opacity: 0.8;
-  }
-  90% {
-    opacity: 0.2;
-  }
-  100% {
-    transform: translateY(-20%) rotate(360deg);
-    opacity: 0;
+  
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -284,7 +275,7 @@
 /* Estilo para la terminal de código */
 .terminal-text {
   font-family: 'JetBrains Mono', monospace;
-  color: #25cc59;
+  color: #33D17A;
   overflow: hidden;
   white-space: nowrap;
   letter-spacing: 0.1em;
