@@ -1,0 +1,133 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Reiniciar los estilos predeterminados del template */
+.logo {
+  height: 6em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #17993faa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Estilos para el tema oscuro */
+:root {
+  --dark-bg: #080f1d;
+  --dark-surface: #101b2e;
+  --accent-green: #17993f;
+  --accent-green-light: #25cc59;
+}
+
+/* Efectos de brillo para destacar elementos */
+.glow-effect {
+  position: relative;
+}
+
+.glow-effect::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(circle at center, var(--accent-green-light) 0%, transparent 70%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.glow-effect:hover::after {
+  opacity: 0.15;
+}
+
+/* Animación de partículas en el fondo */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: rgba(37, 204, 89, 0.2);
+  border-radius: 50%;
+}
+
+/* Sección de características con efecto de tarjeta elevada */
+.feature-card {
+  backdrop-filter: blur(10px);
+  background-color: rgba(16, 27, 46, 0.7);
+  border: 1px solid rgba(37, 204, 89, 0.1);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(37, 204, 89, 0.15);
+  border-color: rgba(37, 204, 89, 0.3);
+}
+
+.hover-shadow-glow:hover {
+  box-shadow: 0 0 20px rgba(23, 153, 63, 0.5);
+}
+
+.hover-shadow-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+/* Efecto para el botón de contacto */
+.shadow-glow {
+  box-shadow: 0 0 0 rgba(23, 153, 63, 0);
+  transition: box-shadow 0.3s ease;
+}
+
+.shadow-glow:hover {
+  box-shadow: 0 0 15px rgba(23, 153, 63, 0.5);
+}
+
+/* Efecto de texto de terminal */
+.terminal-text {
+  font-family: 'JetBrains Mono', monospace;
+  color: #25cc59;
+  overflow: hidden;
+  border-right: 2px solid #25cc59;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.1em;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #25cc59 }
+}
