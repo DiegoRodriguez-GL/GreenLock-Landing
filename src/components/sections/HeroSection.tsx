@@ -1,7 +1,6 @@
-// src/components/sections/HeroSection.tsx - VERSIÓN CON CSS ESPECÍFICO
+// src/components/sections/HeroSection.tsx - VERSIÓN RESPONSIVA CORREGIDA
 import { useEffect, useState, useRef } from 'react';
 import { ArrowRight, Shield, Scale, Monitor } from 'lucide-react';
-import '../../styles/HeroSection.css'; // Importar estilos específicos
 
 // Componente de fondo tecnológico minimalista en movimiento
 function TechBackground() {
@@ -39,7 +38,7 @@ function TechBackground() {
     
     // Crear nodos para el efecto tecnológico minimalista
     const nodes = [];
-    const nodeCount = 30;
+    const nodeCount = 30; // Cantidad moderada
     const canvasWidth = () => canvas.width / (window.devicePixelRatio || 1);
     const canvasHeight = () => canvas.height / (window.devicePixelRatio || 1);
     
@@ -140,12 +139,13 @@ function TechBackground() {
   return (
     <canvas 
       ref={canvasRef} 
-      className="hero-background-canvas"
+      className="absolute inset-0 w-full h-full"
+      style={{ background: '#080f1d' }}
     />
   );
 }
 
-// Componente para el efecto de typewriter rotativo
+// Componente para el efecto de typewriter rotativo con frases atractivas
 function RotatingTypewriter() {
   const phrases = [
     "Protegemos su empresa contra amenazas avanzadas",
@@ -210,14 +210,14 @@ function RotatingTypewriter() {
   }, [displayText, isDeleting, currentPhraseIndex, phrases]);
   
   return (
-    <span className="hero-typewriter-text">
+    <span className="text-lg md:text-xl text-gray-300 block">
       {displayText}
-      <span className={`hero-typewriter-cursor ${isComplete ? 'hero-element-hidden' : 'hero-element-visible'}`}></span>
+      <span className={`typewriter-cursor ${isComplete ? 'opacity-0' : 'opacity-100'}`}></span>
     </span>
   );
 }
 
-// Componente para el terminal de código
+// Componente mejorado para el efecto de terminal de código
 function CodeTerminal() {
   const [lines, setLines] = useState([]);
   const [scanProgress, setScanProgress] = useState(0);
@@ -225,7 +225,7 @@ function CodeTerminal() {
   const terminalRef = useRef(null);
   
   useEffect(() => {
-    // Líneas de código para la animación
+    // Líneas de código para la animación - versión minimalista
     const codeLines = [
       { text: "$ ./security_scan --target=client.domain", delay: 800, type: "command" },
       { text: "[+] Iniciando escaneo de seguridad", delay: 800, type: "output" },
@@ -298,68 +298,144 @@ function CodeTerminal() {
   }, [lines]);
   
   // Determinar color de la barra de progreso según el estado
-  const progressBarClass = {
-    initializing: 'hero-terminal-progress-bar--blue',
-    scanning: 'hero-terminal-progress-bar--yellow',
-    analyzing: 'hero-terminal-progress-bar--orange',
-    complete: 'hero-terminal-progress-bar--green'
+  const progressBarColor = {
+    initializing: 'bg-blue-500',
+    scanning: 'bg-yellow-500',
+    analyzing: 'bg-orange-500',
+    complete: 'bg-green-500'
   }[scanStatus];
   
   return (
-    <div className="hero-terminal">
-      {/* Header del terminal */}
-      <div className="hero-terminal-header">
-        <div className="hero-terminal-dots">
-          <div className="hero-terminal-dot hero-terminal-dot--red"></div>
-          <div className="hero-terminal-dot hero-terminal-dot--yellow"></div>
-          <div className="hero-terminal-dot hero-terminal-dot--green"></div>
-        </div>
-        <div className="hero-terminal-title">scan.sh</div>
-      </div>
-      
-      {/* Barra de progreso */}
-      <div className="hero-terminal-progress">
-        <div 
-          className={`hero-terminal-progress-bar ${progressBarClass}`}
-          style={{ width: `${scanProgress}%` }}
-        ></div>
-      </div>
-      
-      {/* Contenido del terminal */}
-      <div ref={terminalRef} className="hero-terminal-content">
-        {lines.map((line, index) => (
-          <div key={index} className={`hero-terminal-line hero-terminal-line--${line.type}`}>
-            {line.type === "command" && <span style={{ color: '#9ca3af', marginRight: '0.25rem' }}>$</span>}
-            {line.text}
+    <div className="w-full relative">
+      <div className="bg-[#0c1628] border border-gray-700 rounded-md overflow-hidden shadow-md w-full lg:max-w-lg ml-auto">
+        {/* Barra de título simplificada */}
+        <div className="px-3 py-1.5 bg-[#0a1426] border-b border-gray-700 flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            <div className="w-2 h-2 rounded-full bg-red-500"></div>
+            <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+            <div className="w-2 h-2 rounded-full bg-green-500"></div>
           </div>
-        ))}
-        <div style={{ height: '1rem' }}></div>
+          <div className="text-xs text-gray-400">scan.sh</div>
+        </div>
+        
+        {/* Barra de progreso minimalista */}
+        <div className="w-full h-0.5 bg-gray-800">
+          <div 
+            className={`h-full transition-all duration-300 ${progressBarColor}`}
+            style={{ width: `${scanProgress}%` }}
+          ></div>
+        </div>
+        
+        {/* Contenido de la terminal - minimalista */}
+        <div 
+          ref={terminalRef}
+          className="p-3 font-mono text-xs text-gray-300 h-48 overflow-y-auto scrollbar-thin scrollbar-track-transparent"
+          style={{ scrollbarWidth: 'thin' }}
+        >
+          {lines.map((line, index) => (
+            <div 
+              key={index} 
+              className={`mb-1 ${
+                line.type === "command" ? "text-greenlock-400" : 
+                line.type === "warning" ? "text-yellow-500" : 
+                line.type === "info" ? "text-blue-300" :
+                line.type === "success" ? "text-green-400" : 
+                "text-gray-300"
+              }`}
+            >
+              {line.type === "command" && <span className="text-gray-500 mr-1">$</span>}
+              {line.text}
+            </div>
+          ))}
+          <div className="h-4"></div> {/* Espacio al final */}
+        </div>
       </div>
     </div>
   );
 }
 
-// Componente para los íconos pulsantes
+// Componente pulsante para los íconos de las tarjetas
 function PulsingIcon({ icon: Icon }) {
   return (
-    <div className="hero-feature-icon-container">
-      <div className="hero-feature-icon">
-        <Icon />
+    <div className="mb-4 flex justify-center feature-icon relative">
+      <div className="p-3 rounded-full bg-gradient-to-br from-greenlock-500/20 to-greenlock-400/5 relative z-10">
+        <Icon className="w-8 h-8 md:w-10 md:h-10 text-greenlock-400" />
       </div>
       {/* Anillos pulsantes */}
-      <div className="hero-feature-rings">
-        <div className="hero-feature-ring hero-feature-ring--primary"></div>
-        <div className="hero-feature-ring hero-feature-ring--secondary"></div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-greenlock-500/10 animate-pulse-ring1"></div>
+        <div className="absolute w-18 h-18 md:w-20 md:h-20 rounded-full bg-greenlock-500/5 animate-pulse-ring2"></div>
       </div>
     </div>
   );
 }
+
+// Estilos CSS para animaciones (se debe añadir a tu archivo global de CSS)
+const styles = `
+@keyframes pulse-ring1 {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.1);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse-ring2 {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-ring1 {
+  animation: pulse-ring1 3s infinite;
+}
+
+.animate-pulse-ring2 {
+  animation: pulse-ring2 4s infinite 0.5s;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: #17993f;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+`;
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [cardsVisible, setCardsVisible] = useState(false);
   
   useEffect(() => {
+    // Inyectar estilos CSS en el documento
+    const styleElement = document.createElement('style');
+    styleElement.textContent = styles;
+    document.head.appendChild(styleElement);
+    
     // Animación secuencial
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -372,77 +448,95 @@ export default function HeroSection() {
     
     return () => {
       clearTimeout(timer);
+      // Limpiar estilos al desmontar el componente
+      if (document.head.contains(styleElement)) {
+        document.head.removeChild(styleElement);
+      }
     };
   }, []);
   
   return (
-    <section id="hero" className="hero-section-container">
+    <section 
+      id="hero" 
+      className="relative w-full min-h-screen flex items-center overflow-hidden py-16 sm:py-20 md:py-24 lg:py-0 lg:min-h-screen"
+      style={{ backgroundColor: '#080f1d' }}
+    >
       {/* Fondo tecnológico en movimiento */}
       <TechBackground />
       
-      {/* Overlay de gradiente para mejor legibilidad */}
-      <div className="hero-gradient-overlay"></div>
+      {/* Overlay de gradiente para mejor legibilidad con fade en elementos */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/70 via-transparent to-[#080f1d] z-10"></div>
       
-      <div className="hero-content-wrapper">
-        <div className="hero-main-grid">
+      <div className="container relative z-20 mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Contenido principal */}
-          <div className="hero-text-content">
-            <h1 className="hero-main-title">
-              <span className="hero-title-line hero-title-line--primary">Seguridad</span>
-              <span className="hero-title-line">
-                <span className="hero-title-line--gradient">Inquebrantable</span>
-                <span className="hero-title-line--secondary"> para</span>
+          <div className="text-center lg:text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 lg:mb-6 tracking-tight leading-tight">
+              <span className="text-white block mb-1">Seguridad</span>
+              <span className="block mb-1">
+                {/* Texto con gradiente animado */}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-greenlock-500 to-emerald-600 animate-gradient-text">Inquebrantable</span>
+                <span className="text-white"> para</span>
               </span>
-              <span className="hero-title-line hero-title-line--secondary">Infraestructura Digital</span>
+              <span className="text-white block">Infraestructura Digital</span>
             </h1>
             
-            <div className={`hero-typewriter-container ${isVisible ? 'hero-element-visible' : 'hero-element-hidden'}`}>
+            <div className={`mb-4 lg:mb-6 transition-opacity duration-700 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               <RotatingTypewriter />
             </div>
             
-            <p className={`hero-description hero-description--mobile-center ${isVisible ? 'hero-element-visible' : 'hero-element-hidden'}`}>
+            <p className={`text-sm sm:text-base text-gray-400 mb-6 lg:mb-8 max-w-2xl mx-auto lg:mx-0 transition-opacity duration-700 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               En GreenLock nos especializamos en auditorías de Ciberseguridad, Red Team, Evaluación Perimetral y Pentesting Web para detectar vulnerabilidades antes que los atacantes.
             </p>
             
-            <div className={`hero-buttons-container ${isVisible ? 'hero-element-visible' : 'hero-element-hidden'}`}>
-              <a href="#contacto" className="hero-btn-primary">
-                Solicitar auditoría
+            <div className={`flex flex-col sm:flex-row gap-4 justify-center lg:justify-start transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              {/* Botón destacado con efecto de pulso y glow */}
+              <a 
+                href="#contacto" 
+                className="px-4 sm:px-6 py-3 bg-gradient-to-r from-greenlock-600 to-greenlock-400 text-white rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-greenlock-500/50 hover:-translate-y-1 relative overflow-hidden group animate-button-pulse border border-greenlock-400/30 text-sm sm:text-base"
+              >
+                <span className="relative z-10">Solicitar auditoría</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-greenlock-400 to-greenlock-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-greenlock-400/20 to-greenlock-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
-              <a href="#servicios" className="hero-btn-secondary">
+              <a 
+                href="#servicios" 
+                className="px-4 sm:px-6 py-3 border border-greenlock-500/40 text-greenlock-400 rounded-md font-medium hover:border-greenlock-400 hover:bg-greenlock-500/10 transition-all duration-300 flex items-center gap-2 group hover:-translate-y-1 justify-center text-sm sm:text-base"
+              >
                 Explorar servicios
-                <ArrowRight size={16} />
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </div>
           </div>
           
-          {/* Terminal de código - Oculto en móviles */}
-          <div className={`hero-terminal-container ${isVisible ? 'hero-element-visible' : 'hero-element-hidden'}`}>
+          {/* Terminal de código rectangular - Oculto en móviles pequeños */}
+          <div className={`hidden md:flex justify-end transition-all duration-1000 delay-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <CodeTerminal />
           </div>
         </div>
         
-        {/* Tarjetas de características */}
-        <div className={`hero-features-grid ${cardsVisible ? 'hero-element-visible' : 'hero-element-hidden'}`}>
-          <div className="hero-feature-card">
+        {/* Tarjetas de características con íconos pulsantes */}
+        <div className={`grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 mt-12 lg:mt-16 transition-all duration-1000 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="feature-card bg-gradient-to-br from-[#0a1426]/90 to-[#0a1426]/70 backdrop-blur-sm border border-gray-800 rounded-lg p-4 lg:p-6 hover:border-greenlock-500/30 transition-all hover:shadow-xl hover:shadow-greenlock-900/10 group">
             <PulsingIcon icon={Shield} />
-            <h3 className="hero-feature-title">Experiencia Certificada</h3>
-            <p className="hero-feature-description">
+            <h3 className="text-lg lg:text-xl font-semibold text-center text-white mb-2">Experiencia Certificada</h3>
+            <p className="text-gray-400 text-xs lg:text-sm text-center">
               Equipo de profesionales con experiencia real en escenarios de auditoría y certificaciones profesionales (CRTO)
             </p>
           </div>
           
-          <div className="hero-feature-card">
+          <div className="feature-card bg-gradient-to-br from-[#0a1426]/90 to-[#0a1426]/70 backdrop-blur-sm border border-gray-800 rounded-lg p-4 lg:p-6 hover:border-greenlock-500/30 transition-all hover:shadow-xl hover:shadow-greenlock-900/10 group" style={{ transitionDelay: '200ms' }}>
             <PulsingIcon icon={Scale} />
-            <h3 className="hero-feature-title">Estándares Globales</h3>
-            <p className="hero-feature-description">
+            <h3 className="text-lg lg:text-xl font-semibold text-center text-white mb-2">Estándares Globales</h3>
+            <p className="text-gray-400 text-xs lg:text-sm text-center">
               Metodologías alineadas con MITRE ATT&CK, OWASP Top 10 y normativas NIS
             </p>
           </div>
           
-          <div className="hero-feature-card">
+          <div className="feature-card bg-gradient-to-br from-[#0a1426]/90 to-[#0a1426]/70 backdrop-blur-sm border border-gray-800 rounded-lg p-4 lg:p-6 hover:border-greenlock-500/30 transition-all hover:shadow-xl hover:shadow-greenlock-900/10 group" style={{ transitionDelay: '400ms' }}>
             <PulsingIcon icon={Monitor} />
-            <h3 className="hero-feature-title">Cobertura Integral</h3>
-            <p className="hero-feature-description">
+            <h3 className="text-lg lg:text-xl font-semibold text-center text-white mb-2">Cobertura Integral</h3>
+            <p className="text-gray-400 text-xs lg:text-sm text-center">
               Auditorías end-to-end que cubren infraestructura, aplicaciones y factor humano
             </p>
           </div>
