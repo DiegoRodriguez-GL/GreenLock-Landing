@@ -1,9 +1,7 @@
-// src/pages/MethodologyPage.tsx
+// src/pages/MethodologyPage.tsx - SIN DEPENDENCIAS UI
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Section from '../components/ui/Section';
-import Button from '../components/ui/Button';
 import { 
   Search, 
   Target, 
@@ -12,6 +10,98 @@ import {
   Clock,
   Zap
 } from 'lucide-react';
+
+// Componente Section integrado
+function MethodologySection({ id, className = '', children, bgColor = 'bg-transparent', paddingY = 'lg' }: {
+  id?: string;
+  className?: string;
+  children: React.ReactNode;
+  bgColor?: string;
+  paddingY?: 'sm' | 'md' | 'lg' | 'xl' | 'none';
+}) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const paddingYClasses = {
+    none: '',
+    sm: 'py-6 md:py-8',
+    md: 'py-8 md:py-12',
+    lg: 'py-12 md:py-16',
+    xl: 'py-16 md:py-24',
+  };
+
+  return (
+    <section
+      id={id}
+      className={`${bgColor} ${paddingYClasses[paddingY]} ${className}`}
+      ref={ref}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {children}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// Componente Button integrado
+function MethodologyButton({ 
+  children, 
+  href, 
+  variant = 'primary', 
+  size = 'md', 
+  className = '' 
+}: {
+  children: React.ReactNode;
+  href?: string;
+  variant?: 'primary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}) {
+  const baseClasses = "font-medium rounded-md transition-all duration-300 inline-flex items-center justify-center";
+  
+  const variantClasses = {
+    primary: "bg-[#00B267] text-white hover:bg-[#2F4F39] shadow-md shadow-[#00B267]/20 hover:shadow-[#00B267]/40",
+    outline: "border border-[#00B267] text-[#00B267] hover:bg-[#00B267]/10 hover:border-[#2F4F39]"
+  };
+  
+  const sizeClasses = {
+    sm: "text-sm px-3 py-1.5",
+    md: "px-4 py-2",
+    lg: "text-lg px-6 py-3"
+  };
+  
+  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  
+  if (href) {
+    if (href.startsWith('http')) {
+      return (
+        <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      );
+    }
+    
+    return (
+      <a href={href} className={classes}>
+        {children}
+      </a>
+    );
+  }
+  
+  return (
+    <button className={classes}>
+      {children}
+    </button>
+  );
+}
 
 // Componente de fondo animado similar al Hero
 function MethodologyBackground() {
@@ -70,7 +160,7 @@ function MethodologyBackground() {
             ctx.moveTo(nodeA.x, nodeA.y);
             ctx.lineTo(nodeB.x, nodeB.y);
             const opacity = 0.1 - (distance / 180) * 0.1;
-            ctx.strokeStyle = `rgba(23, 153, 63, ${opacity})`;
+            ctx.strokeStyle = `rgba(0, 178, 103, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -81,7 +171,7 @@ function MethodologyBackground() {
       for (const node of nodes) {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(23, 153, 63, ${node.opacity})`;
+        ctx.fillStyle = `rgba(0, 178, 103, ${node.opacity})`;
         ctx.fill();
         
         // Actualizar posición
@@ -162,7 +252,7 @@ const phases = [
       'Recomendaciones específicas de remediación',
       'Resumen ejecutivo para directivos'
     ],
-    color: 'from-greenlock-500 to-greenlock-600'
+    color: 'from-[#00B267] to-[#2F4F39]'
   }
 ];
 
@@ -196,7 +286,7 @@ export default function MethodologyPage() {
   return (
     <div className="min-h-screen bg-[#080f1d]">
       {/* Hero Section para la página */}
-      <Section bgColor="bg-gradient-to-br from-[#080f1d] via-gray-900 to-[#080f1d]" paddingY="xl">
+      <MethodologySection bgColor="bg-gradient-to-br from-[#080f1d] via-gray-900 to-[#080f1d]" paddingY="xl">
         <div className="relative overflow-hidden">
           <div className="text-center text-white">
             <motion.div
@@ -206,7 +296,7 @@ export default function MethodologyPage() {
             >
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
                 <span className="text-white">Nuestra </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-greenlock-400 to-greenlock-600">Metodología</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00B267] to-[#2F4F39]">Metodología</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
                 Seguimos un proceso estructurado y probado que garantiza resultados consistentes 
@@ -215,10 +305,10 @@ export default function MethodologyPage() {
             </motion.div>
           </div>
         </div>
-      </Section>
+      </MethodologySection>
 
       {/* Metodología Section */}
-      <Section bgColor="bg-[#080f1d]" paddingY="xl">
+      <MethodologySection bgColor="bg-[#080f1d]" paddingY="xl">
         <div className="relative overflow-hidden">
           {/* Fondo animado */}
           <MethodologyBackground />
@@ -237,7 +327,7 @@ export default function MethodologyPage() {
                       onClick={() => handlePhaseClick(index)}
                       className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
                         activePhase === index
-                          ? 'bg-greenlock-500 text-white shadow-lg'
+                          ? 'bg-[#00B267] text-white shadow-lg'
                           : 'text-gray-400 hover:text-gray-200'
                       }`}
                     >
@@ -282,7 +372,7 @@ export default function MethodologyPage() {
                     </div>
                     
                     <div className="flex items-center space-x-2 text-gray-300">
-                      <Clock className="w-5 h-5 text-greenlock-400" />
+                      <Clock className="w-5 h-5 text-[#00B267]" />
                       <span className="text-sm">Duración: {phases[activePhase].duration}</span>
                     </div>
                     
@@ -292,7 +382,7 @@ export default function MethodologyPage() {
                     
                     <div className="space-y-3">
                       <h4 className="text-lg font-semibold text-white flex items-center">
-                        <CheckCircle className="w-5 h-5 text-greenlock-400 mr-2" />
+                        <CheckCircle className="w-5 h-5 text-[#00B267] mr-2" />
                         Actividades clave:
                       </h4>
                       <ul className="space-y-2">
@@ -304,7 +394,7 @@ export default function MethodologyPage() {
                             transition={{ duration: 0.3, delay: index * 0.1 }}
                             className="flex items-start space-x-3"
                           >
-                            <div className="w-2 h-2 bg-greenlock-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div className="w-2 h-2 bg-[#00B267] rounded-full mt-2 flex-shrink-0"></div>
                             <span className="text-gray-300">{detail}</span>
                           </motion.li>
                         ))}
@@ -329,12 +419,12 @@ export default function MethodologyPage() {
                         {phases.map((phase, index) => (
                           <div key={phase.id} className="flex items-center space-x-3">
                             <div className={`w-3 h-3 rounded-full ${
-                              index < activePhase ? 'bg-greenlock-500' :
+                              index < activePhase ? 'bg-[#00B267]' :
                               index === activePhase ? 'bg-yellow-500' :
                               'bg-gray-600'
                             }`}></div>
                             <div className={`h-px flex-1 ${
-                              index < activePhase ? 'bg-greenlock-500' :
+                              index < activePhase ? 'bg-[#00B267]' :
                               index === activePhase ? 'bg-yellow-500' :
                               'bg-gray-600'
                             }`}></div>
@@ -359,19 +449,19 @@ export default function MethodologyPage() {
                 className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
               >
                 <div className="text-center bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
-                  <div className="text-3xl font-bold text-greenlock-400 mb-2">7-14</div>
+                  <div className="text-3xl font-bold text-[#00B267] mb-2">7-14</div>
                   <div className="text-gray-300">días promedio</div>
                   <div className="text-sm text-gray-400">por auditoría completa</div>
                 </div>
                 
                 <div className="text-center bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
-                  <div className="text-3xl font-bold text-greenlock-400 mb-2">100%</div>
+                  <div className="text-3xl font-bold text-[#00B267] mb-2">100%</div>
                   <div className="text-gray-300">metodología propia</div>
                   <div className="text-sm text-gray-400">basada en estándares internacionales</div>
                 </div>
                 
                 <div className="text-center bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
-                  <div className="text-3xl font-bold text-greenlock-400 mb-2">24/7</div>
+                  <div className="text-3xl font-bold text-[#00B267] mb-2">24/7</div>
                   <div className="text-gray-300">comunicación</div>
                   <div className="text-sm text-gray-400">durante todo el proceso</div>
                 </div>
@@ -379,10 +469,10 @@ export default function MethodologyPage() {
             </div>
           </div>
         </div>
-      </Section>
+      </MethodologySection>
 
       {/* CTA Section */}
-      <Section bgColor="bg-gray-900" paddingY="lg">
+      <MethodologySection bgColor="bg-gray-900" paddingY="lg">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
             ¿Quiere conocer más sobre nuestro proceso?
@@ -390,11 +480,11 @@ export default function MethodologyPage() {
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
             Contacte con nuestro equipo para una explicación detallada de cómo aplicamos nuestra metodología a su organización.
           </p>
-          <Button href="/contacto" size="lg">
+          <MethodologyButton href="/contacto" size="lg">
             Solicitar consulta técnica
-          </Button>
+          </MethodologyButton>
         </div>
-      </Section>
+      </MethodologySection>
     </div>
   );
 }

@@ -1,9 +1,7 @@
-// src/pages/ImpactPage.tsx
+// src/pages/ImpactPage.tsx - SIN DEPENDENCIAS UI
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Section from '../components/ui/Section';
-import Button from '../components/ui/Button';
 import { 
   DollarSign, 
   TrendingDown, 
@@ -15,6 +13,98 @@ import {
   Target,
   Zap
 } from 'lucide-react';
+
+// Componente Section integrado
+function ImpactSection({ id, className = '', children, bgColor = 'bg-transparent', paddingY = 'lg' }: {
+  id?: string;
+  className?: string;
+  children: React.ReactNode;
+  bgColor?: string;
+  paddingY?: 'sm' | 'md' | 'lg' | 'xl' | 'none';
+}) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const paddingYClasses = {
+    none: '',
+    sm: 'py-6 md:py-8',
+    md: 'py-8 md:py-12',
+    lg: 'py-12 md:py-16',
+    xl: 'py-16 md:py-24',
+  };
+
+  return (
+    <section
+      id={id}
+      className={`${bgColor} ${paddingYClasses[paddingY]} ${className}`}
+      ref={ref}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {children}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// Componente Button integrado
+function ImpactButton({ 
+  children, 
+  href, 
+  variant = 'primary', 
+  size = 'md', 
+  className = '' 
+}: {
+  children: React.ReactNode;
+  href?: string;
+  variant?: 'primary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}) {
+  const baseClasses = "font-medium rounded-md transition-all duration-300 inline-flex items-center justify-center";
+  
+  const variantClasses = {
+    primary: "bg-[#00B267] text-white hover:bg-[#2F4F39] shadow-md shadow-[#00B267]/20 hover:shadow-[#00B267]/40",
+    outline: "border border-[#00B267] text-[#00B267] hover:bg-[#00B267]/10 hover:border-[#2F4F39]"
+  };
+  
+  const sizeClasses = {
+    sm: "text-sm px-3 py-1.5",
+    md: "px-4 py-2",
+    lg: "text-lg px-6 py-3"
+  };
+  
+  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  
+  if (href) {
+    if (href.startsWith('http')) {
+      return (
+        <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      );
+    }
+    
+    return (
+      <a href={href} className={classes}>
+        {children}
+      </a>
+    );
+  }
+  
+  return (
+    <button className={classes}>
+      {children}
+    </button>
+  );
+}
 
 // Componente de fondo animado con ondas de impacto
 function ImpactBackground() {
@@ -289,7 +379,7 @@ function CostComparison({ inView }: { inView: boolean }) {
         {/* Left side - Text */}
         <div>
           <div className="flex items-center mb-4">
-            <Shield className="w-8 h-8 text-greenlock-500 mr-3" />
+            <Shield className="w-8 h-8 text-[#00B267] mr-3" />
             <h3 className="text-3xl font-bold text-gray-900">Prevenir vs Remediar</h3>
           </div>
           <p className="text-gray-600 mb-6 text-lg leading-relaxed">
@@ -297,10 +387,10 @@ function CostComparison({ inView }: { inView: boolean }) {
             enfrentar las consecuencias de una brecha. Nuestro enfoque proactivo identifica y mitiga 
             vulnerabilidades antes de que sean explotadas.
           </p>
-          <Button href="/contacto" size="lg" className="group">
+          <ImpactButton href="/contacto" size="lg" className="group">
             <span>Solicitar evaluación preventiva</span>
             <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-          </Button>
+          </ImpactButton>
         </div>
         
         {/* Right side - Cost comparison chart */}
@@ -313,14 +403,14 @@ function CostComparison({ inView }: { inView: boolean }) {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm font-medium text-gray-700 flex items-center">
-                  <Target className="w-4 h-4 text-greenlock-500 mr-2" />
+                  <Target className="w-4 h-4 text-[#00B267] mr-2" />
                   Prevención (Auditorías)
                 </span>
-                <span className="text-sm font-bold text-greenlock-600">1x</span>
+                <span className="text-sm font-bold text-[#00B267]">1x</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-3">
                 <motion.div
-                  className="bg-gradient-to-r from-greenlock-500 to-greenlock-400 h-3 rounded-full"
+                  className="bg-gradient-to-r from-[#00B267] to-[#2F4F39] h-3 rounded-full"
                   initial={{ width: 0 }}
                   animate={inView ? { width: '8%' } : { width: 0 }}
                   transition={{ duration: 1.5, delay: 1 }}
@@ -365,12 +455,12 @@ function CostComparison({ inView }: { inView: boolean }) {
             </div>
           </div>
           
-          <div className="bg-greenlock-50 border border-greenlock-200 rounded-lg p-4 mt-6">
-            <div className="flex items-center text-greenlock-800">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+            <div className="flex items-center text-green-800">
               <BarChart3 className="w-5 h-5 mr-2" />
               <span className="font-semibold">Ahorro estimado:</span>
             </div>
-            <p className="text-greenlock-700 mt-1">
+            <p className="text-green-700 mt-1">
               Una auditoría puede ahorrarle hasta <strong>2.4M€</strong> en costos de recuperación
             </p>
           </div>
@@ -389,7 +479,7 @@ export default function ImpactPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section para la página */}
-      <Section bgColor="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" paddingY="xl">
+      <ImpactSection bgColor="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" paddingY="xl">
         <div className="relative overflow-hidden">
           <div className="text-center text-white">
             <motion.div
@@ -420,10 +510,10 @@ export default function ImpactPage() {
             </motion.div>
           </div>
         </div>
-      </Section>
+      </ImpactSection>
 
       {/* Impact Section */}
-      <Section bgColor="bg-white" paddingY="xl">
+      <ImpactSection bgColor="bg-white" paddingY="xl">
         <div className="relative overflow-hidden">
           {/* Fondo animado */}
           <ImpactBackground />
@@ -460,18 +550,18 @@ export default function ImpactPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/contacto" size="lg" className="group">
+                <ImpactButton href="/contacto" size="lg" className="group">
                   <span>Solicitar auditoría urgente</span>
                   <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-                </Button>
-                <Button href="/servicios" variant="outline" size="lg">
+                </ImpactButton>
+                <ImpactButton href="/servicios" variant="outline" size="lg">
                   Ver nuestros servicios
-                </Button>
+                </ImpactButton>
               </div>
             </motion.div>
           </div>
         </div>
-      </Section>
+      </ImpactSection>
     </div>
   );
 }

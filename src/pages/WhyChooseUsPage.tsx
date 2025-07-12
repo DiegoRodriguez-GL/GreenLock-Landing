@@ -1,9 +1,7 @@
-// src/pages/WhyChooseUsPage.tsx
+// src/pages/WhyChooseUsPage.tsx - SIN DEPENDENCIAS UI
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Section from '../components/ui/Section';
-import Button from '../components/ui/Button';
 import { 
   Award, 
   Shield, 
@@ -15,6 +13,98 @@ import {
   Star,
   Zap
 } from 'lucide-react';
+
+// Componente Section integrado
+function WhySection({ id, className = '', children, bgColor = 'bg-transparent', paddingY = 'lg' }: {
+  id?: string;
+  className?: string;
+  children: React.ReactNode;
+  bgColor?: string;
+  paddingY?: 'sm' | 'md' | 'lg' | 'xl' | 'none';
+}) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const paddingYClasses = {
+    none: '',
+    sm: 'py-6 md:py-8',
+    md: 'py-8 md:py-12',
+    lg: 'py-12 md:py-16',
+    xl: 'py-16 md:py-24',
+  };
+
+  return (
+    <section
+      id={id}
+      className={`${bgColor} ${paddingYClasses[paddingY]} ${className}`}
+      ref={ref}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {children}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// Componente Button integrado
+function WhyButton({ 
+  children, 
+  href, 
+  variant = 'primary', 
+  size = 'md', 
+  className = '' 
+}: {
+  children: React.ReactNode;
+  href?: string;
+  variant?: 'primary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}) {
+  const baseClasses = "font-medium rounded-md transition-all duration-300 inline-flex items-center justify-center";
+  
+  const variantClasses = {
+    primary: "bg-[#00B267] text-white hover:bg-[#2F4F39] shadow-md shadow-[#00B267]/20 hover:shadow-[#00B267]/40",
+    outline: "border border-[#00B267] text-[#00B267] hover:bg-[#00B267]/10 hover:border-[#2F4F39]"
+  };
+  
+  const sizeClasses = {
+    sm: "text-sm px-3 py-1.5",
+    md: "px-4 py-2",
+    lg: "text-lg px-6 py-3"
+  };
+  
+  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  
+  if (href) {
+    if (href.startsWith('http')) {
+      return (
+        <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      );
+    }
+    
+    return (
+      <a href={href} className={classes}>
+        {children}
+      </a>
+    );
+  }
+  
+  return (
+    <button className={classes}>
+      {children}
+    </button>
+  );
+}
 
 // Componente de fondo animado
 function WhyChooseBackground() {
@@ -77,7 +167,7 @@ function WhyChooseBackground() {
       
       // Dibujar hexágonos
       for (const hex of hexagons) {
-        ctx.strokeStyle = `rgba(23, 153, 63, ${hex.opacity})`;
+        ctx.strokeStyle = `rgba(0, 178, 103, ${hex.opacity})`;
         ctx.lineWidth = 1;
         
         drawHexagon(hex.x, hex.y, hex.size, hex.rotation);
@@ -125,7 +215,7 @@ const reasons = [
     icon: <Shield className="w-8 h-8" />,
     stats: '100%',
     highlight: 'Cumplimiento normativo',
-    color: 'from-greenlock-500 to-greenlock-600'
+    color: 'from-[#00B267] to-[#2F4F39]'
   },
   {
     id: 'coverage',
@@ -241,7 +331,7 @@ export default function WhyChooseUsPage() {
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Hero Section para la página */}
-      <Section bgColor="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" paddingY="xl">
+      <WhySection bgColor="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" paddingY="xl">
         <div className="relative overflow-hidden">
           <div className="text-center text-white">
             <motion.div
@@ -251,7 +341,7 @@ export default function WhyChooseUsPage() {
             >
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
                 <span className="text-white">¿Por Qué </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-greenlock-400 to-greenlock-600">Elegirnos</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00B267] to-[#2F4F39]">Elegirnos</span>
                 <span className="text-white">?</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
@@ -261,10 +351,10 @@ export default function WhyChooseUsPage() {
             </motion.div>
           </div>
         </div>
-      </Section>
+      </WhySection>
 
       {/* Razones Section */}
-      <Section bgColor="bg-gray-900" paddingY="xl">
+      <WhySection bgColor="bg-gray-900" paddingY="xl">
         <div className="relative overflow-hidden">
           {/* Fondo animado */}
           <WhyChooseBackground />
@@ -295,19 +385,19 @@ export default function WhyChooseUsPage() {
               <div className="bg-gradient-to-r from-gray-800/80 to-gray-700/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-600">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
                   <div>
-                    <div className="text-4xl font-bold text-greenlock-400 mb-2">500+</div>
+                    <div className="text-4xl font-bold text-[#00B267] mb-2">500+</div>
                     <div className="text-gray-300 text-sm">Auditorías completadas</div>
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-greenlock-400 mb-2">98%</div>
+                    <div className="text-4xl font-bold text-[#00B267] mb-2">98%</div>
                     <div className="text-gray-300 text-sm">Satisfacción del cliente</div>
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-greenlock-400 mb-2">24h</div>
+                    <div className="text-4xl font-bold text-[#00B267] mb-2">24h</div>
                     <div className="text-gray-300 text-sm">Tiempo de respuesta</div>
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-greenlock-400 mb-2">0%</div>
+                    <div className="text-4xl font-bold text-[#00B267] mb-2">0%</div>
                     <div className="text-gray-300 text-sm">Interrupciones operativas</div>
                   </div>
                 </div>
@@ -321,9 +411,9 @@ export default function WhyChooseUsPage() {
               transition={{ duration: 0.6, delay: 1 }}
               className="text-center mt-16"
             >
-              <div className="inline-flex items-center space-x-2 bg-greenlock-500/10 border border-greenlock-500/30 rounded-full px-6 py-3 mb-6">
-                <Star className="w-5 h-5 text-greenlock-400" />
-                <span className="text-greenlock-400 font-medium">Líder en ciberseguridad empresarial</span>
+              <div className="inline-flex items-center space-x-2 bg-[#00B267]/10 border border-[#00B267]/30 rounded-full px-6 py-3 mb-6">
+                <Star className="w-5 h-5 text-[#00B267]" />
+                <span className="text-[#00B267] font-medium">Líder en ciberseguridad empresarial</span>
               </div>
               
               <h3 className="text-2xl font-bold text-white mb-4">
@@ -334,17 +424,19 @@ export default function WhyChooseUsPage() {
               </p>
               
               <motion.div className="space-y-4">
-                <Button href="/contacto" size="lg" className="mr-4">
-                  Solicitar evaluación gratuita
-                </Button>
-                <Button href="/servicios" variant="outline" size="lg">
-                  Ver nuestros servicios
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <WhyButton href="/contacto" size="lg" className="mr-0 sm:mr-4">
+                    Solicitar evaluación gratuita
+                  </WhyButton>
+                  <WhyButton href="/servicios" variant="outline" size="lg">
+                    Ver nuestros servicios
+                  </WhyButton>
+                </div>
               </motion.div>
             </motion.div>
           </div>
         </div>
-      </Section>
+      </WhySection>
     </div>
   );
 }

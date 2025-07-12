@@ -1,0 +1,128 @@
+/* src/styles/colors.css - Paleta de colores actualizada */
+
+:root {
+  /* Paleta principal de GreenLock */
+  --greenlock-primary: #00B267;
+  --greenlock-secondary: #2F4F39;
+  --greenlock-light: #33D17A;
+  --greenlock-dark: #006B3C;
+  
+  /* Variaciones de la paleta principal */
+  --greenlock-50: #f0fdf4;
+  --greenlock-100: #dcfce7;
+  --greenlock-200: #bbf7d0;
+  --greenlock-300: #86efac;
+  --greenlock-400: #4ade80;
+  --greenlock-500: #00B267;
+  --greenlock-600: #2F4F39;
+  --greenlock-700: #15803d;
+  --greenlock-800: #166534;
+  --greenlock-900: #14532d;
+  
+  /* Colores de estado usando la paleta */
+  --success-color: #00B267;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --info-color: #3b82f6;
+  
+  /* Backgrounds oscuros */
+  --dark-bg: #080f1d;
+  --dark-surface: #101b2e;
+  --dark-card: #1a2332;
+  
+  /* Efectos y sombras con la nueva paleta */
+  --greenlock-glow: rgba(0, 178, 103, 0.3);
+  --greenlock-shadow: rgba(0, 178, 103, 0.1);
+  --greenlock-border: rgba(0, 178, 103, 0.2);
+}
+
+/* Clases de utilidad con la nueva paleta */
+.text-greenlock {
+  color: var(--greenlock-primary);
+}
+
+.text-greenlock-secondary {
+  color: var(--greenlock-secondary);
+}
+
+.bg-greenlock {
+  background-color: var(--greenlock-primary);
+}
+
+.bg-greenlock-secondary {
+  background-color: var(--greenlock-secondary);
+}
+
+.border-greenlock {
+  border-color: var(--greenlock-primary);
+}
+
+.shadow-greenlock {
+  box-shadow: 0 10px 15px -3px var(--greenlock-shadow);
+}
+
+.glow-greenlock {
+  box-shadow: 0 0 20px var(--greenlock-glow);
+}
+
+/* Gradientes con la nueva paleta */
+.gradient-greenlock {
+  background: linear-gradient(135deg, var(--greenlock-primary), var(--greenlock-secondary));
+}
+
+.gradient-greenlock-reverse {
+  background: linear-gradient(135deg, var(--greenlock-secondary), var(--greenlock-primary));
+}
+
+.text-gradient-greenlock {
+  background: linear-gradient(135deg, var(--greenlock-primary), var(--greenlock-secondary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Efectos hover */
+.hover-greenlock:hover {
+  color: var(--greenlock-primary);
+  transition: color 0.3s ease;
+}
+
+.hover-bg-greenlock:hover {
+  background-color: var(--greenlock-primary);
+  transition: background-color 0.3s ease;
+}
+
+.hover-glow-greenlock:hover {
+  box-shadow: 0 0 20px var(--greenlock-glow);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Animaciones con la nueva paleta */
+@keyframes pulse-greenlock {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--greenlock-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 178, 103, 0);
+  }
+}
+
+.animate-pulse-greenlock {
+  animation: pulse-greenlock 2s infinite;
+}
+
+/* Overrides para Tailwind con la nueva paleta */
+.greenlock-override {
+  --tw-text-opacity: 1;
+  color: rgb(0 178 103 / var(--tw-text-opacity));
+}
+
+.greenlock-bg-override {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 178 103 / var(--tw-bg-opacity));
+}
+
+.greenlock-border-override {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 178 103 / var(--tw-border-opacity));
+}

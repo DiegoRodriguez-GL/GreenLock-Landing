@@ -1,15 +1,16 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  /* Removido max-width y text-align center que causaban problemas */
 }
 
-/* Reiniciar los estilos predeterminados del template */
+/* Estilos para el logo - mantener como estaban */
 .logo {
   height: 6em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #17993faa);
 }
@@ -29,7 +30,7 @@
   }
 }
 
-/* Estilos para el tema oscuro */
+/* Variables CSS para el tema oscuro */
 :root {
   --dark-bg: #080f1d;
   --dark-surface: #101b2e;
@@ -57,25 +58,6 @@
 
 .glow-effect:hover::after {
   opacity: 0.15;
-}
-
-/* Animación de partículas en el fondo */
-.particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background-color: rgba(37, 204, 89, 0.2);
-  border-radius: 50%;
 }
 
 /* Sección de características con efecto de tarjeta elevada */

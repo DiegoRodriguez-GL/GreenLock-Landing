@@ -1,9 +1,7 @@
-// src/pages/ContactPage.tsx
+// src/pages/ContactPage.tsx - SIN DEPENDENCIAS UI
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Section from '../components/ui/Section';
-import HackerEffect from '../components/ui/HackerEffect';
 import { 
   Mail, 
   Phone, 
@@ -18,6 +16,120 @@ import {
   Building,
   MessageSquare
 } from 'lucide-react';
+
+// Componente Section integrado
+function ContactSection({ id, className = '', children, bgColor = 'bg-transparent', paddingY = 'lg' }: {
+  id?: string;
+  className?: string;
+  children: React.ReactNode;
+  bgColor?: string;
+  paddingY?: 'sm' | 'md' | 'lg' | 'xl' | 'none';
+}) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const paddingYClasses = {
+    none: '',
+    sm: 'py-6 md:py-8',
+    md: 'py-8 md:py-12',
+    lg: 'py-12 md:py-16',
+    xl: 'py-16 md:py-24',
+  };
+
+  return (
+    <section
+      id={id}
+      className={`${bgColor} ${paddingYClasses[paddingY]} ${className}`}
+      ref={ref}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {children}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// Componente HackerEffect integrado
+function HackerEffect({ text, duration = 1500 }: { text: string; duration?: number }) {
+  const [displayText, setDisplayText] = useState('');
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
+    let isMounted = true;
+    
+    if (isMounted) {
+      setDisplayText('');
+      setIsComplete(false);
+    }
+
+    const finalText = text;
+    const intervalDuration = Math.max(20, duration / (finalText.length * 3));
+    
+    let currentIndex = 0;
+    let iterations = 0;
+    
+    const interval = setInterval(() => {
+      if (!isMounted) return;
+      
+      if (currentIndex >= finalText.length) {
+        if (iterations >= 2) {
+          clearInterval(interval);
+          setIsComplete(true);
+          return;
+        }
+        iterations++;
+      }
+      
+      let result = '';
+      for (let i = 0; i < finalText.length; i++) {
+        if (i < currentIndex) {
+          result += finalText[i];
+        } 
+        else if (i === currentIndex) {
+          if (iterations > 0 && Math.random() < 0.8) {
+            result += finalText[i];
+            currentIndex++;
+          } else {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+          }
+        }
+        else if (i > currentIndex) {
+          if (iterations === 0 && Math.random() < 0.7) {
+            result += ' ';
+          } else {
+            if (Math.random() < 0.3) {
+              result += characters.charAt(Math.floor(Math.random() * characters.length));
+            } else {
+              result += ' ';
+            }
+          }
+        }
+      }
+      
+      setDisplayText(result);
+    }, intervalDuration);
+
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
+  }, [text, duration]);
+
+  return (
+    <span className={`font-mono ${isComplete ? '' : 'animate-pulse'}`}>
+      {displayText}
+    </span>
+  );
+}
 
 // Componente de fondo animado similar al Hero
 function ContactBackground() {
@@ -80,7 +192,7 @@ function ContactBackground() {
         // Dibujar partícula
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(23, 153, 63, ${particle.opacity * particle.life})`;
+        ctx.fillStyle = `rgba(0, 178, 103, ${particle.opacity * particle.life})`;
         ctx.fill();
         
         // Remover partículas que salen de pantalla o mueren
@@ -168,14 +280,14 @@ function ContactForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-gradient-to-br from-greenlock-500 to-greenlock-600 rounded-xl p-8 text-white text-center"
+        className="bg-gradient-to-br from-[#00B267] to-[#2F4F39] rounded-xl p-8 text-white text-center"
       >
         <div className="mb-6">
           <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="w-8 h-8" />
           </div>
           <h3 className="text-2xl font-bold mb-2">¡Mensaje enviado con éxito!</h3>
-          <p className="text-greenlock-100">
+          <p className="text-green-100">
             Gracias por contactarnos. Nuestro equipo se pondrá en contacto contigo en las próximas 24 horas.
           </p>
         </div>
@@ -192,7 +304,7 @@ function ContactForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="text-sm font-medium text-gray-700 mb-2 flex items-center">
-            <User className="w-4 h-4 mr-2 text-greenlock-500" />
+            <User className="w-4 h-4 mr-2 text-[#00B267]" />
             Nombre *
           </label>
           <input
@@ -201,7 +313,7 @@ function ContactForm() {
             type="text"
             value={formData.name}
             onChange={handleChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-greenlock-500 focus:border-transparent transition-all duration-200 ${
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00B267] focus:border-transparent transition-all duration-200 ${
               errors.name ? 'border-red-500 bg-red-50' : 'border-gray-300 focus:bg-white'
             }`}
             placeholder="Tu nombre completo"
@@ -213,7 +325,7 @@ function ContactForm() {
         
         <div>
           <label htmlFor="email" className="text-sm font-medium text-gray-700 mb-2 flex items-center">
-            <Mail className="w-4 h-4 mr-2 text-greenlock-500" />
+            <Mail className="w-4 h-4 mr-2 text-[#00B267]" />
             Email *
           </label>
           <input
@@ -222,7 +334,7 @@ function ContactForm() {
             type="email"
             value={formData.email}
             onChange={handleChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-greenlock-500 focus:border-transparent transition-all duration-200 ${
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00B267] focus:border-transparent transition-all duration-200 ${
               errors.email ? 'border-red-500 bg-red-50' : 'border-gray-300 focus:bg-white'
             }`}
             placeholder="tu@empresa.com"
@@ -236,7 +348,7 @@ function ContactForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="company" className="text-sm font-medium text-gray-700 mb-2 flex items-center">
-            <Building className="w-4 h-4 mr-2 text-greenlock-500" />
+            <Building className="w-4 h-4 mr-2 text-[#00B267]" />
             Empresa *
           </label>
           <input
@@ -245,7 +357,7 @@ function ContactForm() {
             type="text"
             value={formData.company}
             onChange={handleChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-greenlock-500 focus:border-transparent transition-all duration-200 ${
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00B267] focus:border-transparent transition-all duration-200 ${
               errors.company ? 'border-red-500 bg-red-50' : 'border-gray-300 focus:bg-white'
             }`}
             placeholder="Nombre de tu empresa"
@@ -257,7 +369,7 @@ function ContactForm() {
         
         <div>
           <label htmlFor="phone" className="text-sm font-medium text-gray-700 mb-2 flex items-center">
-            <Phone className="w-4 h-4 mr-2 text-greenlock-500" />
+            <Phone className="w-4 h-4 mr-2 text-[#00B267]" />
             Teléfono (opcional)
           </label>
           <input
@@ -266,7 +378,7 @@ function ContactForm() {
             type="tel"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-greenlock-500 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00B267] focus:border-transparent transition-all duration-200"
             placeholder="+34 600 000 000"
           />
         </div>
@@ -274,7 +386,7 @@ function ContactForm() {
       
       <div>
         <label htmlFor="service" className="text-sm font-medium text-gray-700 mb-2 flex items-center">
-          <Shield className="w-4 h-4 mr-2 text-greenlock-500" />
+          <Shield className="w-4 h-4 mr-2 text-[#00B267]" />
           Servicio que te interesa *
         </label>
         <select
@@ -282,7 +394,7 @@ function ContactForm() {
           name="service"
           value={formData.service}
           onChange={handleChange}
-          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-greenlock-500 focus:border-transparent transition-all duration-200 ${
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00B267] focus:border-transparent transition-all duration-200 ${
             errors.service ? 'border-red-500 bg-red-50' : 'border-gray-300 focus:bg-white'
           }`}
         >
@@ -302,7 +414,7 @@ function ContactForm() {
       
       <div>
         <label htmlFor="message" className="text-sm font-medium text-gray-700 mb-2 flex items-center">
-          <MessageSquare className="w-4 h-4 mr-2 text-greenlock-500" />
+          <MessageSquare className="w-4 h-4 mr-2 text-[#00B267]" />
           Mensaje *
         </label>
         <textarea
@@ -311,7 +423,7 @@ function ContactForm() {
           rows={5}
           value={formData.message}
           onChange={handleChange}
-          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-greenlock-500 focus:border-transparent transition-all duration-200 resize-none ${
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00B267] focus:border-transparent transition-all duration-200 resize-none ${
             errors.message ? 'border-red-500 bg-red-50' : 'border-gray-300 focus:bg-white'
           }`}
           placeholder="Cuéntanos sobre tu proyecto, necesidades específicas de seguridad, timeline, presupuesto estimado, o cualquier pregunta que tengas..."
@@ -324,7 +436,7 @@ function ContactForm() {
       <motion.button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-gradient-to-r from-greenlock-600 to-greenlock-500 text-white py-4 px-8 rounded-lg font-semibold transition-all duration-300 hover:from-greenlock-500 hover:to-greenlock-400 hover:shadow-lg hover:shadow-greenlock-500/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 group"
+        className="w-full bg-gradient-to-r from-[#2F4F39] to-[#00B267] text-white py-4 px-8 rounded-lg font-semibold transition-all duration-300 hover:from-[#00B267] hover:to-[#2F4F39] hover:shadow-lg hover:shadow-[#00B267]/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 group"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
@@ -354,7 +466,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section para la página */}
-      <Section bgColor="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" paddingY="xl">
+      <ContactSection bgColor="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" paddingY="xl">
         <div className="relative overflow-hidden">
           <div className="text-center text-white">
             <motion.div
@@ -364,7 +476,7 @@ export default function ContactPage() {
             >
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
                 <span className="text-white">Contáctanos </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-greenlock-400 to-greenlock-600">Ahora</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00B267] to-[#2F4F39]">Ahora</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
                 ¿Listo para proteger tu empresa? Completa el formulario y nuestro equipo de expertos 
@@ -375,20 +487,20 @@ export default function ContactPage() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="mt-8 inline-flex items-center bg-greenlock-500/10 border border-greenlock-500/30 rounded-full px-6 py-3"
+                className="mt-8 inline-flex items-center bg-[#00B267]/10 border border-[#00B267]/30 rounded-full px-6 py-3"
               >
-                <CheckCircle className="w-5 h-5 text-greenlock-400 mr-2" />
-                <span className="text-greenlock-300 font-medium">
+                <CheckCircle className="w-5 h-5 text-[#00B267] mr-2" />
+                <span className="text-green-300 font-medium">
                   Respuesta garantizada en 24 horas
                 </span>
               </motion.div>
             </motion.div>
           </div>
         </div>
-      </Section>
+      </ContactSection>
 
       {/* Contact Section */}
-      <Section bgColor="bg-gray-50" paddingY="xl">
+      <ContactSection bgColor="bg-gray-50" paddingY="xl">
         <div className="relative overflow-hidden">
           {/* Fondo animado */}
           <ContactBackground />
@@ -405,7 +517,7 @@ export default function ContactPage() {
               <div className="bg-white rounded-xl shadow-xl p-8 border border-gray-200">
                 <div className="mb-8">
                   <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center">
-                    <Shield className="w-8 h-8 text-greenlock-500 mr-3" />
+                    <Shield className="w-8 h-8 text-[#00B267] mr-3" />
                     Solicita tu auditoría
                   </h2>
                   <p className="text-gray-600 text-lg">
@@ -427,42 +539,42 @@ export default function ContactPage() {
                   className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-8 text-white"
                 >
                   <h3 className="text-2xl font-bold mb-6 flex items-center">
-                    <Mail className="w-6 h-6 text-greenlock-400 mr-2" />
+                    <Mail className="w-6 h-6 text-[#00B267] mr-2" />
                     Información de contacto
                   </h3>
                   
                   <div className="space-y-6">
                     <div className="flex items-start">
-                      <MapPin className="w-6 h-6 text-greenlock-400 mt-1 mr-4 flex-shrink-0" />
+                      <MapPin className="w-6 h-6 text-[#00B267] mt-1 mr-4 flex-shrink-0" />
                       <div>
-                        <p className="text-greenlock-400 font-medium text-lg">Oficina Central</p>
+                        <p className="text-[#00B267] font-medium text-lg">Oficina Central</p>
                         <p className="text-gray-300">Calle Seguridad Digital, 42</p>
                         <p className="text-gray-300">28001 Madrid, España</p>
                       </div>
                     </div>
                     
                     <div className="flex items-start">
-                      <Phone className="w-6 h-6 text-greenlock-400 mt-1 mr-4 flex-shrink-0" />
+                      <Phone className="w-6 h-6 text-[#00B267] mt-1 mr-4 flex-shrink-0" />
                       <div>
-                        <p className="text-greenlock-400 font-medium text-lg">Teléfono</p>
+                        <p className="text-[#00B267] font-medium text-lg">Teléfono</p>
                         <p className="text-gray-300 text-lg">+34 910 123 456</p>
                         <p className="text-sm text-gray-400">Atención comercial</p>
                       </div>
                     </div>
                     
                     <div className="flex items-start">
-                      <Mail className="w-6 h-6 text-greenlock-400 mt-1 mr-4 flex-shrink-0" />
+                      <Mail className="w-6 h-6 text-[#00B267] mt-1 mr-4 flex-shrink-0" />
                       <div>
-                        <p className="text-greenlock-400 font-medium text-lg">Email</p>
+                        <p className="text-[#00B267] font-medium text-lg">Email</p>
                         <p className="text-gray-300 text-lg">info@greenlock.es</p>
                         <p className="text-sm text-gray-400">Respuesta en 24h garantizada</p>
                       </div>
                     </div>
                     
                     <div className="flex items-start">
-                      <Clock className="w-6 h-6 text-greenlock-400 mt-1 mr-4 flex-shrink-0" />
+                      <Clock className="w-6 h-6 text-[#00B267] mt-1 mr-4 flex-shrink-0" />
                       <div>
-                        <p className="text-greenlock-400 font-medium text-lg">Horario de atención</p>
+                        <p className="text-[#00B267] font-medium text-lg">Horario de atención</p>
                         <p className="text-gray-300">Lunes - Viernes: 9:00 - 18:00</p>
                         <p className="text-gray-300">Sábados: 10:00 - 14:00</p>
                       </div>
@@ -513,14 +625,14 @@ export default function ContactPage() {
                       { text: 'Seguimiento post-implementación', icon: CheckCircle }
                     ].map((item, index) => (
                       <li key={index} className="flex items-center text-gray-700">
-                        <item.icon className="w-5 h-5 text-greenlock-500 mr-3 flex-shrink-0" />
+                        <item.icon className="w-5 h-5 text-[#00B267] mr-3 flex-shrink-0" />
                         <span className="font-medium">{item.text}</span>
                       </li>
                     ))}
                   </ul>
                   
-                  <div className="mt-6 p-4 bg-greenlock-50 border border-greenlock-200 rounded-lg">
-                    <p className="text-greenlock-800 text-sm font-medium">
+                  <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-800 text-sm font-medium">
                       💡 <strong>Tip:</strong> Mientras más detalles nos proporciones sobre tu proyecto, 
                       mejor podremos preparar una propuesta específica para tus necesidades.
                     </p>
@@ -530,21 +642,21 @@ export default function ContactPage() {
             </motion.div>
           </div>
         </div>
-      </Section>
+      </ContactSection>
 
       {/* CTA de urgencia */}
-      <Section bgColor="bg-gradient-to-r from-greenlock-600 to-greenlock-500" paddingY="lg">
+      <ContactSection bgColor="bg-gradient-to-r from-[#2F4F39] to-[#00B267]" paddingY="lg">
         <div className="text-center text-white">
           <h3 className="text-3xl font-bold mb-4">
             ¿Necesita ayuda inmediata?
           </h3>
-          <p className="text-greenlock-100 mb-6 text-lg max-w-2xl mx-auto">
+          <p className="text-green-100 mb-6 text-lg max-w-2xl mx-auto">
             Si ha detectado actividad sospechosa o cree que su sistema puede estar comprometido, 
             no espere. Contacte con nuestro equipo de respuesta inmediata.
           </p>
           <motion.a
             href="tel:+34900555123"
-            className="inline-flex items-center bg-white text-greenlock-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg"
+            className="inline-flex items-center bg-white text-[#00B267] px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -552,7 +664,7 @@ export default function ContactPage() {
             Llamar ahora: +34 900 555 123
           </motion.a>
         </div>
-      </Section>
+      </ContactSection>
     </div>
   );
 }
