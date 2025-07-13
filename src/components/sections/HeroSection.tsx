@@ -213,10 +213,11 @@ export default function HeroSection() {
 
   return (
     <section 
-      id="hero" 
-      className="relative w-full h-screen flex items-center overflow-hidden"
-      style={{ backgroundColor: '#080f1d', minHeight: '100vh', maxHeight: '100vh' }}
-    >
+  id="hero" 
+  className="relative w-full flex items-center overflow-hidden py-12 md:py-16"
+  style={{ backgroundColor: '#080f1d', minHeight: '85dvh' }}
+>
+
       <TechBackground />
       <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/70 via-transparent to-[#080f1d] z-10"></div>
 
