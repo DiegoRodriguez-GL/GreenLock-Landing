@@ -1,368 +1,238 @@
-// src/components/sections/MethodologySection.tsx
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// src/components/sections/MethodologiesSection.tsx
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Section from '../ui/Section';
-import SectionTitle from '../ui/SectionTitle';
-import { 
-  Search, 
-  Target,  
-  FileText, 
-  CheckCircle, 
-  Clock,
-  Zap
-} from 'lucide-react';
+import { Shield, Award } from 'lucide-react';
+import '../../styles/MethodologiesSection.css';
 
-// Componente de fondo animado similar al Hero
-function MethodologyBackground() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  
+// Fondo de connected dots móviles
+function TechBackground() {
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = document.querySelector('.connected-dots');
+    if (!container) return;
     
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const dots: any[] = [];
+    const lines: any[] = [];
+    const maxDistance = 120; // Distancia máxima para conexión
+    const numDots = 12;
     
-    const resizeCanvas = () => {
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
-      ctx.scale(dpr, dpr);
-    };
-    
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    
-    // Crear nodos
-    const nodes: {x: number; y: number; vx: number; vy: number; radius: number; opacity: number}[] = [];
-    const nodeCount = 25;
-    
-    for (let i = 0; i < nodeCount; i++) {
-      nodes.push({
+    // Crear puntos móviles
+    for (let i = 0; i < numDots; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'moving-dot';
+      container.appendChild(dot);
+      
+      dots.push({
+        element: dot,
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        radius: Math.random() * 1.5 + 0.5,
-        opacity: Math.random() * 0.3 + 0.2
+        vx: (Math.random() - 0.5) * 0.8, // Velocidad horizontal
+        vy: (Math.random() - 0.5) * 0.8, // Velocidad vertical
       });
     }
     
-    let animationFrameId: number;
-    
+    // Función para actualizar posiciones y conexiones
     const animate = () => {
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      const rect = container.getBoundingClientRect();
       
-      // Dibujar conexiones
-      for (let i = 0; i < nodes.length; i++) {
-        const nodeA = nodes[i];
-        for (let j = i + 1; j < nodes.length; j++) {
-          const nodeB = nodes[j];
-          const dx = nodeB.x - nodeA.x;
-          const dy = nodeB.y - nodeA.y;
+      // Mover puntos
+      dots.forEach(dot => {
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+        
+        // Rebote en bordes
+        if (dot.x <= 0 || dot.x >= rect.width) dot.vx *= -1;
+        if (dot.y <= 0 || dot.y >= rect.height) dot.vy *= -1;
+        
+        // Mantener dentro de límites
+        dot.x = Math.max(0, Math.min(rect.width, dot.x));
+        dot.y = Math.max(0, Math.min(rect.height, dot.y));
+        
+        // Actualizar posición visual
+        dot.element.style.left = dot.x + 'px';
+        dot.element.style.top = dot.y + 'px';
+      });
+      
+      // Limpiar líneas existentes
+      lines.forEach(line => line.element.remove());
+      lines.length = 0;
+      
+      // Crear nuevas conexiones
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const dot1 = dots[i];
+          const dot2 = dots[j];
+          
+          const dx = dot2.x - dot1.x;
+          const dy = dot2.y - dot1.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 180) {
-            ctx.beginPath();
-            ctx.moveTo(nodeA.x, nodeA.y);
-            ctx.lineTo(nodeB.x, nodeB.y);
-            const opacity = 0.1 - (distance / 180) * 0.1;
-            ctx.strokeStyle = `rgba(23, 153, 63, ${opacity})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
+          if (distance < maxDistance) {
+            const line = document.createElement('div');
+            line.className = 'dynamic-line';
+            
+            const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+            const opacity = 1 - (distance / maxDistance);
+            
+            line.style.left = dot1.x + 'px';
+            line.style.top = dot1.y + 'px';
+            line.style.width = distance + 'px';
+            line.style.transform = `rotate(${angle}deg)`;
+            line.style.opacity = opacity.toString();
+            
+            container.appendChild(line);
+            lines.push({ element: line });
           }
         }
       }
       
-      // Dibujar nodos
-      for (const node of nodes) {
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(23, 153, 63, ${node.opacity})`;
-        ctx.fill();
-        
-        // Actualizar posición
-        node.x += node.vx;
-        node.y += node.vy;
-        
-        // Rebotar en bordes
-        if (node.x < 0 || node.x > window.innerWidth) node.vx *= -1;
-        if (node.y < 0 || node.y > window.innerHeight) node.vy *= -1;
-      }
-      
-      animationFrameId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
     };
     
     animate();
     
+    // Limpiar al desmontar
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
+      dots.forEach(dot => dot.element.remove());
+      lines.forEach(line => line.element.remove());
     };
   }, []);
   
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />;
+  return (
+    <div className="tech-background">
+      <div className="connected-dots"></div>
+    </div>
+  );
 }
 
-const phases = [
+// Datos de metodologías específicas
+const methodologies = [
   {
-    id: 'reconnaissance',
-    title: 'Reconocimiento',
-    icon: <Search className="w-8 h-8" />,
-    duration: '1-2 días',
-    description: 'Recopilación de información sobre la infraestructura objetivo.',
-    details: [
-      'Análisis de la superficie de ataque',
-      'Identificación de tecnologías utilizadas',
-      'Mapeo de subdominios y servicios',
-      'Análisis de información pública disponible'
-    ],
-    color: 'from-blue-500 to-blue-600'
+    id: 'owasp',
+    name: 'OWASP',
+    type: 'Estándar',
+    description: 'Seguridad en aplicaciones web'
   },
   {
-    id: 'scanning',
-    title: 'Escaneo',
-    icon: <Target className="w-8 h-8" />,
-    duration: '2-3 días',
-    description: 'Identificación detallada de servicios y posibles vectores de ataque.',
-    details: [
-      'Escaneo de puertos y servicios activos',
-      'Detección de versiones de software',
-      'Identificación de configuraciones inseguras',
-      'Análisis de certificados y protocolos'
-    ],
-    color: 'from-yellow-500 to-yellow-600'
+    id: 'mitre',
+    name: 'MITRE ATT&CK',
+    type: 'Framework',
+    description: 'Tácticas y técnicas de adversarios'
   },
   {
-    id: 'exploitation',
-    title: 'Explotación',
-    icon: <Zap className="w-8 h-8" />,
-    duration: '3-5 días',
-    description: 'Ejecución controlada de ataques para validar vulnerabilidades.',
-    details: [
-      'Explotación manual de vulnerabilidades',
-      'Escalada de privilegios controlada',
-      'Validación de impacto real',
-      'Documentación de evidencias'
-    ],
-    color: 'from-red-500 to-red-600'
+    id: 'ens',
+    name: 'ENS',
+    type: 'Nacional',
+    description: 'Esquema Nacional de Seguridad'
   },
   {
-    id: 'reporting',
-    title: 'Reporte',
-    icon: <FileText className="w-8 h-8" />,
-    duration: '2-3 días',
-    description: 'Documentación completa de hallazgos y recomendaciones.',
-    details: [
-      'Clasificación de vulnerabilidades por criticidad',
-      'Pasos detallados de reproducción',
-      'Recomendaciones específicas de remediación',
-      'Resumen ejecutivo para directivos'
-    ],
-    color: 'from-greenlock-500 to-greenlock-600'
+    id: 'nis2',
+    name: 'NIS2',
+    type: 'Directiva EU',
+    description: 'Seguridad de redes y sistemas'
+  },
+  {
+    id: 'iso27001',
+    name: 'ISO 27001',
+    type: 'Certificación',
+    description: 'Gestión de seguridad'
+  },
+  {
+    id: 'enisa',
+    name: 'ENISA',
+    type: 'Agencia EU',
+    description: 'Ciberseguridad europea'
   }
 ];
 
-export default function MethodologySection() {
-  const [activePhase, setActivePhase] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+// Componente de logo personalizado
+function MethodologyLogo({ methodology }: { methodology: typeof methodologies[0] }) {
+  return (
+    <div className="logo-item group">
+      <div className="flex flex-col items-center justify-center h-full">
+        <div className="logo-text mb-1">
+          {methodology.name}
+        </div>
+        <div className="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {methodology.type}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function MethodologiesSection() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  // Auto-play functionality
-  useEffect(() => {
-    if (!isAutoPlaying || !inView) return;
-    
-    const interval = setInterval(() => {
-      setActivePhase((prev) => (prev + 1) % phases.length);
-    }, 4000);
-    
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, inView]);
-
-  const handlePhaseClick = (index: number) => {
-    setActivePhase(index);
-    setIsAutoPlaying(false);
-    
-    // Restart auto-play after 10 seconds
-    setTimeout(() => setIsAutoPlaying(true), 10000);
-  };
+  // Triplicar metodologías para carrusel infinito con menos elementos
+  const duplicatedMethodologies = [...methodologies, ...methodologies, ...methodologies];
 
   return (
-    <Section id="metodologia" bgColor="bg-[#080f1d]" paddingY="xl">
-      <div className="relative overflow-hidden">
-        {/* Fondo animado */}
-        <MethodologyBackground />
-        
-        {/* Overlay para mejor legibilidad */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/80 via-transparent to-[#080f1d]/80 z-10"></div>
-        
-        <div className="relative z-20" ref={ref}>
-          <SectionTitle
-            title="Nuestra Metodología"
-            description="Seguimos un proceso estructurado y probado que garantiza resultados consistentes y de alta calidad en cada auditoría."
-            center={true}
-            titleClassName="text-white"
-            descriptionClassName="text-gray-300"
-          />
+    <section className="relative py-16 md:py-24 methodologies-background">
+      {/* Fondo tech animado */}
+      <TechBackground />
+      
+      <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Metodologías y <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-600">Estándares</span>
+          </h2>
+          
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Aplicamos las <strong className="text-gray-900">metodologías más reconocidas internacionalmente</strong> 
+            para garantizar auditorías exhaustivas y resultados de máxima calidad.
+          </p>
+        </motion.div>
 
-          <div className="mt-16">
-            {/* Progress Bar */}
-            <div className="flex justify-center mb-12">
-              <div className="flex items-center space-x-4 bg-gray-900/50 backdrop-blur-sm rounded-full p-2">
-                {phases.map((phase, index) => (
-                  <button
-                    key={phase.id}
-                    onClick={() => handlePhaseClick(index)}
-                    className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
-                      activePhase === index
-                        ? 'bg-greenlock-500 text-white shadow-lg'
-                        : 'text-gray-400 hover:text-gray-200'
-                    }`}
-                  >
-                    <div className={`p-1 rounded-full ${
-                      activePhase === index ? 'bg-white/20' : 'bg-gray-700'
-                    }`}>
-                      {React.cloneElement(phase.icon, { 
-                        className: `w-4 h-4 ${activePhase === index ? 'text-white' : 'text-gray-400'}` 
-                      })}
-                    </div>
-                    <span className="text-sm font-medium hidden md:block">{phase.title}</span>
-                    
-                    {/* Progress indicator */}
-                    {activePhase === index && (
-                      <motion.div
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white rounded-full"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: isAutoPlaying ? 1 : 0 }}
-                        transition={{ duration: 4, ease: "linear" }}
-                      />
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Content Area */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activePhase}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-              >
-                {/* Left side - Phase details */}
-                <div className="space-y-6">
-                  <div className={`inline-flex items-center space-x-3 px-4 py-2 rounded-full bg-gradient-to-r ${phases[activePhase].color} text-white`}>
-                    {phases[activePhase].icon}
-                    <span className="font-semibold text-lg">{phases[activePhase].title}</span>
-                  </div>
-                  
-                  <div className="flex items-center space-x-2 text-gray-300">
-                    <Clock className="w-5 h-5 text-greenlock-400" />
-                    <span className="text-sm">Duración: {phases[activePhase].duration}</span>
-                  </div>
-                  
-                  <p className="text-xl text-gray-200 leading-relaxed">
-                    {phases[activePhase].description}
-                  </p>
-                  
-                  <div className="space-y-3">
-                    <h4 className="text-lg font-semibold text-white flex items-center">
-                      <CheckCircle className="w-5 h-5 text-greenlock-400 mr-2" />
-                      Actividades clave:
-                    </h4>
-                    <ul className="space-y-2">
-                      {phases[activePhase].details.map((detail, index) => (
-                        <motion.li
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: index * 0.1 }}
-                          className="flex items-start space-x-3"
-                        >
-                          <div className="w-2 h-2 bg-greenlock-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-300">{detail}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Right side - Visual representation */}
-                <div className="relative">
-                  <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
-                    <div className="text-center mb-6">
-                      <div className={`inline-flex p-4 rounded-full bg-gradient-to-br ${phases[activePhase].color} mb-4`}>
-                        {React.cloneElement(phases[activePhase].icon, { className: "w-12 h-12 text-white" })}
-                      </div>
-                      <h3 className="text-2xl font-bold text-white mb-2">
-                        Fase {activePhase + 1}: {phases[activePhase].title}
-                      </h3>
-                    </div>
-                    
-                    {/* Mini timeline */}
-                    <div className="space-y-3">
-                      {phases.map((phase, index) => (
-                        <div key={phase.id} className="flex items-center space-x-3">
-                          <div className={`w-3 h-3 rounded-full ${
-                            index < activePhase ? 'bg-greenlock-500' :
-                            index === activePhase ? 'bg-yellow-500' :
-                            'bg-gray-600'
-                          }`}></div>
-                          <div className={`h-px flex-1 ${
-                            index < activePhase ? 'bg-greenlock-500' :
-                            index === activePhase ? 'bg-yellow-500' :
-                            'bg-gray-600'
-                          }`}></div>
-                          <span className={`text-sm ${
-                            index <= activePhase ? 'text-white' : 'text-gray-400'
-                          }`}>
-                            {phase.title}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Bottom stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
-            >
-              <div className="text-center bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
-                <div className="text-3xl font-bold text-greenlock-400 mb-2">7-14</div>
-                <div className="text-gray-300">días promedio</div>
-                <div className="text-sm text-gray-400">por auditoría completa</div>
-              </div>
-              
-              <div className="text-center bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
-                <div className="text-3xl font-bold text-greenlock-400 mb-2">100%</div>
-                <div className="text-gray-300">metodología propia</div>
-                <div className="text-sm text-gray-400">basada en estándares internacionales</div>
-              </div>
-              
-              <div className="text-center bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
-                <div className="text-3xl font-bold text-greenlock-400 mb-2">24/7</div>
-                <div className="text-gray-300">comunicación</div>
-                <div className="text-sm text-gray-400">durante todo el proceso</div>
-              </div>
-            </motion.div>
+        {/* Carrusel de metodologías */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="logos-carousel relative mb-12"
+        >
+          <div className="logos-track">
+            {duplicatedMethodologies.map((methodology, index) => (
+              <MethodologyLogo 
+                key={`${methodology.id}-${index}`} 
+                methodology={methodology} 
+              />
+            ))}
           </div>
-        </div>
+        </motion.div>
+
+        {/* Footer con highlights */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="flex items-center justify-center space-x-2 text-base text-gray-600">
+              <Shield className="w-5 h-5 text-green-500" />
+              <span><strong className="text-gray-900">100%</strong> Metodologías actualizadas</span>
+            </div>
+            <div className="flex items-center justify-center space-x-2 text-base text-gray-600">
+              <Award className="w-5 h-5 text-green-500" />
+              <span><strong className="text-gray-900">10+</strong> Frameworks aplicados</span>
+            </div>
+            <div className="flex items-center justify-center space-x-2 text-base text-gray-600">
+              <Shield className="w-5 h-5 text-green-500" />
+              <span><strong className="text-gray-900">EU & ES</strong> Cumplimiento normativo</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
-    </Section>
+    </section>
   );
 }

@@ -215,7 +215,7 @@ export default function HeroSection() {
     <section 
   id="hero" 
   className="relative w-full flex items-center overflow-hidden py-12 md:py-16"
-  style={{ backgroundColor: '#080f1d', minHeight: '85dvh' }}
+  style={{ backgroundColor: '#080f1d', minHeight: '75dvh' }}
 >
 
       <TechBackground />

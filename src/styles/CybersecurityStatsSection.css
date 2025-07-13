@@ -1,0 +1,167 @@
+/* Estilos profesionales para la sección de estadísticas */
+
+/* Variables */
+:root {
+  --greenlock-primary: #00B267;
+  --greenlock-secondary: #2F4F39;
+  --greenlock-light: #33D17A;
+  --light-bg: #f8fafc;
+  --light-surface: #ffffff;
+  --light-border: #e2e8f0;
+}
+
+/* Fondo de la sección */
+.stats-background {
+  background: linear-gradient(135deg, #080f1d 0%, #101b2e 50%, #0a1426 100%);
+  position: relative;
+}
+
+/* Fondo tech animado sutil */
+.tech-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.7;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tech-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(0, 178, 103, 0.6), transparent);
+  height: 1px;
+  width: 120px;
+  animation: techMove 6s linear infinite;
+}
+
+.tech-dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(0, 178, 103, 0.8);
+  border-radius: 50%;
+  animation: techFloat 4s ease-in-out infinite;
+}
+
+@keyframes techMove {
+  0% {
+    transform: translateX(-120px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 120px));
+    opacity: 0;
+  }
+}
+
+@keyframes techFloat {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-15px);
+    opacity: 0.8;
+  }
+}
+
+/* Tarjetas de estadísticas */
+.stat-card {
+  background: rgba(8, 15, 29, 0.9);
+  backdrop-filter: blur(15px);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 178, 103, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 178, 103, 0.15);
+}
+
+/* Icono con efecto suave */
+.stat-icon {
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.1);
+}
+
+/* Animación sutil para contadores */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter-animate {
+  animation: countUp 0.6s ease-out;
+}
+
+/* Efecto de brillo suave en hover */
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 178, 103, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.stat-card:hover::before {
+  left: 100%;
+}
+
+/* Badge de alerta */
+.alert-badge {
+  background: rgba(0, 178, 103, 0.1);
+  border: 1px solid rgba(0, 178, 103, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* CTA Button */
+.cta-button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 178, 103, 0.3);
+}
+
+/* CTA Container */
+.cta-container {
+  background: rgba(8, 15, 29, 0.9);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stat-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .tech-line {
+    width: 60px;
+  }
+}
