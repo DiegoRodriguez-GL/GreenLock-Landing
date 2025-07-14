@@ -1,0 +1,157 @@
+/* Page404.css - Estilos para la página 404 de GreenLock */
+
+@keyframes pulse-ring1 {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.1);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse-ring2 {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-ring1 {
+  animation: pulse-ring1 3s infinite;
+}
+
+.animate-pulse-ring2 {
+  animation: pulse-ring2 4s infinite 0.5s;
+}
+
+/* Animación para el gradiente del texto 404 */
+@keyframes error-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-error-gradient {
+  animation: error-gradient 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* Efectos de las tarjetas informativas */
+.info-card {
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: center;
+}
+
+.info-card:hover {
+  transform: translateY(-8px);
+}
+
+.info-card:hover .card-icon {
+  transform: scale(1.1);
+}
+
+.card-icon {
+  transition: transform 0.3s ease;
+}
+
+/* Efectos para los botones de navegación */
+.nav-button-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.nav-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 178, 103, 0.15);
+}
+
+.nav-button-secondary {
+  transition: all 0.3s ease;
+}
+
+.nav-button-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 178, 103, 0.2);
+}
+
+/* Efecto de brillo sutil en el fondo del botón primario */
+.nav-button-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.nav-button-primary:hover::before {
+  left: 100%;
+}
+
+/* Efecto de glitch para el número 404 */
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 #f00, -0.05em -0.025em 0 #0f0, 0.025em 0.05em 0 #00f;
+  }
+  15% {
+    text-shadow: 0.05em 0 0 #f00, -0.05em -0.025em 0 #0f0, 0.025em 0.05em 0 #00f;
+  }
+  16% {
+    text-shadow: -0.05em -0.025em 0 #f00, 0.025em 0.025em 0 #0f0, -0.05em -0.05em 0 #00f;
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 #f00, 0.025em 0.025em 0 #0f0, -0.05em -0.05em 0 #00f;
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 #f00, 0.05em 0 0 #0f0, 0 -0.05em 0 #00f;
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 #f00, 0.05em 0 0 #0f0, 0 -0.05em 0 #00f;
+  }
+  100% {
+    text-shadow: -0.025em 0 0 #f00, -0.025em -0.025em 0 #0f0, -0.025em -0.05em 0 #00f;
+  }
+}
+
+/* Aplicar efecto glitch ocasionalmente */
+.glitch-effect:hover {
+  animation: glitch 0.3s, blur 0.3s, hue-rotate 1s;
+}
+
+/* Variables CSS específicas para la página 404 */
+:root {
+  --error-primary: #ef4444;
+  --error-secondary: #dc2626;
+  --error-light: #f87171;
+  --warning-color: #f59e0b;
+  --success-color: #00B267;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .animate-pulse-ring1,
+  .animate-pulse-ring2 {
+    animation-duration: 2s;
+  }
+}

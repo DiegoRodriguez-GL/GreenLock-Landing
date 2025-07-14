@@ -9,6 +9,7 @@ import MethodologyPage from './pages/MethodologyPage.tsx'
 import WhyChooseUsPage from './pages/WhyChooseUsPage.tsx'
 import ImpactPage from './pages/ImpactPage.tsx'
 import ContactPage from './pages/ContactPage.tsx'
+import Page404 from './pages/Page404.tsx' // Importar la nueva página 404
 
 function App() {
   return (
@@ -24,21 +25,8 @@ function App() {
         <Route path="/impacto" element={<ImpactPage />} />
         <Route path="/contacto" element={<ContactPage />} />
         
-        {/* Ruta 404 - página no encontrada (opcional) */}
-        <Route path="*" element={
-          <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
-              <p className="text-gray-600 mb-8">Página no encontrada</p>
-              <a 
-                href="/" 
-                className="bg-greenlock-500 text-white px-6 py-3 rounded-md hover:bg-greenlock-600 transition-colors"
-              >
-                Volver al inicio
-              </a>
-            </div>
-          </div>
-        } />
+        {/* Ruta 404 - página no encontrada mejorada */}
+        <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>
   )

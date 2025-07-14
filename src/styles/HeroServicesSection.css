@@ -1,0 +1,245 @@
+/* src/styles/HeroServicesSection.css */
+
+/* Variables CSS para HeroServices */
+:root {
+  --greenlock-primary: #00B267;
+  --greenlock-secondary: #2F4F39;
+  --greenlock-light: #33D17A;
+  --greenlock-dark: #006B3C;
+  --dark-bg: #080f1d;
+  --dark-surface: #101b2e;
+  --dark-card: #1a2332;
+}
+
+/* Contenedor principal del hero */
+.hero-services-container {
+  position: relative;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--dark-bg);
+  padding: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .hero-services-container {
+    min-height: 45vh;
+    padding: 2.5rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-services-container {
+    min-height: 50vh;
+    padding: 3rem 0;
+  }
+}
+
+/* Fondo tecnológico animado */
+.hero-services-tech-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+/* Overlay de gradiente */
+.hero-services-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 15, 29, 0.7) 0%,
+    transparent 50%,
+    rgba(8, 15, 29, 0.7) 100%
+  );
+  z-index: 10;
+}
+
+/* Contenido principal */
+.hero-services-content {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  padding: 0 1rem;
+  max-width: 80rem; /* 5xl */
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .hero-services-content {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-services-content {
+    padding: 0 2rem;
+  }
+}
+
+/* Contenedor del título */
+.hero-services-title-container {
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .hero-services-title-container {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Título principal */
+.hero-services-main-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 0;
+  line-height: 1.1;
+}
+
+@media (min-width: 640px) {
+  .hero-services-main-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-services-main-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-services-main-title {
+    font-size: 3.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-services-main-title {
+    font-size: 4.5rem;
+  }
+}
+
+/* Texto principal del título (en una línea) */
+.hero-services-title-main {
+  color: white;
+  display: inline;
+}
+
+/* Texto con gradiente del título */
+.hero-services-title-gradient {
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(
+    to right,
+    #86efac 0%,
+    #22c55e 35%,
+    var(--greenlock-primary) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradient-text-hero 4s ease infinite;
+}
+
+/* Subtítulo */
+.hero-services-subtitle {
+  font-size: 1rem;
+  color: #d1d5db; /* gray-300 */
+  max-width: 48rem; /* 3xl */
+  margin: 0 auto;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+@media (min-width: 640px) {
+  .hero-services-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-services-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+}
+
+/* Texto destacado en el subtítulo */
+.hero-services-highlight {
+  color: var(--greenlock-primary);
+  font-weight: 600;
+}
+
+/* Animaciones */
+@keyframes gradient-text-hero {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Animaciones de entrada */
+.hero-services-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFadeInUp 0.8s ease-out forwards;
+}
+
+.hero-services-fade-in-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.hero-services-fade-in-delay-2 {
+  animation-delay: 0.4s;
+}
+
+.hero-services-fade-in-delay-3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes heroFadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efectos responsivos adicionales */
+@media (max-width: 640px) {
+  .hero-services-container {
+    min-height: 35vh;
+    padding: 1.5rem 0;
+  }
+  
+  .hero-services-title-container {
+    margin-bottom: 1rem;
+  }
+  
+  .hero-services-main-title {
+    font-size: 1.75rem;
+  }
+  
+  .hero-services-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* Optimizaciones de rendimiento */
+.hero-services-tech-background {
+  will-change: auto;
+  transform: translateZ(0);
+}
+
+.hero-services-title-gradient {
+  will-change: background-position;
+  transform: translateZ(0);
+}

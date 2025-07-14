@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Section from '../ui/Section';
 
 import { 
   Award, 

@@ -28,7 +28,7 @@ const Header: React.FC = () => {
   }, []);
 
   const navigation = [
-    { name: 'Servicios', href: '/services', icon: Settings },
+    { name: 'Servicios', href: '/servicios', icon: Settings },
     { name: 'Metodología', href: '/methodology', icon: BookOpen },
     { name: 'Por qué elegirnos', href: '/why-choose-us', icon: Award },
     { name: 'Impacto', href: '/impact', icon: TrendingUp }

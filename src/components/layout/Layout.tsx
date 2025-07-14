@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Header from './Header.tsx';
 import Footer from './Footer.tsx';
+import FloatingContactCTA from './FloatingContactCTA'
 
 export default function Layout() {
   const location = useLocation();
@@ -19,6 +20,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingContactCTA />
     </div>
   );
 }
