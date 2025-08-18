@@ -243,7 +243,7 @@ export default function HeroSection() {
 
             <div className={`flex flex-col sm:flex-row gap-4 justify-center lg:justify-start transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <a 
-                href="#contacto" 
+                href="contacto" 
                 className="px-4 sm:px-6 py-3 bg-gradient-to-r from-green-600 to-green-400 text-white rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-green-500/50 hover:-translate-y-1 relative overflow-hidden group animate-button-pulse border border-green-400/30 text-sm sm:text-base"
               >
                 <span className="relative z-10">Solicitar auditoría</span>
@@ -251,7 +251,7 @@ export default function HeroSection() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-green-400/20 to-green-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
               <a 
-                href="#servicios" 
+                href="servicios" 
                 className="px-4 sm:px-6 py-3 border border-green-500/40 text-green-400 rounded-md font-medium hover:border-green-400 hover:bg-green-500/10 transition-all duration-300 flex items-center gap-2 group hover:-translate-y-1 justify-center text-sm sm:text-base"
               >
                 Explorar servicios

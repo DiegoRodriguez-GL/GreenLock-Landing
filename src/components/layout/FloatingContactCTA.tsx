@@ -34,7 +34,7 @@ export default function FloatingContactCTA() {
     {
       icon: Phone,
       label: "Llamar",
-      action: "tel:+34900123456",
+      action: "tel:+34682790545",
       color: "text-blue-400",
       bgColor: "from-blue-500/20 to-blue-400/5",
       hoverColor: "hover:border-blue-400"
@@ -42,7 +42,7 @@ export default function FloatingContactCTA() {
     {
       icon: Mail,
       label: "Email",
-      action: "mailto:contacto@greenlock.es",
+      action: "mailto:info@greenlock.es",
       color: "text-purple-400",
       bgColor: "from-purple-500/20 to-purple-400/5",
       hoverColor: "hover:border-purple-400"
@@ -50,7 +50,7 @@ export default function FloatingContactCTA() {
     {
       icon: MessageCircle,
       label: "WhatsApp",
-      action: "https://wa.me/34900123456",
+      action: "https://wa.me/34682790545",
       color: "text-green-400",
       bgColor: "from-green-500/20 to-green-400/5",
       hoverColor: "hover:border-green-400"
@@ -58,7 +58,7 @@ export default function FloatingContactCTA() {
     {
       icon: Headphones,
       label: "Soporte",
-      action: "#contacto",
+      action: "contacto",
       color: "text-orange-400",
       bgColor: "from-orange-500/20 to-orange-400/5",
       hoverColor: "hover:border-orange-400"

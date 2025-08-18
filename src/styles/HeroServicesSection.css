@@ -14,26 +14,26 @@
 /* Contenedor principal del hero */
 .hero-services-container {
   position: relative;
-  min-height: 40vh;
+  min-height: 20vh; /* Reducido un poco más de 25vh a 22vh */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background-color: var(--dark-bg);
-  padding: 2rem 0;
+  padding: 1.25rem 0 0.25rem 0; /* Reducido padding-bottom de 1.25rem a 0.5rem */
 }
 
 @media (min-width: 768px) {
   .hero-services-container {
-    min-height: 45vh;
-    padding: 2.5rem 0;
+    min-height: 22vh; /* Reducido de 30vh a 26vh */
+    padding: 1.75rem 0 0.5rem 0; /* Reducido padding-bottom de 1.75rem a 0.75rem */
   }
 }
 
 @media (min-width: 1024px) {
   .hero-services-container {
-    min-height: 50vh;
-    padding: 3rem 0;
+    min-height: 30vh; /* Reducido de 35vh a 30vh */
+    padding: 2rem 0 0rem 0; /* Reducido padding-bottom de 2rem a 1rem */
   }
 }
 
@@ -84,12 +84,12 @@
 
 /* Contenedor del título */
 .hero-services-title-container {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem; /* Reducido de 1rem a 0.75rem */
 }
 
 @media (min-width: 768px) {
   .hero-services-title-container {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem; /* Reducido de 1.5rem a 1.25rem */
   }
 }
 
@@ -215,16 +215,16 @@
 /* Efectos responsivos adicionales */
 @media (max-width: 640px) {
   .hero-services-container {
-    min-height: 35vh;
-    padding: 1.5rem 0;
+    min-height: 18vh; /* Reducido de 20vh a 18vh */
+    padding: 0.75rem 0 0.25rem 0; /* Reducido padding-bottom de 0.75rem a 0.25rem */
   }
   
   .hero-services-title-container {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem; /* Reducido de 0.75rem a 0.5rem */
   }
   
   .hero-services-main-title {
-    font-size: 1.75rem;
+    font-size: 2.5rem;
   }
   
   .hero-services-subtitle {

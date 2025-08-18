@@ -1,0 +1,878 @@
+/* src/styles/OSICommercialSection.css - SECCIÓN COMERCIAL OSI */
+
+/* Variables para la sección comercial - Consistentes con otras secciones */
+:root {
+  --osi-green-primary: #00B267;
+  --osi-green-light: #33D17A;
+  --osi-green-dark: #006B3C;
+  --osi-red-warning: #EF4444;
+  --osi-orange-warning: #F97316;
+  --osi-blue-accent: #3B82F6;
+  --osi-purple-accent: #8B5CF6;
+  --dark-bg: #080f1d;
+  --dark-surface: #101b2e;
+  --dark-card: #1a2332;
+  --osi-gray-300: #cbd5e1;
+  --osi-gray-100: #f1f5f9;
+  --osi-white: #ffffff;
+}
+
+/* Contenedor principal */
+.osi-commercial-container {
+  background: #080f1d;
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .osi-commercial-container {
+    padding: 6rem 0;
+  }
+}
+
+/* Connected dots container */
+.osi-connected-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Nodos/Dots */
+.osi-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 178, 103, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 178, 103, 0.3);
+}
+
+/* Posiciones específicas de cada dot */
+.osi-dot-1 {
+  top: 10%;
+  left: 15%;
+  animation: float1 8s ease-in-out infinite;
+}
+
+.osi-dot-2 {
+  top: 25%;
+  left: 70%;
+  animation: float2 10s ease-in-out infinite;
+}
+
+.osi-dot-3 {
+  top: 45%;
+  left: 20%;
+  animation: float3 12s ease-in-out infinite;
+}
+
+.osi-dot-4 {
+  top: 60%;
+  left: 80%;
+  animation: float4 9s ease-in-out infinite;
+}
+
+.osi-dot-5 {
+  top: 80%;
+  left: 30%;
+  animation: float5 11s ease-in-out infinite;
+}
+
+.osi-dot-6 {
+  top: 15%;
+  left: 90%;
+  animation: float6 7s ease-in-out infinite;
+}
+
+.osi-dot-7 {
+  top: 70%;
+  left: 10%;
+  animation: float7 13s ease-in-out infinite;
+}
+
+.osi-dot-8 {
+  top: 35%;
+  left: 50%;
+  animation: float8 8.5s ease-in-out infinite;
+}
+
+/* Líneas de conexión */
+.osi-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    rgba(0, 178, 103, 0), 
+    rgba(0, 178, 103, 0.2), 
+    rgba(0, 178, 103, 0)
+  );
+  transform-origin: left center;
+}
+
+/* Líneas específicas conectando dots */
+.osi-line-1 {
+  top: 12%;
+  left: 15%;
+  width: 200px;
+  transform: rotate(25deg);
+  animation: line-pulse1 6s ease-in-out infinite;
+}
+
+.osi-line-2 {
+  top: 26%;
+  left: 20%;
+  width: 180px;
+  transform: rotate(-15deg);
+  animation: line-pulse2 8s ease-in-out infinite;
+}
+
+.osi-line-3 {
+  top: 47%;
+  left: 20%;
+  width: 150px;
+  transform: rotate(45deg);
+  animation: line-pulse3 7s ease-in-out infinite;
+}
+
+.osi-line-4 {
+  top: 62%;
+  left: 30%;
+  width: 220px;
+  transform: rotate(-25deg);
+  animation: line-pulse4 9s ease-in-out infinite;
+}
+
+.osi-line-5 {
+  top: 17%;
+  left: 70%;
+  width: 130px;
+  transform: rotate(65deg);
+  animation: line-pulse5 5s ease-in-out infinite;
+}
+
+.osi-line-6 {
+  top: 72%;
+  left: 10%;
+  width: 160px;
+  transform: rotate(15deg);
+  animation: line-pulse6 10s ease-in-out infinite;
+}
+
+/* Animaciones para los dots */
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(10px, -5px); }
+  50% { transform: translate(-5px, 10px); }
+  75% { transform: translate(8px, 5px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(-8px, 12px); }
+  66% { transform: translate(12px, -8px); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(15px, -10px); }
+}
+
+@keyframes float4 {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-10px, -15px); }
+  75% { transform: translate(5px, 8px); }
+}
+
+@keyframes float5 {
+  0%, 100% { transform: translate(0, 0); }
+  40% { transform: translate(12px, 6px); }
+  80% { transform: translate(-6px, -12px); }
+}
+
+@keyframes float6 {
+  0%, 100% { transform: translate(0, 0); }
+  30% { transform: translate(-15px, 8px); }
+  70% { transform: translate(8px, -5px); }
+}
+
+@keyframes float7 {
+  0%, 100% { transform: translate(0, 0); }
+  45% { transform: translate(6px, -12px); }
+  90% { transform: translate(-10px, 15px); }
+}
+
+@keyframes float8 {
+  0%, 100% { transform: translate(0, 0); }
+  35% { transform: translate(-12px, -8px); }
+  65% { transform: translate(10px, 12px); }
+}
+
+/* Animaciones para las líneas */
+@keyframes line-pulse1 {
+  0%, 100% { opacity: 0.2; transform: rotate(25deg) scaleX(1); }
+  50% { opacity: 0.4; transform: rotate(30deg) scaleX(1.1); }
+}
+
+@keyframes line-pulse2 {
+  0%, 100% { opacity: 0.15; transform: rotate(-15deg) scaleX(1); }
+  50% { opacity: 0.35; transform: rotate(-10deg) scaleX(0.9); }
+}
+
+@keyframes line-pulse3 {
+  0%, 100% { opacity: 0.25; transform: rotate(45deg) scaleX(1); }
+  50% { opacity: 0.4; transform: rotate(50deg) scaleX(1.2); }
+}
+
+@keyframes line-pulse4 {
+  0%, 100% { opacity: 0.2; transform: rotate(-25deg) scaleX(1); }
+  50% { opacity: 0.35; transform: rotate(-30deg) scaleX(0.8); }
+}
+
+@keyframes line-pulse5 {
+  0%, 100% { opacity: 0.18; transform: rotate(65deg) scaleX(1); }
+  50% { opacity: 0.3; transform: rotate(70deg) scaleX(1.1); }
+}
+
+@keyframes line-pulse6 {
+  0%, 100% { opacity: 0.22; transform: rotate(15deg) scaleX(1); }
+  50% { opacity: 0.38; transform: rotate(20deg) scaleX(0.95); }
+}
+
+/* Overlay para profundidad */
+.osi-commercial-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 15, 29, 0.6) 0%,
+    transparent 50%,
+    rgba(8, 15, 29, 0.6) 100%
+  );
+  z-index: 10;
+}
+
+/* Contenido principal */
+.osi-commercial-content {
+  position: relative;
+  z-index: 20;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .osi-commercial-content {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .osi-commercial-content {
+    padding: 0 2rem;
+  }
+}
+
+/* Header comercial */
+.osi-commercial-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+/* Badge de urgencia - Con fade de rojo elegante y hover */
+.osi-urgency-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.12) 0%, rgba(185, 28, 28, 0.08) 50%, rgba(239, 68, 68, 0.15) 100%);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  color: #dc2626;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.osi-urgency-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.osi-urgency-badge:hover {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.18) 0%, rgba(185, 28, 28, 0.12) 50%, rgba(239, 68, 68, 0.22) 100%);
+  border-color: rgba(220, 38, 38, 0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+}
+
+.osi-urgency-badge:hover::before {
+  left: 100%;
+}
+
+/* Título comercial - Más grande y sin subrayado */
+.osi-commercial-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: var(--osi-white);
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 640px) {
+  .osi-commercial-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .osi-commercial-title {
+    font-size: 3.5rem;
+    line-height: 1.1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .osi-commercial-title {
+    font-size: 4rem;
+  }
+}
+
+.osi-title-highlight {
+  color: var(--osi-green-primary);
+  position: relative;
+}
+
+/* Sin subrayado */
+.osi-title-main {
+  color: var(--osi-white);
+}
+
+/* Subtítulo comercial - Misma tipografía */
+.osi-commercial-subtitle {
+  font-size: 1.125rem;
+  color: var(--osi-gray-300);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .osi-commercial-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+}
+
+.osi-commercial-subtitle strong {
+  color: var(--osi-green-light);
+  font-weight: 600;
+}
+
+/* Sección de costes con fade de rojo elegante */
+.osi-cost-section {
+  background: linear-gradient(135deg, 
+    rgba(220, 38, 38, 0.06) 0%, 
+    rgba(185, 28, 28, 0.04) 25%, 
+    rgba(239, 68, 68, 0.03) 50%, 
+    rgba(220, 38, 38, 0.08) 100%
+  );
+  border: 1px solid rgba(220, 38, 38, 0.12);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.osi-cost-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(220, 38, 38, 0.3) 25%, 
+    rgba(239, 68, 68, 0.5) 50%, 
+    rgba(220, 38, 38, 0.3) 75%, 
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.osi-cost-section:hover {
+  background: linear-gradient(135deg, 
+    rgba(220, 38, 38, 0.09) 0%, 
+    rgba(185, 28, 28, 0.06) 25%, 
+    rgba(239, 68, 68, 0.05) 50%, 
+    rgba(220, 38, 38, 0.12) 100%
+  );
+  border-color: rgba(220, 38, 38, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.08);
+}
+
+.osi-cost-section:hover::before {
+  opacity: 1;
+}
+
+.osi-cost-card {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(220, 38, 38, 0.15);
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.osi-cost-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(220, 38, 38, 0.4), rgba(239, 68, 68, 0.6), rgba(220, 38, 38, 0.4));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.osi-cost-card:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(220, 38, 38, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.12);
+}
+
+.osi-cost-card:hover::before {
+  opacity: 1;
+}
+
+.osi-cost-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 50%, #dc2626 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.osi-cost-card:hover .osi-cost-number {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #ef4444 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.05);
+}
+
+.osi-cost-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.osi-cost-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--osi-white);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.osi-cost-title:hover {
+  transform: scale(1.02);
+}
+
+.osi-cost-title svg {
+  color: #dc2626;
+  transition: all 0.3s ease;
+}
+
+.osi-cost-section:hover .osi-cost-title svg {
+  color: #ef4444;
+  transform: rotate(-5deg);
+}
+
+.osi-cost-highlight {
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.osi-cost-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .osi-cost-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.osi-cost-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--osi-white);
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.osi-cost-card:hover .osi-cost-label {
+  color: #f1f5f9;
+}
+
+.osi-cost-description {
+  font-size: 0.875rem;
+  color: var(--osi-gray-300);
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.osi-cost-card:hover .osi-cost-description {
+  color: #e2e8f0;
+}
+
+.osi-cost-solution {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(0, 178, 103, 0.08);
+  border: 1px solid rgba(0, 178, 103, 0.2);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.osi-cost-solution:hover {
+  background: rgba(0, 178, 103, 0.12);
+  border-color: rgba(0, 178, 103, 0.3);
+  transform: translateY(-1px);
+}
+
+.osi-solution-text {
+  font-size: 1.125rem;
+  color: var(--osi-gray-300);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.osi-solution-text strong {
+  color: var(--osi-green-light);
+  font-weight: 600;
+}
+
+.osi-cost-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--osi-white);
+  margin-bottom: 0.5rem;
+}
+
+.osi-cost-description {
+  font-size: 0.875rem;
+  color: var(--osi-gray-300);
+  line-height: 1.4;
+}
+
+.osi-cost-solution {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(0, 178, 103, 0.08);
+  border: 1px solid rgba(0, 178, 103, 0.2);
+  border-radius: 1rem;
+}
+
+.osi-solution-text {
+  font-size: 1.125rem;
+  color: var(--osi-gray-300);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.osi-solution-text strong {
+  color: var(--osi-green-light);
+  font-weight: 600;
+}
+
+/* Grid de beneficios */
+.osi-benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .osi-benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .osi-benefits-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Tarjeta de beneficio */
+.osi-benefit-card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(51, 81, 85, 0.3);
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.osi-benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--osi-green-primary), var(--osi-green-light));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.osi-benefit-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 178, 103, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 178, 103, 0.15);
+}
+
+.osi-benefit-card:hover::before {
+  opacity: 1;
+}
+
+/* Icono de beneficio */
+.osi-benefit-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  transition: all 0.4s ease;
+}
+
+.osi-benefit-card:hover .osi-benefit-icon {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0, 178, 103, 0.3);
+}
+
+/* Contenido del beneficio */
+.osi-benefit-content {
+  color: var(--osi-white);
+}
+
+.osi-benefit-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--osi-white);
+}
+
+.osi-benefit-subtitle {
+  font-size: 0.875rem;
+  color: var(--osi-green-light);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.osi-benefit-description {
+  font-size: 0.875rem;
+  color: var(--osi-gray-300);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Badges de compliance */
+.osi-compliance-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.osi-compliance-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 178, 103, 0.1);
+  border: 1px solid rgba(0, 178, 103, 0.3);
+  color: var(--osi-green-light);
+  padding: 0.75rem 1.25rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+/* Sección CTA */
+.osi-cta-section {
+  text-align: center;
+}
+
+.osi-cta-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--osi-white);
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .osi-cta-title {
+    font-size: 2.25rem;
+  }
+}
+
+/* Botones CTA */
+.osi-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .osi-cta-buttons {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+.osi-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, var(--osi-green-primary) 0%, var(--osi-green-light) 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 178, 103, 0.2);
+}
+
+.osi-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 178, 103, 0.25);
+}
+
+.osi-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--osi-green-light);
+  border: 2px solid var(--osi-green-primary);
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.osi-cta-secondary:hover {
+  background: rgba(0, 178, 103, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Garantías */
+.osi-cta-guarantees {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.osi-guarantee {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--osi-gray-300);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.osi-guarantee svg {
+  color: var(--osi-green-light);
+}
+
+/* Responsive adjustments */
+@media (max-width: 639px) {
+  .osi-commercial-container {
+    padding: 4rem 0;
+  }
+  
+  .osi-commercial-title {
+    font-size: 1.75rem;
+  }
+  
+  .osi-commercial-subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .osi-urgency-section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .osi-cta-title {
+    font-size: 1.75rem;
+  }
+  
+  .osi-benefit-card {
+    padding: 1.5rem 1rem;
+  }
+}

@@ -1,0 +1,316 @@
+/* src/styles/ExecutiveConfidenceSection.css - VERSIÓN EJECUTIVA MINIMALISTA */
+
+/* Variables CSS para diseño ejecutivo */
+:root {
+  --greenlock-primary: #00B267;
+  --greenlock-dark: #006B3C;
+  --greenlock-light: #33D17A;
+  --executive-gray-900: #111827;
+  --executive-gray-700: #374151;
+  --executive-gray-600: #4B5563;
+  --executive-gray-300: #D1D5DB;
+  --executive-gray-100: #F3F4F6;
+  --executive-gray-50: #F9FAFB;
+  --executive-white: #FFFFFF;
+}
+
+/* Contenedor principal - Diseño ejecutivo limpio y compacto */
+.executive-confidence-container {
+  background-color: var(--executive-white);
+  padding: 3rem 0;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .executive-confidence-container {
+    padding: 4rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .executive-confidence-container {
+    padding: 4.5rem 0;
+  }
+}
+
+/* Contenido principal */
+.executive-confidence-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .executive-confidence-content {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .executive-confidence-content {
+    padding: 0 2rem;
+  }
+}
+
+/* Badge ejecutivo */
+.executive-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 178, 103, 0.08);
+  border: 1px solid rgba(0, 178, 103, 0.2);
+  border-radius: 24px;
+  padding: 0.5rem 1.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--greenlock-primary);
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .executive-badge {
+    padding: 0.625rem 1.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Header */
+.executive-confidence-header {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .executive-confidence-header {
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* Título principal - Manteniendo estilo original */
+.executive-confidence-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--executive-gray-900);
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 640px) {
+  .executive-confidence-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .executive-confidence-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .executive-confidence-title {
+    font-size: 2.75rem;
+  }
+}
+
+/* Texto con acento - Manteniendo estilo original */
+.executive-confidence-accent {
+  color: var(--greenlock-primary);
+  position: relative;
+}
+
+.executive-confidence-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--greenlock-light), var(--greenlock-primary));
+  border-radius: 2px;
+  opacity: 0.3;
+}
+
+/* Mensaje principal - Enfoque ejecutivo */
+.executive-confidence-message {
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .executive-confidence-message {
+    margin-bottom: 3rem;
+  }
+}
+
+.executive-confidence-text {
+  font-size: 1.125rem;
+  color: var(--executive-gray-600);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .executive-confidence-text {
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+}
+
+.executive-confidence-text strong {
+  color: var(--executive-gray-900);
+  font-weight: 600;
+}
+
+/* Pilares de confianza - Diseño ejecutivo compacto */
+.executive-confidence-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .executive-confidence-pillars {
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .executive-confidence-pillars {
+    gap: 4rem;
+  }
+}
+
+/* Pilar individual - Diseño más ejecutivo y compacto */
+.executive-confidence-pillar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: default;
+  min-width: 180px;
+}
+
+@media (min-width: 768px) {
+  .executive-confidence-pillar {
+    padding: 2rem 1.5rem;
+  }
+}
+
+.executive-confidence-pillar:hover {
+  background-color: #f9fafb;
+  transform: translateY(-2px);
+}
+
+/* Icono del pilar - Más sofisticado */
+.executive-confidence-pillar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: #f0fdf4;
+  border-radius: 50%;
+  color: var(--greenlock-primary);
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .executive-confidence-pillar-icon {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.executive-confidence-pillar:hover .executive-confidence-pillar-icon {
+  background-color: var(--greenlock-primary);
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Contenido del pilar */
+.executive-pillar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Título del pilar */
+.executive-confidence-pillar-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--executive-gray-900);
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .executive-confidence-pillar-title {
+    font-size: 1.125rem;
+  }
+}
+
+.executive-confidence-pillar:hover .executive-confidence-pillar-title {
+  color: var(--greenlock-primary);
+}
+
+/* Subtítulo del pilar */
+.executive-confidence-pillar-subtitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--executive-gray-600);
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.executive-confidence-pillar:hover .executive-confidence-pillar-subtitle {
+  color: var(--executive-gray-700);
+}
+
+/* Responsive adjustments */
+@media (max-width: 639px) {
+  .executive-confidence-container {
+    padding: 2.5rem 0;
+  }
+  
+  .executive-confidence-title {
+    font-size: 1.75rem;
+  }
+  
+  .executive-confidence-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .executive-confidence-message {
+    margin-bottom: 2rem;
+  }
+  
+  .executive-confidence-pillars {
+    gap: 1rem;
+  }
+  
+  .executive-confidence-pillar {
+    padding: 1.25rem 0.75rem;
+    min-width: 160px;
+  }
+
+  .executive-badge {
+    font-size: 0.7rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+}

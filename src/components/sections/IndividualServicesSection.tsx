@@ -1,130 +1,37 @@
 // src/components/sections/IndividualServicesSection.tsx
-import { useRef, useEffect, useState } from 'react';
-import { Shield, Globe, Smartphone, Code, Users, Lock, ArrowRight, CheckCircle, AlertTriangle } from 'lucide-react';
+import { useState } from 'react';
+import { Shield, Globe, Smartphone, Code, Users, Lock, ArrowRight, CheckCircle, AlertTriangle, Brain, Search } from 'lucide-react';
 import '../../styles/IndividualServicesSection.css';
 
-// Fondo tecnológico para servicios individuales
-const TechBackground = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const resizeCanvas = () => {
-      const rect = canvas.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
-
-      ctx.scale(dpr, dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-
-    const resizeObserver = new ResizeObserver(() => {
-      resizeCanvas();
-    });
-
-    resizeObserver.observe(canvas.parentElement!);
-    resizeCanvas();
-
-    const nodes: any[] = [];
-    const nodeCount = 25;
-    const canvasWidth = () => canvas.width / (window.devicePixelRatio || 1);
-    const canvasHeight = () => canvas.height / (window.devicePixelRatio || 1);
-
-    const initNodes = () => {
-      nodes.length = 0;
-      for (let i = 0; i < nodeCount; i++) {
-        nodes.push({
-          x: Math.random() * canvasWidth(),
-          y: Math.random() * canvasHeight(),
-          vx: (Math.random() - 0.5) * 0.2,
-          vy: (Math.random() - 0.5) * 0.2,
-          radius: Math.random() * 1.5 + 0.5,
-          opacity: Math.random() * 0.3 + 0.2
-        });
-      }
-    };
-
-    initNodes();
-
-    let animationFrameId: number;
-    let time = 0;
-
-    const animate = () => {
-      const width = canvasWidth();
-      const height = canvasHeight();
-
-      ctx.fillStyle = 'transparent';
-      ctx.fillRect(0, 0, width, height);
-
-      time += 0.008;
-
-      ctx.lineWidth = 0.4;
-
-      // Conexiones entre nodos
-      for (let i = 0; i < nodes.length; i++) {
-        const nodeA = nodes[i];
-
-        for (let j = i + 1; j < nodes.length; j++) {
-          const nodeB = nodes[j];
-          const dx = nodeB.x - nodeA.x;
-          const dy = nodeB.y - nodeA.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 100) {
-            const opacity = (100 - distance) / 100 * 0.15;
-            ctx.strokeStyle = `rgba(0, 178, 103, ${opacity})`;
-            ctx.beginPath();
-            ctx.moveTo(nodeA.x, nodeA.y);
-            ctx.lineTo(nodeB.x, nodeB.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Nodos pulsantes
-      for (const node of nodes) {
-        const pulse = Math.sin(time * 1.5 + node.x * 0.01) * 0.3 + 0.7;
-
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius * pulse, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 178, 103, ${node.opacity * pulse})`;
-        ctx.fill();
-
-        node.x += node.vx;
-        node.y += node.vy;
-
-        if (node.x < -10) node.x = width + 10;
-        else if (node.x > width + 10) node.x = -10;
-
-        if (node.y < -10) node.y = height + 10;
-        else if (node.y > height + 10) node.y = -10;
-      }
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      resizeObserver.disconnect();
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
+// Fondo minimalista con connected dots CSS
+const MinimalBackground = () => {
   return (
-    <canvas 
-      ref={canvasRef} 
-      className="individual-services-tech-background"
-    />
+    <div className="individual-services-minimal-bg">
+      {/* Connected dots sin canvas - Solo CSS */}
+      <div className="individual-services-connected-dots">
+        <div className="individual-services-dot individual-services-dot-1"></div>
+        <div className="individual-services-dot individual-services-dot-2"></div>
+        <div className="individual-services-dot individual-services-dot-3"></div>
+        <div className="individual-services-dot individual-services-dot-4"></div>
+        <div className="individual-services-dot individual-services-dot-5"></div>
+        <div className="individual-services-dot individual-services-dot-6"></div>
+        <div className="individual-services-dot individual-services-dot-7"></div>
+        <div className="individual-services-dot individual-services-dot-8"></div>
+        
+        <div className="individual-services-line individual-services-line-1"></div>
+        <div className="individual-services-line individual-services-line-2"></div>
+        <div className="individual-services-line individual-services-line-3"></div>
+        <div className="individual-services-line individual-services-line-4"></div>
+        <div className="individual-services-line individual-services-line-5"></div>
+        <div className="individual-services-line individual-services-line-6"></div>
+      </div>
+      
+      <div className="individual-services-bg-lines">
+        <div className="individual-services-bg-line individual-services-bg-line-1"></div>
+        <div className="individual-services-bg-line individual-services-bg-line-2"></div>
+        <div className="individual-services-bg-line individual-services-bg-line-3"></div>
+      </div>
+    </div>
   );
 };
 
@@ -211,6 +118,46 @@ const IndividualServicesSection = () => {
         'Mejora de prácticas de codificación segura',
         'Detección de vulnerabilidades antes de ser explotables'
       ]
+    },
+    {
+      id: 'ai-pentesting',
+      title: 'Pentesting IA',
+      icon: <Brain className="w-6 h-6" />,
+      activeIcon: <Brain className="w-6 h-6 text-white" />,
+      description: 'Evaluación especializada de sistemas de inteligencia artificial siguiendo estándares internacionales de seguridad.',
+      valueProposition: 'Sin evaluar su IA, está expuesto a ataques de envenenamiento de datos, sesgos maliciosos y manipulación de modelos que pueden comprometer toda su operación.',
+      features: [
+        'Evaluación de modelos de machine learning',
+        'Análisis de datasets y pipelines de entrenamiento',
+        'Pruebas de adversarial attacks y robustez',
+        'Cumplimiento con estándares NIST AI RMF'
+      ],
+      benefits: [
+        'Protección contra ataques a modelos de IA',
+        'Validación de confiabilidad y precisión',
+        'Cumplimiento con regulaciones emergentes de IA',
+        'Reducción de riesgos de sesgo y discriminación'
+      ]
+    },
+    {
+      id: 'perimeter-assessment',
+      title: 'Evaluación Perimetral',
+      icon: <Search className="w-6 h-6" />,
+      activeIcon: <Search className="w-6 h-6 text-white" />,
+      description: 'Análisis exhaustivo del perímetro externo de su empresa para identificar puntos de acceso no autorizados.',
+      valueProposition: 'Sin evaluar su perímetro externo, atacantes pueden encontrar servicios expuestos, credenciales filtradas o configuraciones débiles para acceder a su red interna.',
+      features: [
+        'Reconocimiento y mapeo de infraestructura externa',
+        'Identificación de servicios y puertos expuestos',
+        'Búsqueda de credenciales en fuentes abiertas',
+        'Análisis de configuraciones de DNS y subdominios'
+      ],
+      benefits: [
+        'Visibilidad completa de su superficie de ataque',
+        'Identificación de activos desconocidos',
+        'Prevención de accesos no autorizados',
+        'Reducción de la huella digital vulnerable'
+      ]
     }
   ];
 
@@ -218,8 +165,7 @@ const IndividualServicesSection = () => {
 
   return (
     <section className="individual-services-container">
-      <TechBackground />
-      <div className="individual-services-overlay" />
+      <MinimalBackground />
       
       <div className="individual-services-content">
         <div className="individual-services-header">
@@ -281,10 +227,10 @@ const IndividualServicesSection = () => {
               </div>
               
               <div className="individual-services-cta-wrapper">
-                <button className="individual-services-cta-button">
-                  ¡Contratar ahora! <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
+  <a href="/contacto" className="individual-services-cta-button">
+    Contactar ahora <ArrowRight className="w-5 h-5" />
+  </a>
+</div>
             </div>
             
             {/* Columna derecha - Características y beneficios */}
@@ -332,17 +278,22 @@ const IndividualServicesSection = () => {
           </div>
         </div>
 
-        {/* CTA Final */}
+        {/* CTA Final - Widget Verde Completo */}
         <div className="individual-services-final-cta">
-          <h3 className="individual-services-final-cta-title">
-            ¿Necesita una evaluación personalizada?
-          </h3>
-          <p className="individual-services-final-cta-text">
-            Contacte con nuestro equipo para discutir sus necesidades específicas de ciberseguridad.
-          </p>
-          <button className="individual-services-final-cta-button">
-            Solicitar consulta gratuita
-          </button>
+          <div className="individual-services-final-cta-content">
+            <h3 className="individual-services-final-cta-title">
+              ¿Necesita una evaluación personalizada?
+            </h3>
+            <p className="individual-services-final-cta-text">
+              Contacte con nuestro equipo para discutir sus necesidades específicas de ciberseguridad.
+            </p>
+            <a
+  href="mailto:info@greenlock.tech?subject=Solicitud%20evaluacion%20personalizada%20-%20GreenLock%20OSI&body=Hola%2C%20me%20gustaria%20solicitar%20una%20evaluacion%20personalizada%20de%20ciberseguridad.%20Por%20favor%2C%20contactadme%20para%20concretar%20una%20llamada.%0A%0AEmpresa%3A%20%0ANombre%3A%20%0ATelefono%3A%20%0APreferencia%20de%20horario%3A%20%0A%0AGracias."
+  className="individual-services-final-cta-button"
+>
+  Solicitar consulta gratuita
+</a>
+          </div>
         </div>
       </div>
     </section>

@@ -1,9 +1,7 @@
 // src/components/sections/ServicesSection.tsx
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Section from '../ui/Section';
-import Button from '../ui/Button';
-import { Shield, Lock, Globe, Smartphone, Code, CheckCircle, Award, ArrowRight, AlertTriangle } from 'lucide-react';
+import { Shield, Lock, Globe, Smartphone, Code, CheckCircle, ArrowRight, AlertTriangle } from 'lucide-react';
 
 // Eliminar "Auditoría de Cumplimiento" y mejorar descripciones
 const services = [

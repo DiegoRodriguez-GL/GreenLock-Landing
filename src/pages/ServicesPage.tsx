@@ -1,8 +1,9 @@
 // src/pages/ServicesPage.tsx
 import { useState, useEffect } from 'react';
 import HeroServicesSection from '../components/sections/HeroServicesSection';
-import OSISection from '../components/sections/OSISection';
+import ExecutiveSection from '../components/sections/ExecutiveConfidenceSection';
 import IndividualServicesSection from '../components/sections/IndividualServicesSection';
+import OSI from '../components/sections/OSICommercialSection';
 
 const ServicesPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -14,7 +15,8 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen">
       <HeroServicesSection isLoaded={isLoaded} />
-      <OSISection />
+      <ExecutiveSection isLoaded={isLoaded} />
+      <OSI isLoaded={isLoaded} />
       <IndividualServicesSection />
     </div>
   );
