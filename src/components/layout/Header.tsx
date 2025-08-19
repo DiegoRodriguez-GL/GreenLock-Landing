@@ -29,9 +29,9 @@ const Header: React.FC = () => {
 
   const navigation = [
     { name: 'Servicios', href: '/servicios', icon: Settings },
-    { name: 'Metodología', href: '/methodology', icon: BookOpen },
-    { name: 'Por qué elegirnos', href: '/why-choose-us', icon: Award },
-    { name: 'Impacto', href: '/impact', icon: TrendingUp }
+    { name: 'Metodología', href: '/metodologia', icon: BookOpen },
+    { name: 'Por qué elegirnos', href: '/porque-elegirnos', icon: Award },
+    { name: 'Impacto', href: '/impacto', icon: TrendingUp }
   ];
 
   return (
@@ -112,7 +112,7 @@ const Header: React.FC = () => {
           {/* BOTÓN MÓVIL REDISEÑADO - ANCHO COMPLETO */}
           <div className="header-mobile-menu-buttons">
             <Link 
-              to="/contact" 
+              to="/contacto" 
               className="header-mobile-btn"
               onClick={() => setIsMenuOpen(false)}
             >
