@@ -1,6 +1,6 @@
-/* Header.css - Estilos específicos del Header - BOTÓN MÓVIL PROFESIONAL */
 
-/* Variables CSS para el Header */
+
+
 :root {
   --header-fade-primary: #00B267;
   --header-fade-secondary: #2F4F39;
@@ -9,7 +9,7 @@
   --header-border: rgba(0, 178, 103, 0.1);
 }
 
-/* Contenedor principal del Header */
+
 .header {
   position: fixed;
   top: 0;
@@ -26,7 +26,7 @@
   box-shadow: 0 4px 20px rgba(0, 178, 103, 0.05);
 }
 
-/* Contenedor interno del Header */
+
 .header-container {
   max-width: 1280px;
   margin: 0 auto;
@@ -37,7 +37,7 @@
   height: 4rem;
 }
 
-/* Logo personalizado - SIN EFECTOS DE HOVER */
+
 .header-logo {
   display: flex;
   align-items: center;
@@ -45,21 +45,21 @@
   text-decoration: none;
 }
 
-/* Imagen del logo - SIN EFECTOS */
+
 .header-logo-image {
   width: 2rem;
   height: 2rem;
   object-fit: contain;
 }
 
-/* Texto GreenLock con degradado MÁS CLARO en "Lock" */
+
 .header-logo-text {
   font-size: 1rem;
   font-weight: 700;
   color: white;
 }
 
-/* Degradado MÁS CLARO y suave para la parte "Lock" */
+
 .header-logo-text .lock-part {
   background: linear-gradient(135deg, #4ade80, #00B267, #33D17A);
   background-clip: text;
@@ -68,7 +68,7 @@
   opacity: 0.9;
 }
 
-/* Navegación principal con iconos - SOLO 4 SECCIONES */
+
 .header-nav {
   display: none;
   align-items: center;
@@ -105,14 +105,14 @@
   color: var(--header-fade-primary);
 }
 
-/* Iconos de navegación */
+
 .header-nav-icon {
   width: 1rem;
   height: 1rem;
   transition: all 0.3s ease;
 }
 
-/* Efecto de subrayado - POSICIONADO EN LA PARTE INFERIOR */
+
 .header-nav-link::after {
   content: '';
   position: absolute;
@@ -130,7 +130,7 @@
   width: 100%;
 }
 
-/* Botón único - OCULTO EN MÓVIL */
+
 .header-buttons {
   display: none;
   align-items: center;
@@ -172,7 +172,7 @@
   height: 1rem;
 }
 
-/* Botón de menú móvil */
+
 .header-mobile-menu-btn {
   display: block;
   background: none;
@@ -200,7 +200,7 @@
   transition: all 0.3s ease;
 }
 
-/* Menú móvil */
+
 .header-mobile-menu {
   position: absolute;
   top: 100%;
@@ -246,18 +246,18 @@
   padding-left: 1rem;
 }
 
-/* Botón móvil - DISEÑO PROFESIONAL Y ELEGANTE */
+
 .header-mobile-menu-buttons {
   display: flex;
   justify-content: center;
   padding: 0;
 }
 
-/* Botón móvil con diseño PROFESIONAL - FADE MÁS CLARO */
+
 .header-mobile-btn {
   width: 100%;
   padding: 1rem 1.5rem;
-  /* DEGRADADO MÁS CLARO Y PROFESIONAL */
+  
   background: linear-gradient(135deg, #4ade80, #00B267, #33D17A);
   color: white;
   border: none;
@@ -270,23 +270,23 @@
   justify-content: center;
   gap: 0.75rem;
   transition: all 0.3s ease;
-  /* SOMBRA MÁS SUTIL Y PROFESIONAL */
+  
   box-shadow: 0 2px 8px rgba(74, 222, 128, 0.15);
   position: relative;
   overflow: hidden;
-  /* OPACIDAD LIGERAMENTE REDUCIDA PARA MAYOR ELEGANCIA */
+  
   opacity: 0.95;
 }
 
-/* Efecto de hover SUAVIZADO para el botón móvil */
+
 .header-mobile-btn:hover {
-  transform: translateY(-1px); /* MOVIMIENTO MÁS SUTIL */
-  /* SOMBRA HOVER MÁS PROFESIONAL */
+  transform: translateY(-1px); 
+  
   box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
   opacity: 1;
 }
 
-/* Efecto de ripple MÁS SUTIL para el botón móvil */
+
 .header-mobile-btn::before {
   content: '';
   position: absolute;
@@ -294,24 +294,24 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  /* EFECTO DE BRILLO MÁS SUTIL */
+  
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.6s ease; /* TRANSICIÓN MÁS LENTA Y ELEGANTE */
+  transition: left 0.6s ease; 
 }
 
 .header-mobile-btn:hover::before {
   left: 100%;
 }
 
-/* Icono del botón móvil con efecto más sutil */
+
 .header-mobile-btn-icon {
   width: 1.25rem;
   height: 1.25rem;
-  /* SOMBRA MÁS SUTIL EN EL ICONO */
+  
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 640px) {
   .header-container {
     padding: 0 0.75rem;
@@ -332,11 +332,11 @@
     height: 3.5rem;
   }
   
-  /* Ajustes específicos para el botón móvil en pantallas muy pequeñas */
+  
   .header-mobile-btn {
     padding: 0.875rem 1.25rem;
     font-size: 1rem;
-    /* SOMBRA AJUSTADA PARA PANTALLAS PEQUEÑAS */
+    
     box-shadow: 0 2px 6px rgba(74, 222, 128, 0.12);
   }
   

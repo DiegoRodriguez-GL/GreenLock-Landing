@@ -1,20 +1,20 @@
-/* Estilos para la sección de metodologías */
 
-/* Variables */
+
+
 :root {
   --greenlock-primary: #00B267;
   --light-bg: #f8fafc;
   --dark-text: #1e293b;
 }
 
-/* Fondo de la sección */
+
 .methodologies-background {
   background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
   position: relative;
   overflow: hidden;
 }
 
-/* Fondo de connected dots móviles */
+
 .tech-background {
   position: absolute;
   top: 0;
@@ -50,7 +50,7 @@
   transition: opacity 0.3s ease;
 }
 
-/* Animaciones para dots móviles */
+
 @keyframes dotGlow {
   0%, 100% {
     transform: scale(1);
@@ -62,7 +62,7 @@
   }
 }
 
-/* Carrusel de logos */
+
 .logos-carousel {
   overflow: hidden;
   position: relative;
@@ -100,7 +100,7 @@
   transform: scale(1.05);
 }
 
-/* Animación del carrusel */
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -110,7 +110,7 @@
   }
 }
 
-/* Gradientes para efecto fade */
+
 .logos-carousel::before,
 .logos-carousel::after {
   content: '';
@@ -132,7 +132,7 @@
   background: linear-gradient(to left, rgba(248, 250, 252, 0.95), transparent);
 }
 
-/* Logo texto personalizado */
+
 .logo-text {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
@@ -148,7 +148,7 @@
   transform: scale(1.05);
 }
 
-/* Badge de certificación */
+
 .cert-badge {
   background: rgba(0, 178, 103, 0.1);
   border: 1px solid rgba(0, 178, 103, 0.3);
@@ -160,7 +160,7 @@
   backdrop-filter: blur(10px);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .logo-item {
     min-width: 220px;

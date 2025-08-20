@@ -1,4 +1,4 @@
-// src/pages/ServicesPage.tsx
+
 import { useState, useEffect } from 'react';
 import HeroServicesSection from '../components/sections/HeroServicesSection';
 import ExecutiveSection from '../components/sections/ExecutiveConfidenceSection';
@@ -16,7 +16,7 @@ const ServicesPage = () => {
     <div className="min-h-screen">
       <HeroServicesSection isLoaded={isLoaded} />
       <ExecutiveSection isLoaded={isLoaded} />
-      <OSI isLoaded={isLoaded} />
+      <OSI />
       <IndividualServicesSection />
     </div>
   );

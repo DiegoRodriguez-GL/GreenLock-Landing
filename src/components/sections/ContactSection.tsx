@@ -1,10 +1,7 @@
-// src/components/sections/ContactSection.tsx - VERSIÓN MEJORADA
+
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Section from '../ui/Section';
-import SectionTitle from '../ui/SectionTitle';
-import HackerEffect from '../ui/HackerEffect';
 import { 
   Mail, 
   Phone, 
@@ -17,7 +14,7 @@ import {
   Send
 } from 'lucide-react';
 
-// Componente de fondo animado similar al Hero
+
 function ContactBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   
@@ -40,7 +37,7 @@ function ContactBackground() {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     
-    // Crear partículas flotantes
+    
     const particles: {x: number; y: number; vx: number; vy: number; radius: number; opacity: number; life: number}[] = [];
     const maxParticles = 30;
     
@@ -56,7 +53,7 @@ function ContactBackground() {
       };
     };
     
-    // Inicializar partículas
+    
     for (let i = 0; i < maxParticles; i++) {
       particles.push(createParticle());
     }
@@ -66,22 +63,22 @@ function ContactBackground() {
     const animate = () => {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       
-      // Actualizar y dibujar partículas
+      
       for (let i = particles.length - 1; i >= 0; i--) {
         const particle = particles[i];
         
-        // Actualizar posición
+        
         particle.x += particle.vx;
         particle.y += particle.vy;
         particle.life -= 0.001;
         
-        // Dibujar partícula
+        
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(23, 153, 63, ${particle.opacity * particle.life})`;
         ctx.fill();
         
-        // Remover partículas que salen de pantalla o mueren
+        
         if (particle.y < -20 || particle.life <= 0) {
           particles.splice(i, 1);
           particles.push(createParticle());
@@ -102,7 +99,7 @@ function ContactBackground() {
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />;
 }
 
-// Componente de formulario mejorado
+
 function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -139,7 +136,7 @@ function ContactForm() {
     
     setIsSubmitting(true);
     
-    // Simular envío
+    
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
@@ -155,7 +152,7 @@ function ContactForm() {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
-    // Limpiar error al escribir
+    
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -176,10 +173,6 @@ function ContactForm() {
           <p className="text-greenlock-100">
             Gracias por contactarnos. Nuestro equipo se pondrá en contacto contigo en las próximas 24 horas.
           </p>
-        </div>
-        
-        <div className="bg-white/10 rounded-lg p-4">
-          <HackerEffect text="Procesando solicitud..." duration={1000} />
         </div>
       </motion.div>
     );
@@ -343,18 +336,12 @@ export default function ContactSection() {
   });
 
   return (
-    <Section id="contacto" bgColor="bg-gray-50" paddingY="xl">
       <div className="relative overflow-hidden">
-        {/* Fondo animado */}
+        {}
         <ContactBackground />
         
-        {/* Contenido principal */}
+        {}
         <div className="relative z-10" ref={ref}>
-          <SectionTitle
-            title="¿Listo para Proteger tu Empresa?"
-            description="Completa el formulario y nuestro equipo te contactará en 24 horas para diseñar una estrategia de seguridad personalizada."
-            center={true}
-          />
           
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -362,7 +349,7 @@ export default function ContactSection() {
             transition={{ duration: 0.6 }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-16"
           >
-            {/* Formulario de contacto */}
+            {}
             <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
               <div className="mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
@@ -377,9 +364,9 @@ export default function ContactSection() {
               <ContactForm />
             </div>
             
-            {/* Información de contacto y beneficios */}
+            {}
             <div className="space-y-8">
-              {/* Información de contacto */}
+              {}
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
@@ -427,7 +414,7 @@ export default function ContactSection() {
                 </div>
               </motion.div>
               
-              {/* Soporte de emergencia */}
+              {}
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
@@ -443,12 +430,9 @@ export default function ContactSection() {
                 <p className="mb-6 text-greenlock-100">
                   Para incidentes críticos de seguridad y respuesta a brechas, nuestro equipo está disponible las 24 horas.
                 </p>
-                <div className="bg-white/10 rounded-lg p-4 font-mono text-center text-lg">
-                  <HackerEffect text="+34 900 555 123" duration={1500} />
-                </div>
               </motion.div>
               
-              {/* Garantías */}
+              {}
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
@@ -474,6 +458,5 @@ export default function ContactSection() {
           </motion.div>
         </div>
       </div>
-    </Section>
   );
 }

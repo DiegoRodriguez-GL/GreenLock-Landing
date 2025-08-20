@@ -2,6 +2,15 @@ import { useEffect, useState, useRef } from 'react';
 import { ArrowRight, Shield, Scale, Monitor } from 'lucide-react';
 import '../../styles/HeroSection.css';
 
+interface Node {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+  opacity: number;
+}
+
 function TechBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -32,7 +41,7 @@ function TechBackground() {
     resizeObserver.observe(canvas.parentElement!);
     resizeCanvas();
 
-    const nodes: any[] = [];
+    const nodes: Node[] = [];
     const nodeCount = 30;
     const canvasWidth = () => canvas.width / (window.devicePixelRatio || 1);
     const canvasHeight = () => canvas.height / (window.devicePixelRatio || 1);
@@ -144,7 +153,7 @@ function RotatingTypewriter() {
     const pauseBeforeDelete = 1800;
     const pauseBeforeNextPhrase = 500;
 
-    let timeout: NodeJS.Timeout;
+    let timeout: number;
 
     if (!isDeleting && displayText === currentPhrase) {
       setIsComplete(true);
@@ -177,6 +186,120 @@ function RotatingTypewriter() {
       {displayText}
       <span className={`typewriter-cursor ${isComplete ? 'opacity-0' : 'opacity-100'}`}></span>
     </span>
+  );
+}
+
+function AnimatedTerminal() {
+  const [lines, setLines] = useState<Array<{id: number, text: string, type: string}>>([]);
+  const [currentId, setCurrentId] = useState(0);
+  const [commandIndex, setCommandIndex] = useState(0);
+
+  const terminalSequence = [
+  { text: "$ ./security_scan --target=client.domain", type: "command" },
+  { text: "[+] Iniciando escaneo de seguridad...", type: "info" },
+  { text: "[*] Detectando puertos abiertos...", type: "process" },
+  { text: "[*] Puertos: 22, 80, 443, 3306", type: "data" },
+  { text: "[*] Verificando servicios web...", type: "process" },
+  { text: "[!] VULNERABILIDAD: OpenSSL desactualizado", type: "warning" },
+  { text: "[*] Analizando certificados SSL...", type: "process" },
+  { text: "[✓] Certificado SSL válido", type: "success" },
+  { text: "[*] Escaneando directorios...", type: "process" },
+  { text: "[!] HIGH: Archivo de respaldo expuesto", type: "critical" },
+  { text: "[*] Verificando configuración DB...", type: "process" },
+  { text: "[!] MEDIUM: Credenciales por defecto", type: "warning" },
+  { text: "[*] Finalizando análisis...", type: "process" },
+  { text: "[+] Escaneo completado", type: "summary" },
+  { text: "$ nmap -sS -O target.domain", type: "command" },
+  { text: "[*] Iniciando escaneo de puertos...", type: "process" },
+  { text: "[+] 80/tcp open http", type: "data" },
+  { text: "[+] 443/tcp open https", type: "data" },
+  { text: "$ nikto -h https://target.domain", type: "command" },
+  { text: "[*] Ejecutando pruebas web...", type: "process" },
+  { text: "[!] Server: Apache/2.4.29", type: "info" },
+  { text: "[✓] No se encontraron backdoors", type: "success" }
+];
+
+  useEffect(() => {
+    const addLine = () => {
+      if (lines.length >= 6) {
+        setLines(prev => prev.slice(1));
+      }
+
+      const currentCommand = terminalSequence[commandIndex % terminalSequence.length];
+      const newLine = {
+        id: currentId,
+        text: currentCommand.text,
+        type: currentCommand.type
+      };
+
+      setLines(prev => [...prev, newLine]);
+      setCurrentId(prev => prev + 1);
+      setCommandIndex(prev => prev + 1);
+    };
+
+    
+    const initialTimeout = setTimeout(() => {
+      addLine();
+    }, 2000);
+
+    
+    const interval = setInterval(() => {
+      addLine();
+    }, Math.random() * 2000 + 4000); 
+
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(interval);
+    };
+  }, [currentId, lines.length, commandIndex]);
+
+  const getLineClass = (type: string) => {
+    switch (type) {
+      case 'command': return 'text-green-400';
+      case 'info': return 'text-gray-300';
+      case 'process': return 'text-blue-300';
+      case 'data': return 'text-cyan-300';
+      case 'warning': return 'text-yellow-400';
+      case 'critical': return 'text-red-400';
+      case 'success': return 'text-green-400';
+      case 'finding': return 'text-purple-400';
+      case 'summary': return 'text-green-300';
+      default: return 'text-gray-300';
+    }
+  };
+
+  return (
+    <div className="w-full relative bg-[#0c1628] border border-gray-700 rounded-md overflow-hidden shadow-md w-full lg:max-w-lg ml-auto">
+      <div className="px-3 py-1.5 bg-[#0a1426] border-b border-gray-700 flex items-center justify-between">
+        <div className="flex items-center gap-1.5">
+          <div className="w-2 h-2 rounded-full bg-red-500"></div>
+          <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+        </div>
+        <div className="text-xs text-gray-400">security_scan.sh</div>
+      </div>
+      <div className="w-full h-0.5 bg-gray-800">
+        <div className="h-full bg-green-500 animate-progress-bar"></div>
+      </div>
+      <div className="p-3 font-mono text-xs text-gray-300 h-48 overflow-hidden">
+        <div className="space-y-1">
+          {lines.map((line) => (
+            <div
+              key={line.id}
+              className={`${getLineClass(line.type)} animate-terminal-line opacity-0`}
+              style={{
+                animation: 'terminalFadeIn 0.5s ease-out forwards'
+              }}
+            >
+              {line.text}
+            </div>
+          ))}
+          <div className="text-green-400 animate-pulse">
+            █
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -223,8 +346,8 @@ export default function HeroSection() {
 
       <div className="container relative z-20 mx-auto px-4 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center h-full">
-          <div className="text-center lg:text-left space-y-4 lg:space-y-6">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight">
+          <div className="text-left space-y-4 lg:space-y-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight">
               <span className="text-white block">Seguridad</span>
               <span className="block">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-green-500 to-emerald-600 animate-gradient-text">Inquebrantable</span>
@@ -237,14 +360,14 @@ export default function HeroSection() {
               <RotatingTypewriter />
             </div>
 
-            <p className={`text-sm sm:text-base text-gray-400 max-w-2xl mx-auto lg:mx-0 transition-opacity duration-700 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+            <p className={`text-sm sm:text-base text-gray-400 max-w-2xl transition-opacity duration-700 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               En GreenLock nos especializamos en auditorías de Ciberseguridad, Red Team, Evaluación Perimetral y Pentesting Web para detectar vulnerabilidades antes que los atacantes.
             </p>
 
-            <div className={`flex flex-col sm:flex-row gap-4 justify-center lg:justify-start transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className={`flex flex-col sm:flex-row gap-4 justify-start transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <a 
                 href="contacto" 
-                className="px-4 sm:px-6 py-3 bg-gradient-to-r from-green-600 to-green-400 text-white rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-green-500/50 hover:-translate-y-1 relative overflow-hidden group animate-button-pulse border border-green-400/30 text-sm sm:text-base"
+                className="px-4 sm:px-6 py-3 bg-gradient-to-r from-green-600 to-green-400 text-white rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-green-500/50 hover:-translate-y-1 relative overflow-hidden group animate-button-pulse border border-green-400/30 text-sm sm:text-base flex items-center justify-center text-center"
               >
                 <span className="relative z-10">Solicitar auditoría</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -261,26 +384,7 @@ export default function HeroSection() {
           </div>
 
           <div className={`hidden md:flex justify-end transition-all duration-1000 delay-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <div className="w-full relative bg-[#0c1628] border border-gray-700 rounded-md overflow-hidden shadow-md w-full lg:max-w-lg ml-auto">
-              <div className="px-3 py-1.5 bg-[#0a1426] border-b border-gray-700 flex items-center justify-between">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                </div>
-                <div className="text-xs text-gray-400">scan.sh</div>
-              </div>
-              <div className="w-full h-0.5 bg-gray-800">
-                <div className={`h-full transition-all duration-300 bg-green-500`} style={{ width: '100%' }}></div>
-              </div>
-              <div className="p-3 font-mono text-xs text-gray-300 h-48 overflow-y-auto scrollbar-thin scrollbar-track-transparent">
-                <div className="text-green-400 mb-1">$ ./security_scan --target=client.domain</div>
-                <div className="text-gray-300 mb-1">[+] Iniciando escaneo de seguridad</div>
-                <div className="text-blue-300 mb-1">[*] Puertos: 22, 80, 443, 3306</div>
-                <div className="text-yellow-500 mb-1">[!] VULNERABILIDAD: OpenSSL desactualizado</div>
-                <div className="text-green-400 mb-1">[✓] Sistema asegurado</div>
-              </div>
-            </div>
+            <AnimatedTerminal />
           </div>
         </div>
 
@@ -299,7 +403,7 @@ export default function HeroSection() {
               Metodologías alineadas con MITRE ATT&CK, OWASP Top 10 y normativas NIS
             </p>
           </div>
-          <div className="feature-card bg-gradient-to-br from-[#0a1426]/90 to-[#0a1426]/70 backdrop-blur-sm border border-gray-800 rounded-lg p-4 lg:p-6 hover:border-green-500/30 transition-all hover:shadow-xl hover:shadow-green-900/10 group" style={{ transitionDelay: '400ms' }}>
+          <div className="feature-card bg-gradient-to-br from-[#0a1426]/90 to-[#0a1426]/70 backdrop-blur-sm border border-gray-800 rounded-lg p-4 lg:gap-6 hover:border-green-500/30 transition-all hover:shadow-xl hover:shadow-green-900/10 group" style={{ transitionDelay: '400ms' }}>
             <PulsingIcon icon={Monitor} />
             <h3 className="text-base lg:text-lg xl:text-xl font-semibold text-center text-white mb-2">Cobertura Integral</h3>
             <p className="text-gray-400 text-xs lg:text-sm text-center">

@@ -1,11 +1,11 @@
-// src/components/sections/ProfessionalCTASection.tsx
+
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowRight, Shield, Users, Zap, AlertTriangle } from 'lucide-react';
 import '../../styles/UrgentCTASection.css';
 
-// Fondo de connected dots móviles (reutilizado)
+
 function ConnectedDotsBackground() {
   useEffect(() => {
     const container = document.querySelector('.connected-dots');
@@ -16,7 +16,7 @@ function ConnectedDotsBackground() {
     const maxDistance = 180;
     const numDots = 16;
     
-    // Crear puntos móviles
+    
     for (let i = 0; i < numDots; i++) {
       const dot = document.createElement('div');
       dot.className = 'moving-dot';
@@ -101,7 +101,7 @@ export default function ProfessionalCTASection() {
 
   return (
     <section className="relative py-20 professional-cta-background">
-      {/* Fondo de connected dots */}
+      {}
       <ConnectedDotsBackground />
       
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
@@ -111,7 +111,7 @@ export default function ProfessionalCTASection() {
           transition={{ duration: 0.6 }}
           className="max-w-5xl mx-auto"
         >
-          {/* Título principal */}
+          {}
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Asegure la <span className="fade-word">continuidad</span> de su negocio
@@ -123,7 +123,7 @@ export default function ProfessionalCTASection() {
             </p>
           </div>
 
-          {/* Grid de beneficios */}
+          {}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -170,7 +170,7 @@ export default function ProfessionalCTASection() {
             </motion.div>
           </div>
 
-          {/* Estadística impactante */}
+          {}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -183,7 +183,7 @@ export default function ProfessionalCTASection() {
             </p>
           </motion.div>
 
-          {/* CTA */}
+          {}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

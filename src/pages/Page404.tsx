@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { Shield, AlertTriangle, Home, ArrowRight, Lock } from 'lucide-react';
 import '../styles/Page404.css';
 
-// Mismo fondo animado que en HeroSection
+
 function TechBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -125,7 +125,7 @@ function TechBackground() {
   );
 }
 
-// Componente para iconos pulsantes
+
 function PulsingIcon({ icon: Icon, color = "text-red-400" }: { icon: React.ElementType; color?: string }) {
   return (
     <div className="mb-6 flex justify-center relative">
@@ -159,7 +159,7 @@ export default function Page404() {
       <div className="container relative z-20 mx-auto px-4 w-full flex items-center justify-center">
         <div className="text-center max-w-2xl mx-auto">
           
-          {/* Contenido principal centrado */}
+          {}
           <div className={`space-y-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <PulsingIcon icon={AlertTriangle} color="text-red-400" />
             

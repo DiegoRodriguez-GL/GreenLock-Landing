@@ -1,4 +1,4 @@
-// src/components/sections/HeroMethodologySection.tsx
+
 import { useRef, useEffect } from 'react';
 import '../../styles/HeroMethodologySection.css';
 
@@ -6,7 +6,7 @@ interface HeroMethodologySectionProps {
   isLoaded: boolean;
 }
 
-// Componente de fondo tecnológico
+
 const TechBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -72,7 +72,7 @@ const TechBackground = () => {
 
       ctx.lineWidth = 0.5;
 
-      // Conexiones entre nodos
+      
       for (let i = 0; i < nodes.length; i++) {
         const nodeA = nodes[i];
 
@@ -93,7 +93,7 @@ const TechBackground = () => {
         }
       }
 
-      // Nodos con pulso
+      
       for (const node of nodes) {
         const pulse = Math.sin(time * 2 + node.x * 0.01) * 0.3 + 0.7;
 

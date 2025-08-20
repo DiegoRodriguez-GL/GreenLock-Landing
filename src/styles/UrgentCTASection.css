@@ -1,19 +1,19 @@
-/* Estilos para la sección CTA profesional */
 
-/* Variables */
+
+
 :root {
   --greenlock-primary: #00B267;
   --greenlock-secondary: #2F4F39;
 }
 
-/* Fondo de la sección */
+
 .professional-cta-background {
   background: linear-gradient(135deg, #080f1d 0%, #101b2e 50%, #0a1426 100%);
   position: relative;
   overflow: hidden;
 }
 
-/* Connected dots móviles (reutilizado) */
+
 .connected-dots {
   position: absolute;
   width: 100%;
@@ -50,7 +50,7 @@
   }
 }
 
-/* Tarjetas oscuras */
+
 .benefit-card {
   background: rgba(15, 23, 42, 0.9);
   backdrop-filter: blur(15px);
@@ -64,14 +64,14 @@
   box-shadow: 0 10px 30px rgba(0, 178, 103, 0.15);
 }
 
-/* Estadística destacada */
+
 .impact-stat {
   background: rgba(15, 23, 42, 0.9);
   backdrop-filter: blur(15px);
   border: 1px solid rgba(220, 38, 38, 0.3);
 }
 
-/* Botón CTA principal */
+
 .primary-cta-button {
   background: #00B267;
   border: none;
@@ -85,7 +85,7 @@
   box-shadow: 0 8px 30px rgba(0, 178, 103, 0.35);
 }
 
-/* Botón secundario */
+
 .secondary-cta-button {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -98,7 +98,7 @@
   color: #00B267;
 }
 
-/* Efecto de fade en palabra */
+
 .fade-word {
   background: linear-gradient(135deg, #00B267, #33D17A);
   -webkit-background-clip: text;
@@ -117,7 +117,7 @@
   }
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .primary-cta-button,
   .secondary-cta-button {

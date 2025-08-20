@@ -1,4 +1,4 @@
-// src/components/sections/CybersecurityStatsSection.tsx
+
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -15,13 +15,13 @@ import {
 } from 'lucide-react';
 import '../../styles/CybersecurityStatsSection.css';
 
-// Fondo tech minimalista animado
+
 function TechBackground() {
   useEffect(() => {
     const container = document.querySelector('.tech-grid');
     if (!container) return;
     
-    // Crear líneas dinámicamente
+    
     const createLine = () => {
       const line = document.createElement('div');
       line.className = 'tech-line';
@@ -29,7 +29,7 @@ function TechBackground() {
       line.style.animationDelay = Math.random() * 2 + 's';
       container.appendChild(line);
       
-      // Remover después de la animación
+      
       setTimeout(() => {
         if (container.contains(line)) {
           container.removeChild(line);
@@ -37,7 +37,7 @@ function TechBackground() {
       }, 6000);
     };
     
-    // Crear puntos dinámicamente
+    
     const createDot = () => {
       const dot = document.createElement('div');
       dot.className = 'tech-dot';
@@ -47,17 +47,17 @@ function TechBackground() {
       container.appendChild(dot);
     };
     
-    // Crear elementos iniciales
+    
     for (let i = 0; i < 12; i++) {
       createDot();
     }
     
-    // Crear algunas líneas iniciales
+    
     for (let i = 0; i < 2; i++) {
       setTimeout(() => createLine(), i * 1000);
     }
     
-    // Crear líneas periódicamente
+    
     const lineInterval = setInterval(createLine, 2000);
     
     return () => {
@@ -68,7 +68,7 @@ function TechBackground() {
   return <div className="tech-grid"></div>;
 }
 
-// Contador simple y funcional
+
 function Counter({ value, suffix = '', prefix = '', duration = 2000 }: { 
   value: number; 
   suffix?: string; 
@@ -157,7 +157,7 @@ function StatCard({ stat, index, inView }: { stat: typeof cybersecurityStats[0];
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="stat-card relative rounded-lg p-6 overflow-hidden group"
     >
-      {/* Header */}
+      {}
       <div className="flex items-center justify-between mb-4">
         <div className={`stat-icon p-3 rounded-lg bg-gradient-to-br ${stat.color} text-white`}>
           {stat.icon}
@@ -184,16 +184,16 @@ function StatCard({ stat, index, inView }: { stat: typeof cybersecurityStats[0];
         </div>
       </div>
       
-      {/* Estadística principal */}
+      {}
       <div className={`text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-2`}>
         <Counter value={stat.value} suffix={stat.suffix} />
       </div>
       <h3 className="font-semibold text-white text-base mb-4">{stat.label}</h3>
       
-      {/* Descripción */}
+      {}
       <p className="text-gray-300 text-sm leading-relaxed mb-4">{stat.description}</p>
       
-      {/* Fuente */}
+      {}
       <div className="text-xs text-gray-400 font-medium">
         Fuente: {stat.source}
       </div>
@@ -209,11 +209,11 @@ export default function CybersecurityStatsSection() {
 
   return (
     <section className="relative py-16 md:py-20 stats-background">
-      {/* Fondo tech animado */}
+      {}
       <TechBackground />
       
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
-        {/* Header */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -235,7 +235,7 @@ export default function CybersecurityStatsSection() {
           </p>
         </motion.div>
 
-        {/* Stats Grid */}
+        {}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {cybersecurityStats.map((stat, index) => (
             <StatCard
@@ -247,7 +247,7 @@ export default function CybersecurityStatsSection() {
           ))}
         </div>
 
-        {/* Call to Action */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

@@ -1,0 +1,271 @@
+
+
+
+:root {
+  --greenlock-primary: #00B267;
+  --greenlock-secondary: #2F4F39;
+  --greenlock-light: #33D17A;
+  --greenlock-dark: #006B3C;
+  --dark-bg: #080f1d;
+  --dark-surface: #101b2e;
+  --dark-card: #1a2332;
+}
+
+
+.why-cta-container {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  padding: 4rem 0 6rem 0;
+  border-top: 1px solid rgba(0, 178, 103, 0.1);
+}
+
+@media (min-width: 768px) {
+  .why-cta-container {
+    padding: 6rem 0 8rem 0;
+  }
+}
+
+
+.why-cta-content {
+  max-width: 80rem; 
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .why-cta-content {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .why-cta-content {
+    padding: 0 2rem;
+  }
+}
+
+
+.why-cta-main {
+  text-align: center;
+}
+
+
+.why-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(0, 178, 103, 0.1);
+  border: 1px solid rgba(0, 178, 103, 0.3);
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.why-cta-badge-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--greenlock-primary);
+}
+
+.why-cta-badge-text {
+  color: var(--greenlock-primary);
+  font-weight: 500;
+}
+
+
+.why-cta-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937; 
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .why-cta-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .why-cta-title {
+    font-size: 2.5rem;
+  }
+}
+
+
+.why-cta-description {
+  color: #4b5563; 
+  margin-bottom: 2rem;
+  max-width: 48rem; 
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+@media (min-width: 640px) {
+  .why-cta-description {
+    font-size: 1.125rem;
+  }
+}
+
+
+.why-cta-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .why-cta-buttons-container {
+    flex-direction: row;
+  }
+}
+
+
+.why-cta-button-base {
+  font-weight: 500;
+  border-radius: 0.375rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+
+.why-cta-button-sm {
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.why-cta-button-md {
+  padding: 0.5rem 1rem;
+}
+
+.why-cta-button-lg {
+  font-size: 1.125rem;
+  padding: 0.75rem 1.5rem;
+}
+
+
+.why-cta-button-primary {
+  background-color: var(--greenlock-primary);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 178, 103, 0.2);
+}
+
+.why-cta-button-primary:hover {
+  background-color: var(--greenlock-secondary);
+  box-shadow: 0 10px 15px -3px rgba(0, 178, 103, 0.4);
+  transform: translateY(-1px);
+}
+
+.why-cta-button-primary:active {
+  transform: translateY(0);
+}
+
+.why-cta-button-outline {
+  border: 1px solid var(--greenlock-primary);
+  color: var(--greenlock-primary);
+  background-color: transparent;
+}
+
+.why-cta-button-outline:hover {
+  background-color: rgba(0, 178, 103, 0.1);
+  border-color: var(--greenlock-secondary);
+  transform: translateY(-1px);
+}
+
+.why-cta-button-outline:active {
+  transform: translateY(0);
+}
+
+
+.why-cta-button-base:focus {
+  outline: 2px solid var(--greenlock-primary);
+  outline-offset: 2px;
+}
+
+
+.why-cta-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.why-cta-fade-in-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.why-cta-fade-in-delay-2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@media (max-width: 640px) {
+  .why-cta-container {
+    padding: 3rem 0 4rem 0;
+  }
+  
+  .why-cta-title {
+    font-size: 1.5rem;
+  }
+  
+  .why-cta-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .why-cta-badge {
+    padding: 0.5rem 1rem;
+  }
+  
+  .why-cta-badge-text {
+    font-size: 0.875rem;
+  }
+}
+
+
+.why-cta-container {
+  will-change: auto;
+  transform: translateZ(0);
+}
+
+.why-cta-button-base {
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+}
+
+
+.why-cta-badge:hover {
+  background-color: rgba(0, 178, 103, 0.15);
+  border-color: rgba(0, 178, 103, 0.4);
+  transition: all 0.3s ease;
+}
+
+.why-cta-badge:hover .why-cta-badge-icon {
+  transform: rotate(5deg) scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+
+.why-cta-button-primary {
+  background: linear-gradient(135deg, var(--greenlock-primary) 0%, var(--greenlock-light) 100%);
+}
+
+.why-cta-button-primary:hover {
+  background: linear-gradient(135deg, var(--greenlock-secondary) 0%, var(--greenlock-primary) 100%);
+}

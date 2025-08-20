@@ -1,4 +1,4 @@
-// src/components/layout/Footer.tsx - VERSIÓN CON CENTRADO MÓVIL
+
 import { Link } from 'react-router-dom';
 import { 
   Shield, 
@@ -43,7 +43,7 @@ const legalPolicies = [
   { name: 'Política de Cookies', href: '/cookies', icon: Settings },
 ];
 
-// Función para scroll to top
+
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
@@ -51,7 +51,7 @@ const scrollToTop = () => {
 export default function Footer() {
   return (
     <footer className="relative bg-gray-950 text-white overflow-hidden">
-      {/* Subtle Background Pattern */}
+      {}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 25% 25%, rgba(23, 153, 63, 0.1) 0%, transparent 50%)`
@@ -59,11 +59,11 @@ export default function Footer() {
       </div>
 
       <div className="relative z-10">
-        {/* Main Footer Content */}
+        {}
         <div className="container mx-auto px-4 pt-16 pb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             
-            {/* Company Info */}
+            {}
             <div className="space-y-3 text-center md:text-left">
               <div className="space-y-2">
                 <Link to="/" className="inline-flex items-center group justify-center md:justify-start">
@@ -83,7 +83,7 @@ export default function Footer() {
                 </p>
               </div>
 
-              {/* CTA Contact con más separación */}
+              {}
               <div className="mt-12 pt-4 flex justify-center md:justify-start">
                 <Link 
                   to="/contacto"
@@ -96,7 +96,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Quick Links - centrado en móvil */}
+            {}
             <div className="ml-0 md:ml-8 text-center md:text-left">
               <h3 className="text-lg font-bold mb-4 text-white">Navegación</h3>
               <ul className="space-y-2 flex flex-col items-center md:items-start">
@@ -114,7 +114,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Services - centrado en móvil */}
+            {}
             <div className="text-center md:text-left">
               <h3 className="text-lg font-bold mb-4 text-white">Servicios</h3>
               <ul className="space-y-2 flex flex-col items-center md:items-start">
@@ -132,7 +132,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Legal - centrado en móvil */}
+            {}
             <div className="text-center md:text-left">
               <h3 className="text-lg font-bold mb-4 text-white">Legal</h3>
               <ul className="space-y-2 flex flex-col items-center md:items-start">
@@ -150,7 +150,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Contact Section - centrado en móvil */}
+            {}
             <div className="text-center md:text-left">
               <h3 className="text-lg font-bold mb-4 text-white">Contacto</h3>
               
@@ -183,7 +183,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar - centrado en móvil */}
+        {}
         <div className="border-t border-gray-800">
           <div className="container mx-auto px-4 py-4">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 text-center md:text-left">

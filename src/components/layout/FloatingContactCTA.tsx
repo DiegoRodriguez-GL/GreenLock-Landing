@@ -8,10 +8,10 @@ export default function FloatingContactCTA() {
   const [isPulsing, setIsPulsing] = useState(true);
 
   useEffect(() => {
-    // Mostrar el botón después de un delay
+    
     const timer = setTimeout(() => setIsVisible(true), 2000);
     
-    // Pulsar cada 5 segundos para llamar la atención
+    
     const pulseInterval = setInterval(() => {
       if (!isExpanded) {
         setIsPulsing(true);
@@ -48,13 +48,13 @@ export default function FloatingContactCTA() {
       hoverColor: "hover:border-purple-400"
     },
     {
-      icon: MessageCircle,
-      label: "WhatsApp",
-      action: "https://wa.me/34682790545",
-      color: "text-green-400",
-      bgColor: "from-green-500/20 to-green-400/5",
-      hoverColor: "hover:border-green-400"
-    },
+  icon: MessageCircle,
+  label: "WhatsApp",
+  action: "https://wa.me/34682790545",
+  color: "text-green-400",
+  bgColor: "from-green-500/20 to-green-400/5",
+  hoverColor: "hover:border-green-400"
+},
     {
       icon: Headphones,
       label: "Soporte",
@@ -69,7 +69,7 @@ export default function FloatingContactCTA() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      {/* Opciones expandidas */}
+      {}
       <div className={`absolute bottom-20 right-0 space-y-3 transition-all duration-500 ease-out ${
         isExpanded 
           ? 'opacity-100 translate-y-0 pointer-events-auto' 
@@ -97,9 +97,9 @@ export default function FloatingContactCTA() {
         ))}
       </div>
 
-      {/* Botón principal */}
+      {}
       <div className="relative">
-        {/* Anillos pulsantes de fondo */}
+        {}
         <div className={`absolute inset-0 rounded-full transition-opacity duration-300 ${
           isPulsing && !isExpanded ? 'opacity-100' : 'opacity-0'
         }`}>
@@ -107,7 +107,7 @@ export default function FloatingContactCTA() {
           <div className="absolute inset-0 bg-green-400/30 rounded-full animate-pulse"></div>
         </div>
 
-        {/* Partículas flotantes */}
+        {}
         <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
           {[...Array(6)].map((_, i) => (
             <div
@@ -122,7 +122,7 @@ export default function FloatingContactCTA() {
           ))}
         </div>
 
-        {/* Botón principal */}
+        {}
         <button
           onClick={toggleExpanded}
           className={`floating-cta-button relative w-16 h-16 bg-gradient-to-r from-green-600 to-green-400 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center group overflow-hidden border-2 border-green-400/30 ${
@@ -131,10 +131,10 @@ export default function FloatingContactCTA() {
               : 'hover:scale-110 hover:shadow-green-500/50 hover:shadow-xl'
           } ${isPulsing ? 'animate-bounce-subtle' : ''}`}
         >
-          {/* Efecto de brillo */}
+          {}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 animate-shimmer"></div>
           
-          {/* Icono principal */}
+          {}
           <div className={`relative z-10 transition-all duration-300 ${isExpanded ? 'rotate-45' : ''}`}>
             {isExpanded ? (
               <X className="w-6 h-6 text-white" />
@@ -143,7 +143,7 @@ export default function FloatingContactCTA() {
             )}
           </div>
 
-          {/* Texto flotante */}
+          {}
           <div className={`cta-tooltip absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-900/90 text-white text-xs px-3 py-1 rounded-lg whitespace-nowrap transition-all duration-300 ${
             isExpanded ? 'opacity-0 scale-75' : 'opacity-0 group-hover:opacity-100 scale-100'
           }`}>
@@ -151,7 +151,7 @@ export default function FloatingContactCTA() {
           </div>
         </button>
 
-        {/* Badge de notificación */}
+        {}
         <div className={`notification-badge absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center transition-all duration-300 ${
           isPulsing && !isExpanded ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
         }`}>

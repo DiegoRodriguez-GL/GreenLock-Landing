@@ -1,4 +1,4 @@
-// src/components/sections/OSICommercialSection.tsx
+
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -8,7 +8,7 @@ import {
   Clock, 
   Euro, 
   Users, 
-  Eye, 
+  FileChartColumn, 
   CheckCircle, 
   ArrowRight,
   Zap,
@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import '../../styles/OSICommercialSection.css';
 
-// Datos de beneficios clave
+
 const keyBenefits = [
   {
     icon: <Shield className="w-8 h-8" />,
@@ -41,7 +41,7 @@ const keyBenefits = [
     color: "from-blue-400 to-cyan-500"
   },
   {
-    icon: <Eye className="w-8 h-8" />,
+    icon: <FileChartColumn className="w-8 h-8" />,
     title: "Informes Recurrentes",
     subtitle: "Auditorías • Reuniones",
     description: "Informes ejecutivos periódicos y reuniones de seguimiento del estado de seguridad.",
@@ -57,7 +57,7 @@ const OSICommercialSection = () => {
 
   return (
     <section className="osi-commercial-container">
-      {/* Connected dots sin canvas - Solo CSS */}
+      {}
       <div className="osi-connected-dots">
         <div className="osi-dot osi-dot-1"></div>
         <div className="osi-dot osi-dot-2"></div>
@@ -76,12 +76,12 @@ const OSICommercialSection = () => {
         <div className="osi-line osi-line-6"></div>
       </div>
       
-      {/* Overlay para profundidad */}
+      {}
       <div className="osi-commercial-overlay" />
       
       <div className="osi-commercial-content" ref={ref}>
         
-        {/* Header de urgencia */}
+        {}
         <div className="osi-commercial-header">
           <div className="osi-urgency-badge">
             <AlertTriangle className="w-4 h-4" />
@@ -115,7 +115,7 @@ const OSICommercialSection = () => {
           </motion.p>
         </div>
 
-        {/* Grid de beneficios */}
+        {}
         <div className="osi-benefits-grid">
           {keyBenefits.map((benefit, index) => (
             <motion.div
@@ -137,7 +137,7 @@ const OSICommercialSection = () => {
           ))}
         </div>
 
-        {/* Sección de urgencia financiera completamente reorganizada */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -172,7 +172,7 @@ const OSICommercialSection = () => {
           </div>
         </motion.div>
 
-        {/* Compliance badges */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -193,7 +193,7 @@ const OSICommercialSection = () => {
           </div>
         </motion.div>
 
-        {/* CTA principal */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -204,7 +204,7 @@ const OSICommercialSection = () => {
             Protege tu empresa. Cumple la normativa. <span className="text-green-400">Sin complicaciones.</span>
           </h3>
           
- <div className="osi-cta-buttons">
+<div className="osi-cta-buttons">
   <motion.a
     href="/activar-osi"
     whileHover={{ scale: 1.02 }}
@@ -217,7 +217,7 @@ const OSICommercialSection = () => {
   </motion.a>
 
   <motion.a
-    href="https://wa.me/34682790545?text=Hola%2C%20estoy%20interesado%20en%20solicitar%20una%20consulta%20gratuita%20sobre%20la%20Oficina%20de%20Seguridad%20Virtualizada%20%28OSI%29%20de%20GreenLock.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20puede%20ayudarnos%20en%20el%20cumplimiento%20de%20NIS2%20y%20ENS%2C%20as%C3%AD%20como%20en%20la%20gesti%C3%B3n%20continua%20de%20la%20ciberseguridad%20de%20nuestra%20empresa."
+    href="https://calendly.com/greenlock/consulta"  // <-- pon tu URL real o "#"
     target="_blank"
     rel="noopener noreferrer"
     whileHover={{ scale: 1.02 }}

@@ -1,6 +1,6 @@
-/* src/styles/OSICommercialSection.css - SECCIÓN COMERCIAL OSI */
 
-/* Variables para la sección comercial - Consistentes con otras secciones */
+
+
 :root {
   --osi-green-primary: #00B267;
   --osi-green-light: #33D17A;
@@ -17,7 +17,7 @@
   --osi-white: #ffffff;
 }
 
-/* Contenedor principal */
+
 .osi-commercial-container {
   background: #080f1d;
   padding: 5rem 0;
@@ -32,7 +32,7 @@
   }
 }
 
-/* Connected dots container */
+
 .osi-connected-dots {
   position: absolute;
   top: 0;
@@ -42,7 +42,7 @@
   pointer-events: none;
 }
 
-/* Nodos/Dots */
+
 .osi-dot {
   position: absolute;
   width: 4px;
@@ -52,7 +52,7 @@
   box-shadow: 0 0 10px rgba(0, 178, 103, 0.3);
 }
 
-/* Posiciones específicas de cada dot */
+
 .osi-dot-1 {
   top: 10%;
   left: 15%;
@@ -101,7 +101,7 @@
   animation: float8 8.5s ease-in-out infinite;
 }
 
-/* Líneas de conexión */
+
 .osi-line {
   position: absolute;
   height: 1px;
@@ -113,7 +113,7 @@
   transform-origin: left center;
 }
 
-/* Líneas específicas conectando dots */
+
 .osi-line-1 {
   top: 12%;
   left: 15%;
@@ -162,7 +162,7 @@
   animation: line-pulse6 10s ease-in-out infinite;
 }
 
-/* Animaciones para los dots */
+
 @keyframes float1 {
   0%, 100% { transform: translate(0, 0); }
   25% { transform: translate(10px, -5px); }
@@ -211,7 +211,7 @@
   65% { transform: translate(10px, 12px); }
 }
 
-/* Animaciones para las líneas */
+
 @keyframes line-pulse1 {
   0%, 100% { opacity: 0.2; transform: rotate(25deg) scaleX(1); }
   50% { opacity: 0.4; transform: rotate(30deg) scaleX(1.1); }
@@ -242,7 +242,7 @@
   50% { opacity: 0.38; transform: rotate(20deg) scaleX(0.95); }
 }
 
-/* Overlay para profundidad */
+
 .osi-commercial-overlay {
   position: absolute;
   inset: 0;
@@ -255,7 +255,7 @@
   z-index: 10;
 }
 
-/* Contenido principal */
+
 .osi-commercial-content {
   position: relative;
   z-index: 20;
@@ -276,13 +276,13 @@
   }
 }
 
-/* Header comercial */
+
 .osi-commercial-header {
   text-align: center;
   margin-bottom: 4rem;
 }
 
-/* Badge de urgencia - Con fade de rojo elegante y hover */
+
 .osi-urgency-badge {
   display: inline-flex;
   align-items: center;
@@ -325,7 +325,7 @@
   left: 100%;
 }
 
-/* Título comercial - Más grande y sin subrayado */
+
 .osi-commercial-title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -359,12 +359,12 @@
   position: relative;
 }
 
-/* Sin subrayado */
+
 .osi-title-main {
   color: var(--osi-white);
 }
 
-/* Subtítulo comercial - Misma tipografía */
+
 .osi-commercial-subtitle {
   font-size: 1.125rem;
   color: var(--osi-gray-300);
@@ -386,7 +386,7 @@
   font-weight: 600;
 }
 
-/* Sección de costes con fade de rojo elegante */
+
 .osi-cost-section {
   background: linear-gradient(135deg, 
     rgba(220, 38, 38, 0.06) 0%, 
@@ -628,7 +628,7 @@
   font-weight: 600;
 }
 
-/* Grid de beneficios */
+
 .osi-benefits-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -649,7 +649,7 @@
   }
 }
 
-/* Tarjeta de beneficio */
+
 .osi-benefit-card {
   background: rgba(30, 41, 59, 0.8);
   border: 1px solid rgba(51, 81, 85, 0.3);
@@ -684,7 +684,7 @@
   opacity: 1;
 }
 
-/* Icono de beneficio */
+
 .osi-benefit-icon {
   width: 4rem;
   height: 4rem;
@@ -702,7 +702,7 @@
   box-shadow: 0 8px 25px rgba(0, 178, 103, 0.3);
 }
 
-/* Contenido del beneficio */
+
 .osi-benefit-content {
   color: var(--osi-white);
 }
@@ -728,7 +728,7 @@
   margin: 0;
 }
 
-/* Badges de compliance */
+
 .osi-compliance-badges {
   display: flex;
   flex-wrap: wrap;
@@ -751,7 +751,7 @@
   backdrop-filter: blur(10px);
 }
 
-/* Sección CTA */
+
 .osi-cta-section {
   text-align: center;
 }
@@ -770,7 +770,7 @@
   }
 }
 
-/* Botones CTA */
+
 .osi-cta-buttons {
   display: flex;
   flex-direction: column;
@@ -828,7 +828,7 @@
   transform: translateY(-2px);
 }
 
-/* Garantías */
+
 .osi-cta-guarantees {
   display: flex;
   flex-wrap: wrap;
@@ -849,7 +849,7 @@
   color: var(--osi-green-light);
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 639px) {
   .osi-commercial-container {
     padding: 4rem 0;

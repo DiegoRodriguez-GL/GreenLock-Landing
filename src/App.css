@@ -1,4 +1,4 @@
-/* Estilos para el logo - mantener como estaban */
+
 .logo {
   height: 6em;
   will-change: filter;
@@ -24,15 +24,15 @@
   }
 }
 
-/* Variables CSS para el tema oscuro - actualizadas con los colores de GreenLock */
+
 :root {
-  /* Paleta principal de GreenLock */
+  
   --greenlock-primary: #00B267;
   --greenlock-secondary: #2F4F39;
   --greenlock-light: #33D17A;
   --greenlock-dark: #006B3C;
   
-  /* Variaciones de la paleta principal */
+  
   --greenlock-50: #f0fdf4;
   --greenlock-100: #dcfce7;
   --greenlock-200: #bbf7d0;
@@ -44,18 +44,18 @@
   --greenlock-800: #166534;
   --greenlock-900: #14532d;
   
-  /* Backgrounds oscuros */
+  
   --dark-bg: #080f1d;
   --dark-surface: #101b2e;
   --dark-card: #1a2332;
   
-  /* Efectos y sombras con la nueva paleta */
+  
   --greenlock-glow: rgba(0, 178, 103, 0.3);
   --greenlock-shadow: rgba(0, 178, 103, 0.1);
   --greenlock-border: rgba(0, 178, 103, 0.2);
 }
 
-/* Efectos de brillo para destacar elementos */
+
 .glow-effect {
   position: relative;
 }
@@ -77,7 +77,7 @@
   opacity: 0.15;
 }
 
-/* Sección de características con efecto de tarjeta elevada */
+
 .feature-card {
   backdrop-filter: blur(10px);
   background-color: rgba(16, 27, 46, 0.7);
@@ -99,7 +99,7 @@
   transition: box-shadow 0.3s ease;
 }
 
-/* Efecto para el botón de contacto */
+
 .shadow-glow {
   box-shadow: 0 0 0 rgba(0, 178, 103, 0);
   transition: box-shadow 0.3s ease;
@@ -109,7 +109,7 @@
   box-shadow: 0 0 15px rgba(0, 178, 103, 0.5);
 }
 
-/* Efecto de texto de terminal */
+
 .terminal-text {
   font-family: 'JetBrains Mono', monospace;
   color: var(--greenlock-light);
@@ -131,7 +131,7 @@
   50% { border-color: var(--greenlock-light) }
 }
 
-/* ===== CLASES DE UTILIDAD GREENLOCK ===== */
+
 
 .text-greenlock {
   color: var(--greenlock-primary);
@@ -161,7 +161,7 @@
   box-shadow: 0 0 20px var(--greenlock-glow);
 }
 
-/* Gradientes con la nueva paleta */
+
 .gradient-greenlock {
   background: linear-gradient(135deg, var(--greenlock-primary), var(--greenlock-secondary));
 }
@@ -177,7 +177,7 @@
   color: transparent;
 }
 
-/* Efectos hover */
+
 .hover-greenlock:hover {
   color: var(--greenlock-primary);
   transition: color 0.3s ease;
@@ -193,7 +193,7 @@
   transition: box-shadow 0.3s ease;
 }
 
-/* Animaciones con la nueva paleta */
+
 @keyframes pulse-greenlock {
   0%, 100% {
     box-shadow: 0 0 0 0 var(--greenlock-glow);

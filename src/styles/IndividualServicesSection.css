@@ -1,6 +1,6 @@
-/* src/styles/IndividualServicesSection.css */
 
-/* Variables para Individual Services Section */
+
+
 :root {
   --services-primary: #00B267;
   --services-light: #33D17A;
@@ -17,7 +17,7 @@
   --services-shadow: rgba(0, 0, 0, 0.25);
 }
 
-/* Contenedor principal */
+
 .individual-services-container {
   position: relative;
   padding: 6rem 0;
@@ -31,7 +31,7 @@
   }
 }
 
-/* Fondo minimalista */
+
 .individual-services-minimal-bg {
   position: absolute;
   inset: 0;
@@ -40,7 +40,7 @@
   overflow: hidden;
 }
 
-/* Connected dots container */
+
 .individual-services-connected-dots {
   position: absolute;
   top: 0;
@@ -50,7 +50,7 @@
   pointer-events: none;
 }
 
-/* Nodos/Dots */
+
 .individual-services-dot {
   position: absolute;
   width: 4px;
@@ -60,7 +60,7 @@
   box-shadow: 0 0 10px rgba(0, 178, 103, 0.3);
 }
 
-/* Posiciones específicas de cada dot */
+
 .individual-services-dot-1 {
   top: 10%;
   left: 15%;
@@ -109,7 +109,7 @@
   animation: services-float8 8.5s ease-in-out infinite;
 }
 
-/* Líneas de conexión */
+
 .individual-services-line {
   position: absolute;
   height: 1px;
@@ -121,7 +121,7 @@
   transform-origin: left center;
 }
 
-/* Líneas específicas conectando dots */
+
 .individual-services-line-1 {
   top: 12%;
   left: 15%;
@@ -170,7 +170,7 @@
   animation: services-line-pulse6 10s ease-in-out infinite;
 }
 
-/* Animaciones para los dots */
+
 @keyframes services-float1 {
   0%, 100% { transform: translate(0, 0); }
   25% { transform: translate(10px, -5px); }
@@ -219,7 +219,7 @@
   65% { transform: translate(10px, 12px); }
 }
 
-/* Animaciones para las líneas */
+
 @keyframes services-line-pulse1 {
   0%, 100% { opacity: 0.2; transform: rotate(25deg) scaleX(1); }
   50% { opacity: 0.4; transform: rotate(30deg) scaleX(1.1); }
@@ -299,11 +299,11 @@
   100% { transform: translateX(100%); }
 }
 
-/* Contenido principal */
+
 .individual-services-content {
   position: relative;
   z-index: 10;
-  max-width: 112rem; /* 7xl */
+  max-width: 112rem; 
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -320,13 +320,13 @@
   }
 }
 
-/* Header de la sección */
+
 .individual-services-header {
   text-align: center;
   margin-bottom: 5rem;
 }
 
-/* Título principal */
+
 .individual-services-title {
   font-size: 2.25rem;
   font-weight: 700;
@@ -353,7 +353,7 @@
   }
 }
 
-/* Gradiente del título */
+
 .individual-services-title-gradient {
   color: transparent;
   background-clip: text;
@@ -365,11 +365,11 @@
   );
 }
 
-/* Subtítulo */
+
 .individual-services-subtitle {
   font-size: 1.25rem;
   color: var(--services-subtitle-color);
-  max-width: 64rem; /* 4xl */
+  max-width: 64rem; 
   margin: 0 auto;
   line-height: 1.625;
 }
@@ -380,7 +380,7 @@
   }
 }
 
-/* Tabs de servicios */
+
 .individual-services-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -389,7 +389,7 @@
   margin-bottom: 3rem;
 }
 
-/* Tab individual */
+
 .individual-services-tab {
   display: flex;
   align-items: center;
@@ -426,7 +426,7 @@
   box-shadow: 0 6px 12px rgba(0, 178, 103, 0.3);
 }
 
-/* Elementos del tab */
+
 .individual-services-tab-icon {
   margin-right: 0.5rem;
   display: flex;
@@ -464,7 +464,7 @@
   height: 1rem;
 }
 
-/* Tarjeta de contenido del servicio */
+
 .individual-services-content-card {
   background: var(--services-card-bg);
   backdrop-filter: blur(8px);
@@ -483,7 +483,7 @@
   }
 }
 
-/* Fondo de la tarjeta */
+
 .individual-services-card-background {
   position: absolute;
   inset: 0;
@@ -494,7 +494,7 @@
   );
 }
 
-/* Grid de la tarjeta */
+
 .individual-services-card-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -510,14 +510,14 @@
   }
 }
 
-/* Columna de información */
+
 .individual-services-info-column {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* Header del servicio */
+
 .individual-services-service-header {
   margin-bottom: 1.5rem;
 }
@@ -571,7 +571,7 @@
   line-height: 1.6;
 }
 
-/* Advertencia de riesgo */
+
 .individual-services-risk-warning {
   background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(239, 68, 68, 0.1));
   border-radius: 1rem;
@@ -612,7 +612,7 @@
   line-height: 1.6;
 }
 
-/* Wrapper del CTA */
+
 .individual-services-cta-wrapper {
   width: 100%;
 }
@@ -632,11 +632,11 @@
   border: none;
   box-shadow: 0 6px 12px rgba(0, 178, 103, 0.3);
   font-size: 1.1rem;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
 }
 
 .individual-services-cta-button::before {
@@ -659,7 +659,7 @@
   transform: translateY(-3px);
 }
 
-/* Columna de detalles */
+
 .individual-services-details-column {
   display: grid;
   grid-template-columns: 1fr;
@@ -678,7 +678,7 @@
   }
 }
 
-/* Panel de características/beneficios */
+
 .individual-services-panel {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
@@ -723,7 +723,7 @@
   );
 }
 
-/* Lista de características */
+
 .individual-services-feature-list {
   list-style: none;
   padding: 0;
@@ -763,7 +763,7 @@
   line-height: 1.5;
 }
 
-/* Lista de beneficios */
+
 .individual-services-benefit-list {
   list-style: none;
   padding: 0;
@@ -800,7 +800,7 @@
   line-height: 1.5;
 }
 
-/* CTA Final - Widget Verde Completo */
+
 .individual-services-final-cta {
   margin-top: 4rem;
   padding: 0;
@@ -889,29 +889,63 @@
 }
 
 .individual-services-final-cta-button {
-  background: rgba(255, 255, 255, 0.98);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98));
   color: var(--services-widget-dark);
   padding: 1rem 2.5rem;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   font-weight: 700;
   font-size: 1.125rem;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  transition: all 0.4s ease;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.025em;
   backdrop-filter: blur(10px);
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.individual-services-final-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 178, 103, 0.2), 
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.individual-services-final-cta-button:hover::before {
+  left: 100%;
 }
 
 .individual-services-final-cta-button:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transform: translateY(-3px);
-  background: white;
-  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 0 25px rgba(0, 178, 103, 0.3);
+  transform: translateY(-4px) scale(1.02);
+  background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.95));
+  border-color: rgba(0, 178, 103, 0.4);
 }
 
-/* Responsive adjustments */
+.individual-services-final-cta-button:active {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+
 @media (max-width: 640px) {
   .individual-services-container {
     padding: 4rem 0;
@@ -950,7 +984,7 @@
   }
 }
 
-/* Performance optimizations */
+
 .individual-services-connected-dots {
   will-change: auto;
   transform: translateZ(0);

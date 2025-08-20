@@ -1,6 +1,6 @@
-/* src/styles/ExecutiveConfidenceSection.css - VERSIÓN EJECUTIVA MINIMALISTA */
 
-/* Variables CSS para diseño ejecutivo */
+
+
 :root {
   --greenlock-primary: #00B267;
   --greenlock-dark: #006B3C;
@@ -14,7 +14,7 @@
   --executive-white: #FFFFFF;
 }
 
-/* Contenedor principal - Diseño ejecutivo limpio y compacto */
+
 .executive-confidence-container {
   background-color: var(--executive-white);
   padding: 3rem 0;
@@ -33,7 +33,7 @@
   }
 }
 
-/* Contenido principal */
+
 .executive-confidence-content {
   max-width: 1000px;
   margin: 0 auto;
@@ -53,7 +53,7 @@
   }
 }
 
-/* Badge ejecutivo */
+
 .executive-badge {
   display: inline-flex;
   align-items: center;
@@ -78,7 +78,7 @@
   }
 }
 
-/* Header */
+
 .executive-confidence-header {
   margin-bottom: 2rem;
 }
@@ -89,7 +89,7 @@
   }
 }
 
-/* Título principal - Manteniendo estilo original */
+
 .executive-confidence-title {
   font-size: 2rem;
   font-weight: 700;
@@ -118,7 +118,7 @@
   }
 }
 
-/* Texto con acento - Manteniendo estilo original */
+
 .executive-confidence-accent {
   color: var(--greenlock-primary);
   position: relative;
@@ -136,7 +136,7 @@
   opacity: 0.3;
 }
 
-/* Mensaje principal - Enfoque ejecutivo */
+
 .executive-confidence-message {
   margin-bottom: 2.5rem;
 }
@@ -168,7 +168,7 @@
   font-weight: 600;
 }
 
-/* Pilares de confianza - Diseño ejecutivo compacto */
+
 .executive-confidence-pillars {
   display: flex;
   flex-direction: column;
@@ -190,7 +190,7 @@
   }
 }
 
-/* Pilar individual - Diseño más ejecutivo y compacto */
+
 .executive-confidence-pillar {
   display: flex;
   flex-direction: column;
@@ -214,7 +214,7 @@
   transform: translateY(-2px);
 }
 
-/* Icono del pilar - Más sofisticado */
+
 .executive-confidence-pillar-icon {
   display: flex;
   align-items: center;
@@ -240,7 +240,7 @@
   transform: scale(1.05);
 }
 
-/* Contenido del pilar */
+
 .executive-pillar-content {
   display: flex;
   flex-direction: column;
@@ -248,7 +248,7 @@
   gap: 0.25rem;
 }
 
-/* Título del pilar */
+
 .executive-confidence-pillar-title {
   font-size: 1rem;
   font-weight: 600;
@@ -267,7 +267,7 @@
   color: var(--greenlock-primary);
 }
 
-/* Subtítulo del pilar */
+
 .executive-confidence-pillar-subtitle {
   font-size: 0.875rem;
   font-weight: 500;
@@ -280,7 +280,7 @@
   color: var(--executive-gray-700);
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 639px) {
   .executive-confidence-container {
     padding: 2.5rem 0;

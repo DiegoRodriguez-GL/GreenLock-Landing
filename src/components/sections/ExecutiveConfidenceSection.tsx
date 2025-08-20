@@ -1,4 +1,4 @@
-// src/components/sections/ExecutiveConfidenceSection.tsx - VERSIÓN EJECUTIVA MINIMALISTA
+
 import { useRef, useEffect } from 'react';
 import { Shield, TrendingUp, Users } from 'lucide-react';
 import '../../styles/ExecutiveConfidenceSection.css';
@@ -11,7 +11,7 @@ const ExecutiveConfidenceSection = ({ isLoaded }: ExecutiveConfidenceSectionProp
   return (
     <section className="executive-confidence-container">
       <div className="executive-confidence-content">
-        {/* Badge ejecutivo */}
+        {}
         <div 
           className="executive-badge"
           style={{
@@ -23,7 +23,7 @@ const ExecutiveConfidenceSection = ({ isLoaded }: ExecutiveConfidenceSectionProp
           <span>PARA DIRECTIVOS</span>
         </div>
 
-        {/* Título principal impactante */}
+        {}
         <div className="executive-confidence-header">
           <h2 
             className="executive-confidence-title"
@@ -37,7 +37,7 @@ const ExecutiveConfidenceSection = ({ isLoaded }: ExecutiveConfidenceSectionProp
           </h2>
         </div>
 
-        {/* Mensaje ejecutivo directo */}
+        {}
         <div className="executive-confidence-message">
           <p 
             className="executive-confidence-text"
@@ -51,7 +51,7 @@ const ExecutiveConfidenceSection = ({ isLoaded }: ExecutiveConfidenceSectionProp
           </p>
         </div>
 
-        {/* Pilares ejecutivos */}
+        {}
         <div className="executive-confidence-pillars">
           <div 
             className="executive-confidence-pillar"

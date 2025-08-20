@@ -1,5 +1,4 @@
-// src/components/sections/MethodologyRoadmapSection.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import { 
@@ -130,36 +129,40 @@ const roadmapPhases: Phase[] = [
 const MethodologyRoadmapSection: React.FC<RoadmapSectionProps> = ({ isLoaded }) => {
   const [activePhase, setActivePhase] = useState<number | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  // Calculate scroll progress for the timeline
+  
   useEffect(() => {
     const handleScroll = () => {
-      if (!ref.current) return;
+      if (!sectionRef.current) return;
       
-      const element = ref.current as HTMLElement;
+      const element = sectionRef.current;
       const rect = element.getBoundingClientRect();
       const elementTop = rect.top;
       const elementHeight = rect.height;
       const windowHeight = window.innerHeight;
       
-      // Calculate progress based on how much of the element is visible
+      
       const scrolled = Math.max(0, Math.min(1, (windowHeight - elementTop) / (elementHeight + windowHeight)));
       setScrollProgress(scrolled);
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial calculation
+    handleScroll(); 
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <section className="methodology-roadmap-section" ref={ref}>
-      {/* Animated dots background */}
+    <section className="methodology-roadmap-section" ref={(node) => {
+      sectionRef.current = node;
+      ref(node);
+    }}>
+      {}
       <div className="methodology-roadmap-dots">
         {Array.from({ length: 50 }).map((_, i) => (
           <div
@@ -188,7 +191,7 @@ const MethodologyRoadmapSection: React.FC<RoadmapSectionProps> = ({ isLoaded }) 
       </div>
 
       <div className="methodology-roadmap-container">
-        {/* Header */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -207,7 +210,7 @@ const MethodologyRoadmapSection: React.FC<RoadmapSectionProps> = ({ isLoaded }) 
           </p>
         </motion.div>
 
-        {/* Timeline */}
+        {}
         <div className="methodology-roadmap-timeline">
           <div className="methodology-roadmap-line">
             <div 
@@ -226,7 +229,7 @@ const MethodologyRoadmapSection: React.FC<RoadmapSectionProps> = ({ isLoaded }) 
               onMouseEnter={() => setActivePhase(index)}
               onMouseLeave={() => setActivePhase(null)}
             >
-              {/* Timeline Node */}
+              {}
               <div className="methodology-roadmap-node">
                 <div className={`methodology-roadmap-node-icon bg-gradient-to-br ${phase.color}`}>
                   {phase.icon}
@@ -234,7 +237,7 @@ const MethodologyRoadmapSection: React.FC<RoadmapSectionProps> = ({ isLoaded }) 
                 <div className="methodology-roadmap-node-pulse"></div>
               </div>
 
-              {/* Phase Content */}
+              {}
               <div className="methodology-roadmap-content">
                 <div className="methodology-roadmap-card">
                   <div className="methodology-roadmap-card-header">
@@ -255,7 +258,7 @@ const MethodologyRoadmapSection: React.FC<RoadmapSectionProps> = ({ isLoaded }) 
                     {phase.description}
                   </p>
 
-                  {/* Expandable Details */}
+                  {}
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={
@@ -301,7 +304,7 @@ const MethodologyRoadmapSection: React.FC<RoadmapSectionProps> = ({ isLoaded }) 
           ))}
         </div>
 
-        {/* Bottom Stats */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
@@ -342,7 +345,7 @@ const MethodologyRoadmapSection: React.FC<RoadmapSectionProps> = ({ isLoaded }) 
           </div>
         </motion.div>
 
-        {/* Call to Action */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -356,10 +359,12 @@ const MethodologyRoadmapSection: React.FC<RoadmapSectionProps> = ({ isLoaded }) 
             </div>
             <h3>¿Listo para evaluar tu postura de seguridad?</h3>
             <p>Solicita una consulta personalizada para conocer cómo aplicamos nuestra metodología a tu organización.</p>
+            <a href="contacto">
             <button className="methodology-roadmap-cta-button">
-              <span>Solicitar consulta técnica</span>
-              <ArrowRight className="w-5 h-5 methodology-roadmap-button-arrow" />
+            <span>Solicitar consulta técnica</span>
+               <ArrowRight className="w-5 h-5 methodology-roadmap-button-arrow" />
             </button>
+          </a>
           </div>
         </motion.div>
       </div>

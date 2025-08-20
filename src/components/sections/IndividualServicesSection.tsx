@@ -1,13 +1,13 @@
-// src/components/sections/IndividualServicesSection.tsx
+
 import { useState } from 'react';
 import { Shield, Globe, Smartphone, Code, Users, Lock, ArrowRight, CheckCircle, AlertTriangle, Brain, Search } from 'lucide-react';
 import '../../styles/IndividualServicesSection.css';
 
-// Fondo minimalista con connected dots CSS
+
 const MinimalBackground = () => {
   return (
     <div className="individual-services-minimal-bg">
-      {/* Connected dots sin canvas - Solo CSS */}
+      {}
       <div className="individual-services-connected-dots">
         <div className="individual-services-dot individual-services-dot-1"></div>
         <div className="individual-services-dot individual-services-dot-2"></div>
@@ -177,7 +177,7 @@ const IndividualServicesSection = () => {
           </p>
         </div>
 
-        {/* Tabs de servicios */}
+        {}
         <div className="individual-services-tabs">
           {services.map((service) => (
             <button
@@ -198,12 +198,12 @@ const IndividualServicesSection = () => {
           ))}
         </div>
 
-        {/* Contenido del servicio activo */}
+        {}
         <div className="individual-services-content-card">
           <div className="individual-services-card-background" />
           
           <div className="individual-services-card-grid">
-            {/* Columna izquierda - Información principal */}
+            {}
             <div className="individual-services-info-column">
               <div className="individual-services-service-header">
                 <h3 className="individual-services-service-title">
@@ -227,15 +227,15 @@ const IndividualServicesSection = () => {
               </div>
               
               <div className="individual-services-cta-wrapper">
-  <a href="/contacto" className="individual-services-cta-button">
-    Contactar ahora <ArrowRight className="w-5 h-5" />
-  </a>
-</div>
+                <a href="/contacto" className="individual-services-cta-button">
+                  Contactar ahora <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
             </div>
             
-            {/* Columna derecha - Características y beneficios */}
+            {}
             <div className="individual-services-details-column">
-              {/* Panel de características */}
+              {}
               <div className="individual-services-panel">
                 <div className="individual-services-panel-header">
                   <CheckCircle className="w-5 h-5 text-[#00B267]" />
@@ -255,7 +255,7 @@ const IndividualServicesSection = () => {
                 </ul>
               </div>
               
-              {/* Panel de beneficios */}
+              {}
               <div className="individual-services-panel">
                 <div className="individual-services-panel-header">
                   <Shield className="w-5 h-5 text-[#00B267]" />
@@ -278,7 +278,7 @@ const IndividualServicesSection = () => {
           </div>
         </div>
 
-        {/* CTA Final - Widget Verde Completo */}
+        {}
         <div className="individual-services-final-cta">
           <div className="individual-services-final-cta-content">
             <h3 className="individual-services-final-cta-title">
@@ -288,11 +288,11 @@ const IndividualServicesSection = () => {
               Contacte con nuestro equipo para discutir sus necesidades específicas de ciberseguridad.
             </p>
             <a
-  href="mailto:info@greenlock.tech?subject=Solicitud%20evaluacion%20personalizada%20-%20GreenLock%20OSI&body=Hola%2C%20me%20gustaria%20solicitar%20una%20evaluacion%20personalizada%20de%20ciberseguridad.%20Por%20favor%2C%20contactadme%20para%20concretar%20una%20llamada.%0A%0AEmpresa%3A%20%0ANombre%3A%20%0ATelefono%3A%20%0APreferencia%20de%20horario%3A%20%0A%0AGracias."
-  className="individual-services-final-cta-button"
->
-  Solicitar consulta gratuita
-</a>
+              href="mailto:info@greenlock.tech?subject=Solicitud%20evaluacion%20personalizada%20-%20GreenLock%20OSI&body=Hola%2C%20me%20gustaria%20solicitar%20una%20evaluacion%20personalizada%20de%20ciberseguridad.%20Por%20favor%2C%20contactadme%20para%20concretar%20una%20llamada.%0A%0AEmpresa%3A%20%0ANombre%3A%20%0ATelefono%3A%20%0APreferencia%20de%20horario%3A%20%0A%0AGracias."
+              className="individual-services-final-cta-button"
+            >
+              Solicitar consulta gratuita
+            </a>
           </div>
         </div>
       </div>

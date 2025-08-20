@@ -10,7 +10,24 @@ import {
   Activity
 } from 'lucide-react';
 
-// Fondo de hacking sutil y elegante
+interface Node {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+}
+
+interface FloatingElement {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  text: string;
+  alpha: number;
+  size: number;
+}
+
 function SubtleHackerBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   
@@ -29,10 +46,10 @@ function SubtleHackerBackground() {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     
-    const nodes = [];
-    const floatingElements = [];
+    const nodes: Node[] = [];
+    const floatingElements: FloatingElement[] = [];
     
-    // Crear menos nodos para efecto más sutil
+    
     for (let i = 0; i < 8; i++) {
       nodes.push({
         x: Math.random() * canvas.width,
@@ -43,7 +60,7 @@ function SubtleHackerBackground() {
       });
     }
     
-    // Elementos de código muy sutiles
+    
     for (let i = 0; i < 4; i++) {
       floatingElements.push({
         x: Math.random() * canvas.width,
@@ -56,11 +73,11 @@ function SubtleHackerBackground() {
       });
     }
     
-    let animationFrameId;
+    let animationFrameId: number;
     let time = 0;
     
     const draw = () => {
-      // Fondo limpio con gradiente muy sutil
+      
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
       gradient.addColorStop(0, '#fefefe');
       gradient.addColorStop(0.5, '#f8fafc');
@@ -68,21 +85,21 @@ function SubtleHackerBackground() {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      time += 0.005; // Muy lento
+      time += 0.005; 
       
-      // Nodos muy sutiles
+      
       nodes.forEach((node, index) => {
         node.x += node.vx;
         node.y += node.vy;
         
-        // Rebote suave
+        
         if (node.x <= 0 || node.x >= canvas.width) node.vx *= -1;
         if (node.y <= 0 || node.y >= canvas.height) node.vy *= -1;
         
         node.x = Math.max(0, Math.min(canvas.width, node.x));
         node.y = Math.max(0, Math.min(canvas.height, node.y));
         
-        // Nodo con respiración muy sutil
+        
         const pulse = 1 + Math.sin(time + index) * 0.1;
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.size * pulse, 0, Math.PI * 2);
@@ -90,7 +107,7 @@ function SubtleHackerBackground() {
         ctx.fill();
       });
       
-      // Conexiones muy sutiles
+      
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
@@ -109,7 +126,7 @@ function SubtleHackerBackground() {
         }
       }
       
-      // Elementos flotantes súper sutiles
+      
       floatingElements.forEach((element) => {
         element.x += element.vx;
         element.y += element.vy;
@@ -138,7 +155,7 @@ function SubtleHackerBackground() {
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />;
 }
 
-// Datos realistas de ventajas (4 principales)
+
 const advantages = [
   {
     id: 'expertise',
@@ -147,7 +164,7 @@ const advantages = [
     subtitle: 'CRTO Certified',
     description: 'Equipo certificado con experiencia práctica en Red Team y detección de amenazas.',
     metric: '5+',
-    metricLabel: 'años exp.',
+    metricLabel: 'Años exp.',
     features: ['Cert. CRTO', 'Exp. práctica']
   },
   {
@@ -156,8 +173,8 @@ const advantages = [
     title: 'Metodología',
     subtitle: 'MITRE ATT&CK',
     description: 'Estándares MITRE ATT&CK y OWASP para cobertura completa de vectores.',
-    metric: 'ISO 27001',
-    metricLabel: 'certificado',
+    metric: '100%',
+    metricLabel: 'Expecializada',
     features: ['MITRE ATT&CK', 'OWASP Top 10']
   },
   {
@@ -167,7 +184,7 @@ const advantages = [
     subtitle: '24/7 Support',
     description: 'Soporte disponible 24 horas con respuesta garantizada en menos de 4 horas.',
     metric: '<4h',
-    metricLabel: 'respuesta',
+    metricLabel: 'Respuesta',
     features: ['Soporte 24/7', 'Escalado auto']
   },
   {
@@ -176,8 +193,8 @@ const advantages = [
     title: 'Cumplimiento',
     subtitle: 'ENS + NIS2',
     description: 'Cumplimiento completo de ENS, NIS2 y regulaciones europeas vigentes.',
-    metric: '100%',
-    metricLabel: 'compliance',
+    metric: 'NIS2 & ENS',
+    metricLabel: '',
     features: ['ENS Alto', 'NIS2 compliant']
   }
 ];
@@ -185,15 +202,15 @@ const advantages = [
 export default function WhyChooseSection() {
   return (
     <section className="relative py-16 overflow-hidden">
-      {/* Fondo sutil */}
+      {}
       <SubtleHackerBackground />
       
-      {/* Overlay muy ligero */}
+      {}
       <div className="absolute inset-0 bg-white/60 z-10"></div>
       
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header elegante */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -213,7 +230,7 @@ export default function WhyChooseSection() {
           </p>
         </motion.div>
 
-        {/* Grid de 4 tarjetas fijas */}
+        {}
         <div className="max-w-6xl mx-auto mb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {advantages.map((advantage, index) => (
@@ -237,13 +254,13 @@ export default function WhyChooseSection() {
                   }}
                 >
                   
-                  {/* Efecto de aura verde sutil */}
+                  {}
                   <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-green-500/0 via-green-500/0 to-green-500/0 group-hover:from-green-500/3 group-hover:via-green-500/1 group-hover:to-green-500/1 transition-all duration-700"></div>
                   
                   <div className="relative h-full flex flex-col">
-                    {/* Header */}
+                    {}
                     <div className="flex items-start justify-between mb-4">
-                      {/* Icono con efecto de aura */}
+                      {}
                       <div className="relative">
                         <div 
                           className="p-3 rounded-lg bg-gradient-to-br from-green-500 to-green-600 text-white shadow-sm transition-all duration-500"
@@ -259,7 +276,7 @@ export default function WhyChooseSection() {
                         >
                           {advantage.icon}
                         </div>
-                        {/* Aura externa del icono */}
+                        {}
                         <div className="absolute inset-0 rounded-lg bg-green-500/20 blur-sm scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                       </div>
                       
@@ -268,7 +285,7 @@ export default function WhyChooseSection() {
                       </div>
                     </div>
                     
-                    {/* Contenido */}
+                    {}
                     <div className="flex-1 flex flex-col">
                       <h3 className="font-bold text-lg text-gray-900 mb-3">
                         {advantage.title}
@@ -278,7 +295,7 @@ export default function WhyChooseSection() {
                         {advantage.description}
                       </p>
                       
-                      {/* Métrica */}
+                      {}
                       <div className="mb-4">
                         <div className="flex items-end space-x-2">
                           <span className="text-2xl font-bold bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent">
@@ -290,7 +307,7 @@ export default function WhyChooseSection() {
                         </div>
                       </div>
                       
-                      {/* Features compactas */}
+                      {}
                       <div className="space-y-2">
                         {advantage.features.map((feature, idx) => (
                           <div key={idx} className="flex items-center text-gray-600">
@@ -302,7 +319,7 @@ export default function WhyChooseSection() {
                     </div>
                   </div>
                   
-                  {/* Línea inferior con aura */}
+                  {}
                   <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-green-500/30 to-transparent group-hover:via-green-500/60 transition-all duration-500"></div>
                 </div>
               </motion.div>
@@ -310,7 +327,7 @@ export default function WhyChooseSection() {
           </div>
         </div>
         
-        {/* Footer simple con estadísticas */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

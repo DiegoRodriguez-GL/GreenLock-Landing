@@ -1,11 +1,11 @@
-// src/components/sections/MethodologiesSection.tsx
+
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Shield, Award } from 'lucide-react';
 import '../../styles/MethodologiesSection.css';
 
-// Fondo de connected dots móviles
+
 function TechBackground() {
   useEffect(() => {
     const container = document.querySelector('.connected-dots');
@@ -13,10 +13,10 @@ function TechBackground() {
     
     const dots: any[] = [];
     const lines: any[] = [];
-    const maxDistance = 120; // Distancia máxima para conexión
+    const maxDistance = 120; 
     const numDots = 12;
     
-    // Crear puntos móviles
+    
     for (let i = 0; i < numDots; i++) {
       const dot = document.createElement('div');
       dot.className = 'moving-dot';
@@ -26,38 +26,38 @@ function TechBackground() {
         element: dot,
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.8, // Velocidad horizontal
-        vy: (Math.random() - 0.5) * 0.8, // Velocidad vertical
+        vx: (Math.random() - 0.5) * 0.8, 
+        vy: (Math.random() - 0.5) * 0.8, 
       });
     }
     
-    // Función para actualizar posiciones y conexiones
+    
     const animate = () => {
       const rect = container.getBoundingClientRect();
       
-      // Mover puntos
+      
       dots.forEach(dot => {
         dot.x += dot.vx;
         dot.y += dot.vy;
         
-        // Rebote en bordes
+        
         if (dot.x <= 0 || dot.x >= rect.width) dot.vx *= -1;
         if (dot.y <= 0 || dot.y >= rect.height) dot.vy *= -1;
         
-        // Mantener dentro de límites
+        
         dot.x = Math.max(0, Math.min(rect.width, dot.x));
         dot.y = Math.max(0, Math.min(rect.height, dot.y));
         
-        // Actualizar posición visual
+        
         dot.element.style.left = dot.x + 'px';
         dot.element.style.top = dot.y + 'px';
       });
       
-      // Limpiar líneas existentes
+      
       lines.forEach(line => line.element.remove());
       lines.length = 0;
       
-      // Crear nuevas conexiones
+      
       for (let i = 0; i < dots.length; i++) {
         for (let j = i + 1; j < dots.length; j++) {
           const dot1 = dots[i];
@@ -91,7 +91,7 @@ function TechBackground() {
     
     animate();
     
-    // Limpiar al desmontar
+    
     return () => {
       dots.forEach(dot => dot.element.remove());
       lines.forEach(line => line.element.remove());
@@ -105,7 +105,7 @@ function TechBackground() {
   );
 }
 
-// Datos de metodologías específicas
+
 const methodologies = [
   {
     id: 'owasp',
@@ -145,7 +145,7 @@ const methodologies = [
   }
 ];
 
-// Componente de logo personalizado
+
 function MethodologyLogo({ methodology }: { methodology: typeof methodologies[0] }) {
   return (
     <div className="logo-item group">
@@ -167,16 +167,16 @@ export default function MethodologiesSection() {
     threshold: 0.1,
   });
 
-  // Triplicar metodologías para carrusel infinito con menos elementos
+  
   const duplicatedMethodologies = [...methodologies, ...methodologies, ...methodologies];
 
   return (
     <section className="relative py-16 md:py-24 methodologies-background">
-      {/* Fondo tech animado */}
+      {}
       <TechBackground />
       
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
-        {/* Header */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -193,7 +193,7 @@ export default function MethodologiesSection() {
           </p>
         </motion.div>
 
-        {/* Carrusel de metodologías */}
+        {}
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
@@ -210,7 +210,7 @@ export default function MethodologiesSection() {
           </div>
         </motion.div>
 
-        {/* Footer con highlights */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

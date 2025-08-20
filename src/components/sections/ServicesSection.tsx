@@ -1,9 +1,16 @@
-// src/components/sections/ServicesSection.tsx
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Lock, Globe, Smartphone, Code, CheckCircle, ArrowRight, AlertTriangle } from 'lucide-react';
 
-// Eliminar "Auditoría de Cumplimiento" y mejorar descripciones
+interface Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+  opacity: number;
+}
+
 const services = [
   {
     id: 'red-team',
@@ -117,7 +124,7 @@ const services = [
   }
 ];
 
-// Componente para el fondo animado en movimiento con tonos grises
+
 function GrayMovingBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   
@@ -128,7 +135,7 @@ function GrayMovingBackground() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
-    // Ajustar tamaño del canvas
+    
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
@@ -137,8 +144,8 @@ function GrayMovingBackground() {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     
-    // Crear partículas y nodos
-    const particles: {x: number; y: number; vx: number; vy: number; radius: number; opacity: number}[] = [];
+    
+    const particles: Particle[] = [];
     const particleCount = 50;
     
     for (let i = 0; i < particleCount; i++) {
@@ -147,37 +154,37 @@ function GrayMovingBackground() {
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.7,
         vy: (Math.random() - 0.5) * 0.7,
-        radius: Math.random() * 2 + 0.5, // Partículas más pequeñas
+        radius: Math.random() * 2 + 0.5, 
         opacity: Math.random() * 0.5 + 0.1
       });
     }
     
-    // Función de animación
+    
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Fondo gradiente
+      
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
       gradient.addColorStop(0, 'rgba(245, 245, 245, 0.2)');
       gradient.addColorStop(1, 'rgba(250, 250, 250, 0.2)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Patrón de puntos - más pequeños y más separados
+      
       ctx.fillStyle = 'rgba(200, 200, 200, 0.1)';
-      for (let x = 0; x < canvas.width; x += 30) { // Separación mayor
-        for (let y = 0; y < canvas.height; y += 30) { // Separación mayor
+      for (let x = 0; x < canvas.width; x += 30) { 
+        for (let y = 0; y < canvas.height; y += 30) { 
           ctx.beginPath();
-          ctx.arc(x, y, 0.3, 0, Math.PI * 2); // Puntos más pequeños
+          ctx.arc(x, y, 0.3, 0, Math.PI * 2); 
           ctx.fill();
         }
       }
       
-      // Dibujar y actualizar partículas
+      
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         
-        // Conectar partículas cercanas
+        
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p2.x - p.x;
@@ -190,22 +197,22 @@ function GrayMovingBackground() {
             ctx.lineTo(p2.x, p2.y);
             const opacity = 0.1 - (distance / 150) * 0.1;
             ctx.strokeStyle = `rgba(150, 150, 150, ${opacity})`;
-            ctx.lineWidth = 0.3; // Líneas más delgadas
+            ctx.lineWidth = 0.3; 
             ctx.stroke();
           }
         }
         
-        // Dibujar partícula
+        
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(100, 100, 100, ${p.opacity})`;
         ctx.fill();
         
-        // Actualizar posición
+        
         p.x += p.vx;
         p.y += p.vy;
         
-        // Rebote en los bordes
+        
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
       }
@@ -228,19 +235,19 @@ function GrayMovingBackground() {
   );
 }
 
-// Componente principal mejorado
+
 export default function ServicesSection() {
   const [activeService, setActiveService] = useState(services[0].id);
-  const autoRotateIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const autoRotateIntervalRef = useRef<number | null>(null);
   
-  // Función para pasar al siguiente servicio
+  
   const rotateToNextService = () => {
     const currentIndex = services.findIndex(s => s.id === activeService);
     const nextIndex = (currentIndex + 1) % services.length;
     setActiveService(services[nextIndex].id);
   };
   
-  // Configurar rotación automática
+  
   useEffect(() => {
     autoRotateIntervalRef.current = setInterval(() => {
       rotateToNextService();
@@ -253,7 +260,7 @@ export default function ServicesSection() {
     };
   }, [activeService]);
   
-  // Reiniciar el intervalo cuando el usuario selecciona manualmente un servicio
+  
   const handleServiceClick = (serviceId: string) => {
     setActiveService(serviceId);
     
@@ -266,12 +273,11 @@ export default function ServicesSection() {
   };
 
   return (
-    <Section id="servicios" bgColor="bg-white" paddingY="xl">
       <div className="relative overflow-hidden">
-        {/* Fondo animado en movimiento */}
+        {}
         <GrayMovingBackground />
         
-        {/* Contenido principal */}
+        {}
         <div className="relative z-10">
           <div className="flex flex-col items-center justify-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
@@ -284,7 +290,7 @@ export default function ServicesSection() {
           </div>
 
           <div className="mt-12">
-            {/* Tabs de servicios mejorados */}
+            {}
             <div className="flex flex-wrap justify-center gap-3 mb-12">
               {services.map((service) => (
                 <button
@@ -309,7 +315,7 @@ export default function ServicesSection() {
               ))}
             </div>
 
-            {/* Contenido de servicios */}
+            {}
             <div className="relative overflow-hidden">
               <AnimatePresence mode="wait">
                 {services.map(
@@ -324,7 +330,7 @@ export default function ServicesSection() {
                         className={`${service.bgColor} rounded-lg p-8 text-white overflow-hidden relative max-w-6xl mx-auto shadow-lg border ${service.borderColor}`}
                       >
                         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 relative z-10">
-                          {/* Columna izquierda - Información principal */}
+                          {}
                           <div className="lg:col-span-2">
                             <div className="mb-6">
                               <h3 className="text-2xl font-bold text-white mb-3 flex items-center">
@@ -356,20 +362,11 @@ export default function ServicesSection() {
                               </h4>
                               <p className="text-amber-100 text-sm">{service.valueProposition}</p>
                             </div>
-                            
-                            <div className="w-full mb-8">
-                              <Button 
-                                href="#contacto" 
-                                customClass="w-full bg-greenlock-500 hover:bg-greenlock-600 text-white py-3 px-8 rounded-md font-semibold flex items-center justify-center transition-all duration-300 shadow-lg shadow-greenlock-900/20 hover:shadow-greenlock-600/30 hover:-translate-y-1 border border-greenlock-400/20 text-base uppercase tracking-wide"
-                              >
-                                ¡Contratar ahora! <ArrowRight className="ml-2 w-5 h-5" />
-                              </Button>
-                            </div>
                           </div>
                           
-                          {/* Columna derecha - Características y beneficios */}
+                          {}
                           <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Panel de características */}
+                            {}
                             <div className="bg-black/20 rounded-lg p-6 border border-greenlock-500/30 h-full">
                               <div className="flex items-center mb-4 pb-2 border-b border-greenlock-500/30">
                                 <h4 className="font-semibold text-white flex items-center">
@@ -396,7 +393,7 @@ export default function ServicesSection() {
                               </ul>
                             </div>
                             
-                            {/* Panel de beneficios */}
+                            {}
                             <div className="bg-black/20 rounded-lg p-6 border border-greenlock-500/30 h-full">
                               <div className="flex items-center mb-4 pb-2 border-b border-greenlock-500/30">
                                 <h4 className="font-semibold text-white flex items-center">
@@ -430,6 +427,5 @@ export default function ServicesSection() {
           </div>
         </div>
       </div>
-    </Section>
   );
 }

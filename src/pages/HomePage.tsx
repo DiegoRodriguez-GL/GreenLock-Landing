@@ -1,4 +1,4 @@
-// src/pages/HomePage.tsx
+
 import HeroSection from '../components/sections/HeroSection';
 import Logos from '../components/sections/MethodologySection';
 import CTA from '../components/sections/UrgentCTASection';

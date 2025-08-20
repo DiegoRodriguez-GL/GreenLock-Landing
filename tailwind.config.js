@@ -1,8 +1,8 @@
-/** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",   // muy importante
   ],
   theme: {
     extend: {
@@ -13,7 +13,7 @@ export default {
           200: '#a3d7b7',
           300: '#75c393',
           400: '#47af6f',
-          500: '#17993f', // Color principal
+          500: '#17993f', 
           600: '#147a32',
           700: '#105c26',
           800: '#0b3d19',

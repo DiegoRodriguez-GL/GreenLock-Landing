@@ -1,4 +1,4 @@
-// src/components/sections/WhyChooseUsSection.tsx - VERSIÓN MEJORADA
+
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -15,7 +15,7 @@ import {
   Zap
 } from 'lucide-react';
 
-// Componente de fondo animado
+
 function WhyChooseBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   
@@ -38,7 +38,7 @@ function WhyChooseBackground() {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     
-    // Crear hexágonos flotantes
+    
     const hexagons: {x: number; y: number; size: number; rotation: number; opacity: number; speed: number}[] = [];
     const hexCount = 15;
     
@@ -74,7 +74,7 @@ function WhyChooseBackground() {
     const animate = () => {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       
-      // Dibujar hexágonos
+      
       for (const hex of hexagons) {
         ctx.strokeStyle = `rgba(23, 153, 63, ${hex.opacity})`;
         ctx.lineWidth = 1;
@@ -82,11 +82,11 @@ function WhyChooseBackground() {
         drawHexagon(hex.x, hex.y, hex.size, hex.rotation);
         ctx.stroke();
         
-        // Actualizar posición y rotación
+        
         hex.y -= hex.speed;
         hex.rotation += 0.01;
         
-        // Reiniciar cuando sale de pantalla
+        
         if (hex.y < -hex.size) {
           hex.y = window.innerHeight + hex.size;
           hex.x = Math.random() * window.innerWidth;
@@ -182,7 +182,7 @@ const reasons = [
   }
 ];
 
-// Componente de tarjeta de razón mejorada
+
 function ReasonCard({ reason, index, inView }: { reason: typeof reasons[0]; index: number; inView: boolean }) {
   const [isHovered, setIsHovered] = useState(false);
   
@@ -195,12 +195,12 @@ function ReasonCard({ reason, index, inView }: { reason: typeof reasons[0]; inde
       onMouseLeave={() => setIsHovered(false)}
       className="relative group cursor-pointer"
     >
-      {/* Glow effect */}
+      {}
       <div className={`absolute -inset-1 bg-gradient-to-r ${reason.color} rounded-xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
       
-      {/* Card content */}
+      {}
       <div className="relative bg-gray-800 border border-gray-700 rounded-xl p-6 h-full transition-all duration-300 hover:border-gray-600 hover:bg-gray-750">
-        {/* Icon and stats */}
+        {}
         <div className="flex items-start justify-between mb-4">
           <div className={`p-3 rounded-lg bg-gradient-to-br ${reason.color} text-white transform transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`}>
             {reason.icon}
@@ -213,13 +213,13 @@ function ReasonCard({ reason, index, inView }: { reason: typeof reasons[0]; inde
           </div>
         </div>
         
-        {/* Content */}
+        {}
         <div className="space-y-3">
           <h3 className="text-xl font-bold text-white">{reason.title}</h3>
           <p className="text-gray-300 text-sm leading-relaxed">{reason.description}</p>
         </div>
         
-        {/* Hover indicator */}
+        {}
         <motion.div
           className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${reason.color} rounded-b-xl`}
           initial={{ width: 0 }}
@@ -238,12 +238,11 @@ export default function WhyChooseUsSection() {
   });
 
   return (
-    <Section id="porque-elegirnos" bgColor="bg-gray-900" paddingY="xl">
       <div className="relative overflow-hidden">
-        {/* Fondo animado */}
+        {}
         <WhyChooseBackground />
         
-        {/* Overlay para mejor legibilidad */}
+        {}
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 via-gray-900/70 to-gray-900/90 z-10"></div>
         
         <div className="relative z-20" ref={ref}>
@@ -264,7 +263,7 @@ export default function WhyChooseUsSection() {
             </p>
           </motion.div>
           
-          {/* Grid de razones */}
+          {}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {reasons.map((reason, index) => (
               <ReasonCard
@@ -276,7 +275,7 @@ export default function WhyChooseUsSection() {
             ))}
           </div>
           
-          {/* Bottom stats section */}
+          {}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
@@ -305,7 +304,7 @@ export default function WhyChooseUsSection() {
             </div>
           </motion.div>
           
-          {/* Call to action */}
+          {}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
@@ -342,6 +341,5 @@ export default function WhyChooseUsSection() {
           </motion.div>
         </div>
       </div>
-    </Section>
   );
 }

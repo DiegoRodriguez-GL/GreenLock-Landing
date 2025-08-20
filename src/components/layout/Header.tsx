@@ -1,4 +1,4 @@
-// Header.tsx - BOTÓN OCULTO EN NAVBAR MÓVIL
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -31,13 +31,13 @@ const Header: React.FC = () => {
     { name: 'Servicios', href: '/servicios', icon: Settings },
     { name: 'Metodología', href: '/metodologia', icon: BookOpen },
     { name: 'Por qué elegirnos', href: '/porque-elegirnos', icon: Award },
-    { name: 'Impacto', href: '/impacto', icon: TrendingUp }
+    { name: 'Blog', href: '/blog', icon: TrendingUp }
   ];
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
-        {/* Logo personalizado */}
+        {}
         <Link to="/" className="header-logo">
           <img 
             src={Logo} 
@@ -49,7 +49,7 @@ const Header: React.FC = () => {
           </span>
         </Link>
 
-        {/* Navegación desktop - SOLO 4 SECCIONES */}
+        {}
         <nav className="header-nav">
           {navigation.map((item) => {
             const IconComponent = item.icon;
@@ -68,15 +68,15 @@ const Header: React.FC = () => {
           })}
         </nav>
 
-        {/* BOTÓN DESKTOP - OCULTO EN MÓVIL */}
+        {}
         <div className="header-buttons">
-          <Link to="/contact" className="header-btn header-btn-primary">
+          <Link to="/contacto" className="header-btn header-btn-primary">
             <Phone className="header-btn-icon" />
             Consulta Gratuita
           </Link>
         </div>
 
-        {/* Botón menú móvil */}
+        {}
         <button
           className="header-mobile-menu-btn"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -88,7 +88,7 @@ const Header: React.FC = () => {
           )}
         </button>
 
-        {/* Menú móvil con botón rediseñado */}
+        {}
         <div className={`header-mobile-menu ${isMenuOpen ? 'open' : ''}`}>
           <nav className="header-mobile-menu-nav">
             {navigation.map((item) => {
@@ -109,7 +109,7 @@ const Header: React.FC = () => {
             })}
           </nav>
           
-          {/* BOTÓN MÓVIL REDISEÑADO - ANCHO COMPLETO */}
+          {}
           <div className="header-mobile-menu-buttons">
             <Link 
               to="/contacto" 

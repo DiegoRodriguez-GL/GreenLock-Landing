@@ -1,11 +1,11 @@
-// src/pages/MethodologyPage.tsx - CON NUEVO HERO INTEGRADO
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Logos from '../components/sections/MethodologySection';
 import HeroMethodologySection from '../components/sections/HeroMethodologySection';
 import MethodologiesRoadmap from '../components/sections/MethodologyRoadmapSection';
-// Componente Section integrado
+
 function MethodologySection({ id, className = '', children, bgColor = 'bg-transparent', paddingY = 'lg' }: {
   id?: string;
   className?: string;
@@ -45,7 +45,7 @@ function MethodologySection({ id, className = '', children, bgColor = 'bg-transp
   );
 }
 
-// Componente Button integrado
+
 function MethodologyButton({ 
   children, 
   href, 
@@ -97,7 +97,7 @@ function MethodologyButton({
   );
 }
 
-// Componente de fondo animado similar al Hero
+
 function MethodologyBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   
@@ -120,7 +120,7 @@ function MethodologyBackground() {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     
-    // Crear nodos
+    
     const nodes: {x: number; y: number; vx: number; vy: number; radius: number; opacity: number}[] = [];
     const nodeCount = 25;
     
@@ -140,7 +140,7 @@ function MethodologyBackground() {
     const animate = () => {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       
-      // Dibujar conexiones
+      
       for (let i = 0; i < nodes.length; i++) {
         const nodeA = nodes[i];
         for (let j = i + 1; j < nodes.length; j++) {
@@ -161,18 +161,18 @@ function MethodologyBackground() {
         }
       }
       
-      // Dibujar nodos
+      
       for (const node of nodes) {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(0, 178, 103, ${node.opacity})`;
         ctx.fill();
         
-        // Actualizar posición
+        
         node.x += node.vx;
         node.y += node.vy;
         
-        // Rebotar en bordes
+        
         if (node.x < 0 || node.x > window.innerWidth) node.vx *= -1;
         if (node.y < 0 || node.y > window.innerHeight) node.vy *= -1;
       }
@@ -200,37 +200,18 @@ export default function MethodologyPage() {
     threshold: 0.1,
   });
 
-  // Controlar animación del hero
+  
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
-  // Auto-play functionality
-  useEffect(() => {
-    if (!isAutoPlaying || !inView) return;
-    
-    const interval = setInterval(() => {
-      setActivePhase((prev) => (prev + 1) % phases.length);
-    }, 4000);
-    
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, inView]);
-
-  const handlePhaseClick = (index: number) => {
-    setActivePhase(index);
-    setIsAutoPlaying(false);
-    
-    // Restart auto-play after 10 seconds
-    setTimeout(() => setIsAutoPlaying(true), 10000);
-  };
-
   return (
     <div className="min-h-screen bg-[#080f1d]">
-      {/* Nuevo Hero Section */}
+      {}
       <HeroMethodologySection isLoaded={isLoaded} />
       <Logos />
       <MethodologiesRoadmap isLoaded={isLoaded} />
-{/* CTA Section Verde Simple */}
+{}
 <MethodologySection bgColor="bg-gradient-to-br from-[#00B267] to-[#2F4F39]" paddingY="xl">
   <div className="text-center">
     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -240,16 +221,23 @@ export default function MethodologyPage() {
       Contacte con nuestro equipo para una explicación detallada de cómo aplicamos nuestra metodología a su organización.
     </p>
     
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="bg-white text-[#00B267] px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 inline-flex items-center gap-3"
-    >
-      <span>Solicitar consulta técnica</span>
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-      </svg>
-    </motion.button>
+    <a href="contacto">
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="bg-white text-[#00B267] px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 inline-flex items-center gap-3"
+  >
+    <span>Reserva un Reunión de Evaluación</span>
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+      <path
+        fillRule="evenodd"
+        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </motion.button>
+</a>
+
   </div>
 </MethodologySection>
     </div>

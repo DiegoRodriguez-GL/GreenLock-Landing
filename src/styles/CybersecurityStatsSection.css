@@ -1,6 +1,6 @@
-/* Estilos profesionales para la sección de estadísticas */
 
-/* Variables */
+
+
 :root {
   --greenlock-primary: #00B267;
   --greenlock-secondary: #2F4F39;
@@ -10,13 +10,13 @@
   --light-border: #e2e8f0;
 }
 
-/* Fondo de la sección */
+
 .stats-background {
   background: linear-gradient(135deg, #080f1d 0%, #101b2e 50%, #0a1426 100%);
   position: relative;
 }
 
-/* Fondo tech animado sutil */
+
 .tech-grid {
   position: absolute;
   top: 0;
@@ -73,7 +73,7 @@
   }
 }
 
-/* Tarjetas de estadísticas */
+
 .stat-card {
   background: rgba(8, 15, 29, 0.9);
   backdrop-filter: blur(15px);
@@ -88,7 +88,7 @@
   box-shadow: 0 10px 30px rgba(0, 178, 103, 0.15);
 }
 
-/* Icono con efecto suave */
+
 .stat-icon {
   transition: transform 0.3s ease;
 }
@@ -97,7 +97,7 @@
   transform: scale(1.1);
 }
 
-/* Animación sutil para contadores */
+
 @keyframes countUp {
   from {
     opacity: 0;
@@ -113,7 +113,7 @@
   animation: countUp 0.6s ease-out;
 }
 
-/* Efecto de brillo suave en hover */
+
 .stat-card::before {
   content: '';
   position: absolute;
@@ -129,14 +129,14 @@
   left: 100%;
 }
 
-/* Badge de alerta */
+
 .alert-badge {
   background: rgba(0, 178, 103, 0.1);
   border: 1px solid rgba(0, 178, 103, 0.3);
   backdrop-filter: blur(10px);
 }
 
-/* CTA Button */
+
 .cta-button {
   transition: all 0.3s ease;
   position: relative;
@@ -148,14 +148,14 @@
   box-shadow: 0 8px 25px rgba(0, 178, 103, 0.3);
 }
 
-/* CTA Container */
+
 .cta-container {
   background: rgba(8, 15, 29, 0.9);
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .stat-card:hover {
     transform: translateY(-2px);

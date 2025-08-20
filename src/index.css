@@ -15,7 +15,7 @@
     padding: 0;
     width: 100%;
     height: 100%;
-    /* Removido overflow-x: hidden que causaba problemas */
+    
     box-sizing: border-box;
   }
 
@@ -23,7 +23,7 @@
     width: 100%;
     height: 100%;
     min-height: 100vh;
-    /* Removido display flex que causaba problemas de layout */
+    
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -42,7 +42,7 @@
     @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
   }
 
-  /* Asegurar que todos los contenedores respeten el box-sizing */
+  
   *, *::before, *::after {
     box-sizing: border-box;
   }
@@ -87,9 +87,9 @@
   }
 }
 
-/* ===== ANIMACIONES CONSOLIDADAS ===== */
 
-/* Gradiente de texto animado */
+
+
 @keyframes text-gradient {
   0%, 100% {
     background-position: 0% 50%;
@@ -104,7 +104,7 @@
   background-size: 200% 200%;
 }
 
-/* Efecto de cursor para el typewriter - UNIFICADO */
+
 @keyframes blink {
   0%, 100% {
     opacity: 1;
@@ -124,7 +124,7 @@
   vertical-align: text-bottom;
 }
 
-/* Pulse glow effect */
+
 @keyframes pulse-glow {
   0%, 100% {
     opacity: 0.6;
@@ -140,7 +140,7 @@
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
-/* ===== EFECTOS DE TARJETAS ===== */
+
 
 .feature-card {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -159,9 +159,9 @@
   transition: transform 0.3s ease;
 }
 
-/* ===== EFECTOS ESPECIALES ===== */
 
-/* Efectos de gradientes y resplandor para el Hero */
+
+
 .hero-glow {
   position: absolute;
   width: 40vw;
@@ -173,7 +173,7 @@
   animation: pulse-glow 8s ease-in-out infinite alternate;
 }
 
-/* Efecto de glow para los elementos destacados */
+
 .glow-effect {
   position: relative;
   overflow: hidden;
@@ -211,7 +211,7 @@
   }
 }
 
-/* Gradientes mejorados para textos */
+
 .text-gradient {
   background: linear-gradient(90deg, #00B267, #33D17A);
   -webkit-background-clip: text;
@@ -230,9 +230,9 @@
   }
 }
 
-/* ===== RESPONSIVO MEJORADO ===== */
 
-/* Asegurar que el viewport funcione correctamente */
+
+
 @media screen and (max-width: 768px) {
   .container {
     @apply px-3;
@@ -243,7 +243,7 @@
   }
 }
 
-/* Prevenir zoom horizontal en móviles */
+
 @media screen and (max-width: 480px) {
   html {
     -webkit-text-size-adjust: 100%;
@@ -256,7 +256,7 @@
   }
 }
 
-/* ===== FUENTES PERSONALIZADAS ===== */
+
 
 @font-face {
   font-family: 'Inter';
@@ -272,7 +272,7 @@
   font-display: swap;
 }
 
-/* Estilo para la terminal de código */
+
 .terminal-text {
   font-family: 'JetBrains Mono', monospace;
   color: #33D17A;
@@ -286,7 +286,7 @@
   to { width: 100% }
 }
 
-/* Animación de pulso para el cursor de la terminal */
+
 @keyframes pulse {
   0%, 100% {
     opacity: 1;

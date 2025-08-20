@@ -1,6 +1,6 @@
-/* src/styles/HeroMethodologySection.css */
 
-/* Variables CSS para HeroMethodology */
+
+
 :root {
   --greenlock-primary: #00B267;
   --greenlock-secondary: #2F4F39;
@@ -11,33 +11,33 @@
   --dark-card: #1a2332;
 }
 
-/* Contenedor principal del hero */
+
 .hero-methodology-container {
   position: relative;
-  min-height: 20vh; /* Reducido un poco más de 25vh a 22vh */
+  min-height: 20vh; 
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background-color: var(--dark-bg);
-  padding: 1.25rem 0 0.25rem 0; /* Reducido padding-bottom de 1.25rem a 0.5rem */
+  padding: 1.25rem 0 0.25rem 0; 
 }
 
 @media (min-width: 768px) {
   .hero-methodology-container {
-    min-height: 22vh; /* Reducido de 30vh a 26vh */
-    padding: 1.75rem 0 0.5rem 0; /* Reducido padding-bottom de 1.75rem a 0.75rem */
+    min-height: 22vh; 
+    padding: 1.75rem 0 0.5rem 0; 
   }
 }
 
 @media (min-width: 1024px) {
   .hero-methodology-container {
-    min-height: 30vh; /* Reducido de 35vh a 30vh */
-    padding: 2rem 0 0rem 0; /* Reducido padding-bottom de 2rem a 1rem */
+    min-height: 30vh; 
+    padding: 2rem 0 0rem 0; 
   }
 }
 
-/* Fondo tecnológico animado */
+
 .hero-methodology-tech-background {
   position: absolute;
   inset: 0;
@@ -46,7 +46,7 @@
   opacity: 1;
 }
 
-/* Overlay de gradiente */
+
 .hero-methodology-overlay {
   position: absolute;
   inset: 0;
@@ -59,13 +59,13 @@
   z-index: 10;
 }
 
-/* Contenido principal */
+
 .hero-methodology-content {
   position: relative;
   z-index: 20;
   text-align: center;
   padding: 0 1rem;
-  max-width: 80rem; /* 5xl */
+  max-width: 80rem; 
   margin: 0 auto;
   width: 100%;
 }
@@ -82,18 +82,18 @@
   }
 }
 
-/* Contenedor del título */
+
 .hero-methodology-title-container {
-  margin-bottom: 0.5rem; /* Reducido de 1rem a 0.75rem */
+  margin-bottom: 0.5rem; 
 }
 
 @media (min-width: 768px) {
   .hero-methodology-title-container {
-    margin-bottom: 1rem; /* Reducido de 1.5rem a 1.25rem */
+    margin-bottom: 1rem; 
   }
 }
 
-/* Título principal */
+
 .hero-methodology-main-title {
   font-size: 2rem;
   font-weight: 700;
@@ -126,13 +126,13 @@
   }
 }
 
-/* Texto principal del título (en una línea) */
+
 .hero-methodology-title-main {
   color: white;
   display: inline;
 }
 
-/* Texto con gradiente del título */
+
 .hero-methodology-title-gradient {
   color: transparent;
   background-clip: text;
@@ -147,11 +147,11 @@
   animation: gradient-text-hero-methodology 4s ease infinite;
 }
 
-/* Subtítulo */
+
 .hero-methodology-subtitle {
   font-size: 1rem;
-  color: #d1d5db; /* gray-300 */
-  max-width: 48rem; /* 3xl */
+  color: #d1d5db; 
+  max-width: 48rem; 
   margin: 0 auto;
   line-height: 1.5;
   font-weight: 300;
@@ -170,13 +170,13 @@
   }
 }
 
-/* Texto destacado en el subtítulo */
+
 .hero-methodology-highlight {
   color: var(--greenlock-primary);
   font-weight: 600;
 }
 
-/* Animaciones */
+
 @keyframes gradient-text-hero-methodology {
   0%, 100% {
     background-position: 0% 50%;
@@ -186,7 +186,7 @@
   }
 }
 
-/* Animaciones de entrada */
+
 .hero-methodology-fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -212,15 +212,15 @@
   }
 }
 
-/* Efectos responsivos adicionales */
+
 @media (max-width: 640px) {
   .hero-methodology-container {
-    min-height: 18vh; /* Reducido de 20vh a 18vh */
-    padding: 0.75rem 0 0.25rem 0; /* Reducido padding-bottom de 0.75rem a 0.25rem */
+    min-height: 18vh; 
+    padding: 0.75rem 0 0.25rem 0; 
   }
   
   .hero-methodology-title-container {
-    margin-bottom: 0.5rem; /* Reducido de 0.75rem a 0.5rem */
+    margin-bottom: 0.5rem; 
   }
   
   .hero-methodology-main-title {
@@ -233,7 +233,7 @@
   }
 }
 
-/* Optimizaciones de rendimiento */
+
 .hero-methodology-tech-background {
   will-change: auto;
   transform: translateZ(0);

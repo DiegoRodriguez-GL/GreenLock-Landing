@@ -1,15 +1,15 @@
-/* src/styles/MethodologyRoadmapSection.css */
 
-/* Variables CSS para MethodologyRoadmap */
+
+
 :root {
   --greenlock-primary: #00B267;
   --greenlock-secondary: #2F4F39;
   --greenlock-light: #33D17A;
   --greenlock-dark: #006B3C;
-  --dark-bg: #080f1d;
-  --dark-surface: #101b2e;
-  --dark-card: #1a2332;
-  --dark-border: #2a3441;
+  --dark-bg: #0a0a0a;
+  --dark-surface: #111111;
+  --dark-card: #1a1a1a;
+  --dark-border: #2a2a2a;
   --white: #ffffff;
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
@@ -23,7 +23,7 @@
   --gray-900: #111827;
 }
 
-/* Sección principal */
+
 .methodology-roadmap-section {
   background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
   padding: 4rem 0;
@@ -31,7 +31,7 @@
   overflow: hidden;
 }
 
-/* Animated dots background */
+
 .methodology-roadmap-dots {
   position: absolute;
   inset: 0;
@@ -104,7 +104,7 @@
   z-index: 2;
 }
 
-/* Contenedor principal */
+
 .methodology-roadmap-container {
   position: relative;
   z-index: 10;
@@ -125,7 +125,7 @@
   }
 }
 
-/* Header */
+
 .methodology-roadmap-header {
   text-align: center;
   margin-bottom: 4rem;
@@ -190,7 +190,7 @@
   font-weight: 600;
 }
 
-/* Timeline */
+
 .methodology-roadmap-timeline {
   position: relative;
   padding: 2rem 0;
@@ -229,7 +229,7 @@
   }
 }
 
-/* Phase */
+
 .methodology-roadmap-phase {
   position: relative;
   margin: 3rem 0;
@@ -252,7 +252,7 @@
   }
 }
 
-/* Timeline Node */
+
 .methodology-roadmap-node {
   position: absolute;
   left: 50%;
@@ -308,7 +308,7 @@
   }
 }
 
-/* Phase Content */
+
 .methodology-roadmap-content {
   width: calc(50% - 3rem);
   max-width: 28rem;
@@ -336,12 +336,12 @@
   }
 }
 
-/* Card */
+
 .methodology-roadmap-card {
   background: var(--dark-card);
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   border: 1px solid var(--dark-border);
   transition: all 0.3s ease;
   position: relative;
@@ -360,11 +360,11 @@
 
 .methodology-roadmap-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
   border-color: var(--greenlock-primary);
 }
 
-/* Card Header */
+
 .methodology-roadmap-card-header {
   display: flex;
   align-items: flex-start;
@@ -417,7 +417,7 @@
   flex-shrink: 0;
 }
 
-/* Description */
+
 .methodology-roadmap-description {
   color: var(--gray-300);
   line-height: 1.6;
@@ -425,7 +425,7 @@
   font-size: 0.95rem;
 }
 
-/* Details */
+
 .methodology-roadmap-details {
   overflow: hidden;
 }
@@ -449,7 +449,7 @@
   color: var(--greenlock-primary);
 }
 
-/* Activities */
+
 .methodology-roadmap-activities {
   list-style: none;
   padding: 0;
@@ -475,7 +475,7 @@
   margin-top: 0.5rem;
 }
 
-/* Frameworks */
+
 .methodology-roadmap-frameworks h4 {
   margin-bottom: 0.5rem;
 }
@@ -487,16 +487,16 @@
 }
 
 .methodology-roadmap-tag {
-  background: rgba(0, 178, 103, 0.1);
-  color: var(--greenlock-dark);
+  background: rgba(0, 178, 103, 0.15);
+  color: var(--greenlock-light);  
   padding: 0.25rem 0.5rem;
   border-radius: 0.375rem;
   font-size: 0.75rem;
   font-weight: 600;
-  border: 1px solid rgba(0, 178, 103, 0.2);
+  border: 1px solid rgba(51, 209, 122, 0.3);  
 }
 
-/* Stats */
+
 .methodology-roadmap-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -511,14 +511,14 @@
   background: var(--dark-card);
   padding: 1.5rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   border: 1px solid var(--dark-border);
   transition: all 0.3s ease;
 }
 
 .methodology-roadmap-stat:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
 .methodology-roadmap-stat-icon {
@@ -557,7 +557,7 @@
   line-height: 1.4;
 }
 
-/* Call to Action */
+
 .methodology-roadmap-cta {
   position: relative;
   text-align: center;
@@ -694,7 +694,7 @@
   transform: translateX(3px);
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 640px) {
   .methodology-roadmap-section {
     padding: 2rem 0;
@@ -745,7 +745,7 @@
   }
 }
 
-/* Performance Optimizations */
+
 .methodology-roadmap-card,
 .methodology-roadmap-stat,
 .methodology-roadmap-cta-button {
