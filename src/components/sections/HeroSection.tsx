@@ -269,7 +269,7 @@ function AnimatedTerminal() {
   };
 
   return (
-    <div className="w-full relative bg-[#0c1628] border border-gray-700 rounded-md overflow-hidden shadow-md w-full lg:max-w-lg ml-auto">
+    <div className="relative bg-[#0c1628] border border-gray-700 rounded-md overflow-hidden shadow-md w-full lg:max-w-lg ml-auto">
       <div className="px-3 py-1.5 bg-[#0a1426] border-b border-gray-700 flex items-center justify-between">
         <div className="flex items-center gap-1.5">
           <div className="w-2 h-2 rounded-full bg-red-500"></div>
