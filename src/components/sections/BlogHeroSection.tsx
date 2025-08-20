@@ -1,4 +1,3 @@
-
 import { useRef, useEffect } from 'react';
 import '../../styles/BlogHeroSection.css';
 
@@ -6,6 +5,14 @@ interface BlogHeroSectionProps {
   isLoaded: boolean;
 }
 
+interface Node {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+  opacity: number;
+}
 
 const TechBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -37,7 +44,7 @@ const TechBackground = () => {
     resizeObserver.observe(canvas.parentElement!);
     resizeCanvas();
 
-    const nodes: any[] = [];
+    const nodes: Node[] = [];
     const nodeCount = 30;
     const canvasWidth = () => canvas.width / (window.devicePixelRatio || 1);
     const canvasHeight = () => canvas.height / (window.devicePixelRatio || 1);
@@ -65,7 +72,7 @@ const TechBackground = () => {
       const width = canvasWidth();
       const height = canvasHeight();
 
-      ctx.fillStyle = '#0a0a0a';
+      ctx.fillStyle = '#080f1d';
       ctx.fillRect(0, 0, width, height);
 
       time += 0.01;
@@ -127,7 +134,7 @@ const TechBackground = () => {
     <canvas 
       ref={canvasRef} 
       className="blog-hero-tech-background"
-      style={{ background: '#0a0a0a' }}
+      style={{ background: '#080f1d' }}
     />
   );
 };
