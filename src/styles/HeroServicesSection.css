@@ -1,6 +1,4 @@
-
-
-
+/* Variables CSS */
 :root {
   --greenlock-primary: #00B267;
   --greenlock-secondary: #2F4F39;
@@ -11,7 +9,6 @@
   --dark-card: #1a2332;
 }
 
-
 .hero-services-container {
   position: relative;
   min-height: 20vh; 
@@ -20,23 +17,22 @@
   justify-content: center;
   overflow: hidden;
   background-color: var(--dark-bg);
-  padding: 1.25rem 0 0.25rem 0; 
+  padding: 1.25rem 0 2rem 0; 
 }
 
 @media (min-width: 768px) {
   .hero-services-container {
     min-height: 22vh; 
-    padding: 1.75rem 0 0.5rem 0; 
+    padding: 1.75rem 0 2.5rem 0; 
   }
 }
 
 @media (min-width: 1024px) {
   .hero-services-container {
     min-height: 30vh; 
-    padding: 2rem 0 0rem 0; 
+    padding: 2rem 0 3rem 0; 
   }
 }
-
 
 .hero-services-tech-background {
   position: absolute;
@@ -45,7 +41,6 @@
   height: 100%;
   opacity: 1;
 }
-
 
 .hero-services-overlay {
   position: absolute;
@@ -59,6 +54,32 @@
   z-index: 10;
 }
 
+@media (max-width: 640px) {
+  .hero-services-overlay {
+    top: 3.5rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(8, 15, 29, 0.4) 30%,
+      rgba(8, 15, 29, 0.7) 100%
+    );
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-services-overlay {
+    top: 4rem;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(8, 15, 29, 0.3) 25%,
+      rgba(8, 15, 29, 0.6) 100%
+    );
+  }
+}
 
 .hero-services-content {
   position: relative;
@@ -68,6 +89,18 @@
   max-width: 80rem; 
   margin: 0 auto;
   width: 100%;
+}
+
+@media (max-width: 640px) {
+  .hero-services-content {
+    padding-top: 4rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-services-content {
+    padding-top: 4.5rem;
+  }
 }
 
 @media (min-width: 640px) {
@@ -82,7 +115,7 @@
   }
 }
 
-
+/* Contenedor del título */
 .hero-services-title-container {
   margin-bottom: 0.5rem; 
 }
@@ -93,7 +126,7 @@
   }
 }
 
-
+/* Título principal */
 .hero-services-main-title {
   font-size: 2rem;
   font-weight: 700;
@@ -126,12 +159,10 @@
   }
 }
 
-
 .hero-services-title-main {
   color: white;
   display: inline;
 }
-
 
 .hero-services-title-gradient {
   color: transparent;
@@ -146,7 +177,6 @@
   background-size: 200% 200%;
   animation: gradient-text-hero 4s ease infinite;
 }
-
 
 .hero-services-subtitle {
   font-size: 1rem;
@@ -170,12 +200,10 @@
   }
 }
 
-
 .hero-services-highlight {
   color: var(--greenlock-primary);
   font-weight: 600;
 }
-
 
 @keyframes gradient-text-hero {
   0%, 100% {
@@ -185,7 +213,6 @@
     background-position: 100% 50%;
   }
 }
-
 
 .hero-services-fade-in {
   opacity: 0;
@@ -212,11 +239,10 @@
   }
 }
 
-
 @media (max-width: 640px) {
   .hero-services-container {
     min-height: 18vh; 
-    padding: 0.75rem 0 0.25rem 0; 
+    padding: 0.75rem 0 2rem 0; 
   }
   
   .hero-services-title-container {
@@ -232,7 +258,6 @@
     line-height: 1.4;
   }
 }
-
 
 .hero-services-tech-background {
   will-change: auto;

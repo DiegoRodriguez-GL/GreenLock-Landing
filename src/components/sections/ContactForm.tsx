@@ -308,10 +308,6 @@ function MainContactForm() {
             Gracias por contactarnos. Nuestro equipo se pondra en contacto contigo en las proximas 24 horas.
           </p>
         </div>
-
-        <div className="contact-form__success-processing">
-          <HackerEffect text="Procesando solicitud..." duration={1000} />
-        </div>
       </motion.div>
     );
   }

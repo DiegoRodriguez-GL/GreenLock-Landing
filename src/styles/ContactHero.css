@@ -1,6 +1,3 @@
-
-
-
 :root {
   --greenlock-primary: #00B267;
   --greenlock-secondary: #2F4F39;
@@ -11,7 +8,6 @@
   --dark-card: #1a2332;
 }
 
-
 .contact-hero-container {
   position: relative;
   min-height: 20vh; 
@@ -20,23 +16,22 @@
   justify-content: center;
   overflow: hidden;
   background-color: var(--dark-bg);
-  padding: 1.25rem 0 0.25rem 0; 
+  padding: 1.25rem 0 2rem 0; 
 }
 
 @media (min-width: 768px) {
   .contact-hero-container {
     min-height: 22vh; 
-    padding: 1.75rem 0 0.5rem 0; 
+    padding: 1.75rem 0 2.5rem 0; 
   }
 }
 
 @media (min-width: 1024px) {
   .contact-hero-container {
     min-height: 30vh; 
-    padding: 2rem 0 0rem 0; 
+    padding: 2rem 0 3rem 0; 
   }
 }
-
 
 .contact-hero-tech-background {
   position: absolute;
@@ -45,7 +40,6 @@
   height: 100%;
   opacity: 1;
 }
-
 
 .contact-hero-overlay {
   position: absolute;
@@ -59,6 +53,32 @@
   z-index: 10;
 }
 
+@media (max-width: 640px) {
+  .contact-hero-overlay {
+    top: 3.5rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(8, 15, 29, 0.4) 30%,
+      rgba(8, 15, 29, 0.7) 100%
+    );
+  }
+}
+
+@media (max-width: 375px) {
+  .contact-hero-overlay {
+    top: 4rem;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(8, 15, 29, 0.3) 25%,
+      rgba(8, 15, 29, 0.6) 100%
+    );
+  }
+}
 
 .contact-hero-content {
   position: relative;
@@ -68,6 +88,18 @@
   max-width: 80rem; 
   margin: 0 auto;
   width: 100%;
+}
+
+@media (max-width: 640px) {
+  .contact-hero-content {
+    padding-top: 4rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .contact-hero-content {
+    padding-top: 4.5rem;
+  }
 }
 
 @media (min-width: 640px) {
@@ -82,7 +114,6 @@
   }
 }
 
-
 .contact-hero-title-container {
   margin-bottom: 0.5rem; 
 }
@@ -92,7 +123,6 @@
     margin-bottom: 1rem; 
   }
 }
-
 
 .contact-hero-main-title {
   font-size: 2rem;
@@ -126,12 +156,10 @@
   }
 }
 
-
 .contact-hero-title-main {
   color: white;
   display: inline;
 }
-
 
 .contact-hero-title-gradient {
   color: transparent;
@@ -146,7 +174,6 @@
   background-size: 200% 200%;
   animation: gradient-text-contact-hero 4s ease infinite;
 }
-
 
 .contact-hero-subtitle {
   font-size: 1rem;
@@ -170,12 +197,10 @@
   }
 }
 
-
 .contact-hero-highlight {
   color: var(--greenlock-primary);
   font-weight: 600;
 }
-
 
 @keyframes gradient-text-contact-hero {
   0%, 100% {
@@ -185,7 +210,6 @@
     background-position: 100% 50%;
   }
 }
-
 
 .contact-hero-fade-in {
   opacity: 0;
@@ -212,11 +236,10 @@
   }
 }
 
-
 @media (max-width: 640px) {
   .contact-hero-container {
     min-height: 18vh; 
-    padding: 0.75rem 0 0.25rem 0; 
+    padding: 0.75rem 0 2rem 0; 
   }
   
   .contact-hero-title-container {
@@ -232,7 +255,6 @@
     line-height: 1.4;
   }
 }
-
 
 .contact-hero-tech-background {
   will-change: auto;

@@ -1,3 +1,71 @@
+:root {
+  --greenlock-primary: #00B267;
+  --greenlock-secondary: #2F4F39;
+  --greenlock-light: #33D17A;
+  --greenlock-dark: #006B3C;
+  --greenlock-400: #4ade80;
+  --greenlock-500: #00B267;
+  --greenlock-600: #2F4F39;
+  --dark-bg: #080f1d;
+  --dark-surface: #101b2e;
+  --dark-card: #1a2332;
+}
+
+#hero {
+  padding-top: 1.25rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  #hero {
+    padding-top: 1.75rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  #hero {
+    padding-top: 4.5rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  #hero .absolute.inset-0.bg-gradient-to-b {
+    top: 3.5rem !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(8, 15, 29, 0.4) 30%,
+      rgba(8, 15, 29, 0.7) 100%
+    ) !important;
+  }
+}
+
+@media (max-width: 375px) {
+  #hero {
+    padding-top: 5rem !important;
+  }
+  
+  #hero .absolute.inset-0.bg-gradient-to-b {
+    top: 4rem !important;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(8, 15, 29, 0.3) 25%,
+      rgba(8, 15, 29, 0.6) 100%
+    ) !important;
+  }
+}
+
 @keyframes pulse-ring1 {
   0% {
     transform: scale(0.95);
@@ -78,7 +146,6 @@
   animation: button-pulse 2s infinite;
 }
 
-/* Animaciones para la terminal */
 @keyframes terminalFadeIn {
   0% {
     opacity: 0;
@@ -110,7 +177,6 @@
   animation: terminalFadeIn 0.5s ease-out forwards;
 }
 
-/* Efecto de pulso para el indicador de la terminal */
 @keyframes terminal-cursor {
   0%, 50% {
     opacity: 1;
@@ -138,24 +204,19 @@
   transition: transform 0.3s ease;
 }
 
-/* Variables CSS para el tema */
-:root {
-  --greenlock-primary: #00B267;
-  --greenlock-secondary: #2F4F39;
-  --greenlock-light: #33D17A;
-  --greenlock-dark: #006B3C;
-  --greenlock-400: #4ade80;
-  --greenlock-500: #00B267;
-  --greenlock-600: #2F4F39;
-  --dark-bg: #080f1d;
-  --dark-surface: #101b2e;
-  --dark-card: #1a2332;
-}
-
-/* Centrar texto de botones en móvil */
 @media (max-width: 640px) {
+  .hero-container {
+    min-height: 100vh;
+    padding: 0.75rem 0 2rem 0;
+  }
+  
   .flex.flex-col.sm\\:flex-row.gap-4.justify-start a {
     text-align: center;
     justify-content: center;
   }
+}
+
+.hero-tech-background {
+  will-change: auto;
+  transform: translateZ(0);
 }

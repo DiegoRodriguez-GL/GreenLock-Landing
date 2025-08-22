@@ -1,6 +1,4 @@
 
-
-
 @keyframes bounce-subtle {
   0%, 100% { 
     transform: translateY(0); 
@@ -35,7 +33,7 @@
   }
 }
 
-
+/* Animaciones de partículas flotantes */
 @keyframes float-particle-1 {
   0%, 100% { 
     transform: translate(0, 0) scale(0); 
@@ -122,7 +120,7 @@
   }
 }
 
-
+/* Clases de animación */
 .animate-bounce-subtle {
   animation: bounce-subtle 2s infinite;
 }
@@ -167,7 +165,7 @@
   animation: float-particle-6 3s infinite; 
 }
 
-
+/* Estilos del botón flotante principal */
 .floating-cta-button {
   background: linear-gradient(45deg, #00B267, #4ade80);
   backdrop-filter: blur(10px);
@@ -176,17 +174,41 @@
 
 .floating-cta-button:hover {
   background: linear-gradient(45deg, #4ade80, #00B267);
-  box-shadow: 
-    0 20px 40px rgba(0, 178, 103, 0.3),
-    0 0 0 1px rgba(0, 178, 103, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Sombras responsive para hover */
+@media (max-width: 480px) {
+  .floating-cta-button:hover {
+    box-shadow: 
+      0 4px 8px rgba(0, 178, 103, 0.2),
+      0 0 0 1px rgba(0, 178, 103, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .floating-cta-button:hover {
+    box-shadow: 
+      0 6px 12px rgba(0, 178, 103, 0.25),
+      0 0 0 1px rgba(0, 178, 103, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+@media (min-width: 769px) {
+  .floating-cta-button:hover {
+    box-shadow: 
+      0 20px 40px rgba(0, 178, 103, 0.3),
+      0 0 0 1px rgba(0, 178, 103, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
 }
 
 .floating-cta-button:active {
   transform: scale(0.95);
 }
 
-
+/* Estilos de las opciones de contacto */
 .contact-option {
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -218,7 +240,7 @@
     0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
-
+/* Estilos del tooltip */
 .cta-tooltip {
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
@@ -238,7 +260,7 @@
   border-top-color: rgba(0, 0, 0, 0.9);
 }
 
-
+/* Estilos del badge de notificación */
 .notification-badge {
   background: linear-gradient(45deg, #ef4444, #dc2626);
   box-shadow: 
@@ -246,13 +268,8 @@
     0 0 20px rgba(239, 68, 68, 0.3);
 }
 
-
+/* Media queries para elementos específicos */
 @media (max-width: 768px) {
-  .floating-cta-button {
-    width: 56px;
-    height: 56px;
-  }
-  
   .contact-option {
     min-width: 120px;
     padding: 8px 12px;
@@ -270,19 +287,11 @@
 }
 
 @media (max-width: 480px) {
-  .floating-cta-button {
-    width: 48px;
-    height: 48px;
-    bottom: 16px;
-    right: 16px;
-  }
-  
   .contact-option {
     min-width: 100px;
     padding: 6px 10px;
   }
 }
-
 
 :root {
   --cta-primary: #00B267;
@@ -292,7 +301,6 @@
   --cta-shadow-lg: 0 20px 40px rgba(0, 178, 103, 0.3);
   --cta-shadow-md: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
-
 
 @media (prefers-color-scheme: dark) {
   .contact-option {
